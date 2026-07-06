@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" media="(prefers-color-scheme: light)" href="/favicon-light.png" />
+    <link rel="icon" type="image/png" media="(prefers-color-scheme: dark)" href="/favicon-dark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <title>Gayatri Gopalakrishnan</title>
+    <meta
+      name="description"
+      content="Gayatri Gopalakrishnan — Technical PM, builder, and pattern-seeker across AI, markets, music, and movement."
+    />
+    <!-- Set theme before paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search).get('theme');
+          var stored = q || localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
