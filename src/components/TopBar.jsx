@@ -5,14 +5,14 @@ import ThemeToggle from './ThemeToggle'
 
 const navLinks = [
   { label: 'About', href: '#about', color: 'blue' },
-  { label: 'Outside Work', href: '#outside-work', color: 'rose' },
+  { label: 'Achievements', href: '#outside-work', color: 'rose' },
   { label: 'Projects', href: '#projects', color: 'green' },
-  { label: 'Product Taste', href: '#product-taste', color: 'yellow' },
+  { label: 'Field Notes', href: '#field-notes', color: 'gold' },
   { label: 'Experience', href: '#experience', color: 'orange' },
   { label: 'Contact', href: '#contact', color: 'navy' },
 ]
 
-export default function TopBar() {
+export default function TopBar({ showFieldNotes }) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

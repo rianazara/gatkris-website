@@ -8,6 +8,17 @@ function getTheme() {
     : 'light'
 }
 
+const SECTION_PALETTE = [
+  { hue: 35, sat: 70, light: 55 },
+  { hue: 210, sat: 55, light: 50 },
+  { hue: 150, sat: 45, light: 45 },
+  { hue: 280, sat: 40, light: 55 },
+  { hue: 25, sat: 65, light: 50 },
+  { hue: 190, sat: 50, light: 45 },
+  { hue: 340, sat: 45, light: 50 },
+  { hue: 50, sat: 60, light: 50 },
+]
+
 export default function Background() {
   const canvasRef = useRef(null)
 
@@ -18,6 +29,10 @@ export default function Background() {
     let particles = []
     let stars = []
     let shootingStars = []
+    let scrollY = 0
+
+    function onScroll() { scrollY = window.scrollY }
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -34,31 +49,35 @@ export default function Background() {
       stars = Array.from({ length: Math.min(Math.floor(area / 1800), 500) }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
+        baseY: Math.random() * h,
         r: Math.random() * 2 + 0.3,
         twinkleSpeed: Math.random() * 0.03 + 0.008,
         twinkleOffset: Math.random() * Math.PI * 2,
         color: Math.random() > 0.85
           ? `hsl(${[220, 200, 30, 340, 180][Math.floor(Math.random() * 5)]}, 60%, 80%)`
           : '#e8e4dc',
+        depth: Math.random() * 0.25 + 0.05,
       }))
 
-      particles = Array.from({ length: 20 }, () => ({
+      particles = Array.from({ length: 12 }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
+        baseY: Math.random() * h,
         r: Math.random() * 200 + 80,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.12,
+        vx: (Math.random() - 0.5) * 0.1,
+        vy: (Math.random() - 0.5) * 0.06,
         hue: [220, 280, 340, 200, 160, 30][Math.floor(Math.random() * 6)],
         sat: Math.random() * 40 + 30,
         pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.006 + 0.002,
+        pulseSpeed: Math.random() * 0.003 + 0.001,
+        depth: Math.random() * 0.2 + 0.1,
       }))
 
       shootingStars = []
     }
 
     function maybeSpawnShootingStar() {
-      if (shootingStars.length < 2 && Math.random() < 0.003) {
+      if (shootingStars.length < 2 && Math.random() < 0.002) {
         shootingStars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height * 0.5,
@@ -83,19 +102,21 @@ export default function Background() {
         if (p.y < -p.r) p.y = canvas.height + p.r
         if (p.y > canvas.height + p.r) p.y = -p.r
 
-        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r)
-        const alpha = 0.06 + 0.04 * Math.sin(p.pulse)
+        const parallaxY = p.y - scrollY * p.depth
+        const glow = ctx.createRadialGradient(p.x, parallaxY, 0, p.x, parallaxY, p.r)
+        const alpha = 0.05 + 0.03 * Math.sin(p.pulse)
         glow.addColorStop(0, `hsla(${p.hue}, ${p.sat}%, 50%, ${alpha})`)
         glow.addColorStop(0.5, `hsla(${p.hue}, ${p.sat}%, 40%, ${alpha * 0.4})`)
         glow.addColorStop(1, 'transparent')
         ctx.fillStyle = glow
-        ctx.fillRect(p.x - p.r, p.y - p.r, p.r * 2, p.r * 2)
+        ctx.fillRect(p.x - p.r, parallaxY - p.r, p.r * 2, p.r * 2)
       }
 
       for (const s of stars) {
         const alpha = 0.3 + 0.7 * Math.sin(t * s.twinkleSpeed + s.twinkleOffset) ** 2
+        const parallaxY = s.y - scrollY * s.depth
         ctx.beginPath()
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
+        ctx.arc(s.x, parallaxY, s.r, 0, Math.PI * 2)
         ctx.fillStyle = typeof s.color === 'string' && s.color.startsWith('hsl')
           ? s.color.replace(')', `, ${alpha})`).replace('hsl(', 'hsla(')
           : `rgba(232, 228, 220, ${alpha})`
@@ -103,7 +124,7 @@ export default function Background() {
 
         if (s.r > 1.5) {
           ctx.beginPath()
-          ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2)
+          ctx.arc(s.x, parallaxY, s.r * 3, 0, Math.PI * 2)
           ctx.fillStyle = `rgba(232, 228, 220, ${alpha * 0.08})`
           ctx.fill()
         }
@@ -138,24 +159,25 @@ export default function Background() {
     function initDots() {
       const w = canvas.width
       const h = canvas.height
-      const colors = [
-        '#4285F4', '#EA4335', '#FBBC04', '#34A853',
-        '#FF6D01', '#46BDC6', '#7B61FF', '#E8453C',
-        '#1A73E8', '#F9AB00', '#0D652D', '#C5221F',
-        '#B8860B', '#9C27B0', '#00897B',
-      ]
+      const palette = SECTION_PALETTE
       const count = Math.min(Math.floor((w * h) / 4000), 600)
-      dots = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 3 + 1.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        baseAlpha: Math.random() * 0.3 + 0.15,
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.01 + 0.004,
-        vx: (Math.random() - 0.5) * 0.08,
-        vy: (Math.random() - 0.5) * 0.06,
-      }))
+      dots = Array.from({ length: count }, () => {
+        const p = palette[Math.floor(Math.random() * palette.length)]
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 3 + 1.5,
+          hue: p.hue,
+          sat: p.sat,
+          light: p.light,
+          baseAlpha: Math.random() * 0.25 + 0.1,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: Math.random() * 0.01 + 0.004,
+          vx: (Math.random() - 0.5) * 0.08,
+          vy: (Math.random() - 0.5) * 0.06,
+          depth: Math.random() * 0.15 + 0.05,
+        }
+      })
     }
 
     function drawLight(t) {
@@ -170,11 +192,12 @@ export default function Background() {
         if (d.y < -5) d.y = canvas.height + 5
         if (d.y > canvas.height + 5) d.y = -5
 
+        const parallaxY = d.y - scrollY * d.depth
         const alpha = d.baseAlpha + 0.1 * Math.sin(t * d.pulseSpeed * 3 + d.pulse)
         ctx.globalAlpha = Math.max(0, alpha)
         ctx.beginPath()
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2)
-        ctx.fillStyle = d.color
+        ctx.arc(d.x, parallaxY, d.r, 0, Math.PI * 2)
+        ctx.fillStyle = `hsl(${d.hue}, ${d.sat}%, ${d.light}%)`
         ctx.fill()
       }
       ctx.globalAlpha = 1
@@ -208,6 +231,7 @@ export default function Background() {
     return () => {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [])
 

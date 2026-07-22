@@ -2,7 +2,7 @@ import { exploring } from '../data/content'
 
 export default function Exploring() {
   return (
-    <section className="card">
+    <section className="card" id="exploring">
       <h3 className="section-label section-label--teal">Currently Exploring</h3>
       <div className="exploring">
         {exploring.map((item) => (

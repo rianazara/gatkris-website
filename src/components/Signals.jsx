@@ -4,7 +4,7 @@ import { achievements } from '../data/content'
 export default function Signals() {
   return (
     <section className="card" id="outside-work">
-      <h3 className="section-label section-label--rose">What I Learned Outside Work</h3>
+      <h3 className="section-label section-label--rose">Achievements Outside Work</h3>
       <div className="signals">
         {achievements.map((a) => (
           <SignalCard key={a.title} achievement={a} />
