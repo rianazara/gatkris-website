@@ -55,29 +55,39 @@ export default function Experience() {
     <section className="card" id="experience">
       <h3 className="section-label section-label--orange">Experience</h3>
       <ul className="exp">
-        {experience.map((e) => (
-          <li className="exp__item" key={e.company}>
-            <div className="exp__logo">
-              <img src={e.logo} alt={`${e.company} logo`} loading="lazy" />
-            </div>
-            <div className="exp__body">
-              <p className="exp__company">{e.company}</p>
-              <p className="exp__role">{e.role}</p>
-              <p className="exp__desc">{e.description}</p>
-              <div className="exp__meta">
-                <span className="exp__meta-item">
-                  <CalendarIcon />
-                  {e.dates}
-                </span>
-                <span className="exp__meta-item">
-                  <LocationIcon />
-                  {e.place}
-                </span>
+        {experience.map((e) => {
+          const showcase = showcaseData[e.company]
+          return (
+            <li className="exp__item" key={e.company}>
+              <div className="exp__header">
+                <div className="exp__logo">
+                  <img src={e.logo} alt={`${e.company} logo`} loading="lazy" />
+                </div>
+                <div className="exp__header-text">
+                  <p className="exp__company">{e.company}</p>
+                  <p className="exp__role">{e.role}</p>
+                  <div className="exp__meta">
+                    <span className="exp__meta-item">
+                      <CalendarIcon />
+                      {e.dates}
+                    </span>
+                    <span className="exp__meta-item">
+                      <LocationIcon />
+                      {e.place}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            {showcaseData[e.company] && <Showcase {...showcaseData[e.company]} />}
-          </li>
-        ))}
+              {showcase ? (
+                <Showcase {...showcase} />
+              ) : (
+                <div className="exp__desc-only">
+                  <p className="exp__desc">{e.description}</p>
+                </div>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

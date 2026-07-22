@@ -1,29 +1,93 @@
-import { projects } from '../data/content'
+import { projects, productVisions } from '../data/content'
+import AnimusPreview from './AnimusPreview'
+import PriceWhispererPreview from './PriceWhispererPreview'
+
+const previews = {
+  animus: AnimusPreview,
+  pricewhisperer: PriceWhispererPreview,
+}
+
+function StatusBadge({ status }) {
+  const cls = status === 'Live' ? 'proj-badge--live' : 'proj-badge--building'
+  return <span className={`proj-badge ${cls}`}>{status}</span>
+}
+
+function ProjectCard({ project, index }) {
+  const Preview = previews[project.preview]
+  const isFlag = project.type === 'flagship'
+
+  return (
+    <article className={`proj ${isFlag ? 'proj--flagship' : 'proj--shipped'}`}>
+      <div className="proj__visual">
+        {Preview && <Preview />}
+      </div>
+      <div className="proj__content">
+        <div className="proj__meta">
+          <span className="proj__category">{project.category}</span>
+          <StatusBadge status={project.status} />
+        </div>
+        <h4 className="proj__name">{project.name}</h4>
+        <p className="proj__tagline">{project.tagline}</p>
+        <p className="proj__desc">{project.description}</p>
+        <ul className="proj__details">
+          {project.details.map((d, i) => (
+            <li key={i}>{d}</li>
+          ))}
+        </ul>
+        <div className="proj__stack">
+          {project.stack.map((t) => (
+            <span key={t} className="proj__tech">{t}</span>
+          ))}
+        </div>
+        {project.href && (
+          <a href={project.href} target="_blank" rel="noopener noreferrer" className="proj__cta">
+            Try it live <span aria-hidden="true">→</span>
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
+
+function VisionCard({ vision }) {
+  return (
+    <article className="proj-vision">
+      <div className="proj-vision__icon">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 6v6l4 2" />
+        </svg>
+      </div>
+      <div className="proj-vision__body">
+        <div className="proj-vision__meta">
+          <span className="proj__category">{vision.category}</span>
+        </div>
+        <h4 className="proj-vision__name">{vision.name}</h4>
+        <p className="proj-vision__tagline">{vision.tagline}</p>
+        <p className="proj-vision__desc">{vision.description}</p>
+        {vision.href && (
+          <a href={vision.href} target="_blank" rel="noopener noreferrer" className="proj__cta">
+            Read the vision <span aria-hidden="true">→</span>
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
 
 export default function Projects() {
   return (
     <section className="card" id="projects">
-      <h3 className="section-label section-label--green">Things I Built to Understand the Future</h3>
-      <div className="projects">
-        {projects.map((p) => (
-          <article className="project" key={p.name}>
-            <div className="project__media">
-              {p.video ? (
-                <video src={p.video} controls preload="metadata" />
-              ) : (
-                <img src={p.image} alt={p.name} loading="lazy" />
-              )}
-            </div>
-            <div className="project__body">
-              <h4 className="project__name">{p.name}</h4>
-              <p className="project__thesis">{p.thesis}</p>
-              <ul className="project__bullets">
-                {p.bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
+      <h3 className="section-label section-label--green">Things I've Been Building</h3>
+      <div className="proj-showcase">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.name} project={p} index={i} />
+        ))}
+      </div>
+      <div className="proj-visions">
+        <h4 className="proj-visions__heading">What I'm Envisioning</h4>
+        {productVisions.map((v) => (
+          <VisionCard key={v.name} vision={v} />
         ))}
       </div>
     </section>

@@ -5,11 +5,11 @@ export default function Hero() {
   return (
     <section className="card hero">
       <div className="hero__top">
-        <div className="hero__avatar">
+        <div className="hero__avatar hero__entrance hero__entrance--1">
           <img src={profile.avatar} alt={profile.name} />
         </div>
         <div className="hero__info">
-          <div className="hero__titles">
+          <div className="hero__titles hero__entrance hero__entrance--2">
             <h1 className="hero__name">{profile.name}</h1>
             <h2 className="hero__role">Sr Technical PM</h2>
             <div className="hero__companies">
@@ -21,7 +21,7 @@ export default function Hero() {
               ))}
             </div>
           </div>
-          <div className="hero__buttons">
+          <div className="hero__buttons hero__entrance hero__entrance--3">
             <a className="btn" href="#projects">
               <ArrowDownIcon />
               <span>View Product Demos</span>
@@ -39,6 +39,7 @@ export default function Hero() {
       </div>
       <div className="hero__ticker" role="marquee" aria-label="Site continuously under maintenance —  I believe in continuous improvement">
         <div className="hero__ticker-track">
+          <span aria-hidden="true">Site continuously under maintenance —  I believe in continuous improvement</span>
           <span aria-hidden="true">Site continuously under maintenance —  I believe in continuous improvement</span>
         </div>
       </div>
