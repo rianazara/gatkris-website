@@ -5,9 +5,8 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Signals from './components/Signals'
 import Projects from './components/Projects'
-import ProductTaste from './components/ProductTaste'
-import Exploring from './components/Exploring'
 import Experience from './components/Experience'
+import FieldNotesTeaser from './components/FieldNotesTeaser'
 import Footer from './components/Footer'
 import Accessibility from './components/Accessibility'
 import FieldNotes from './components/FieldNotes'
@@ -64,9 +63,8 @@ export default function App() {
         <main>
           <Hero />
           <About />
+          <FieldNotesTeaser />
           <Projects />
-          <ProductTaste />
-          <Exploring />
           <Experience />
           <Signals />
         </main>

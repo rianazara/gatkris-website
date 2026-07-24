@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Projects', href: '#projects', color: 'green' },
   { label: 'Field Notes', href: '#field-notes', color: 'gold' },
   { label: 'Experience', href: '#experience', color: 'orange' },
-  { label: 'Contact', href: '#contact', color: 'navy' },
+  { label: 'Contact', href: '#contact', color: 'orange' },
 ]
 
 export default function TopBar({ showFieldNotes }) {

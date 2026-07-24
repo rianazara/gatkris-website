@@ -1,6 +1,6 @@
 export default function AnimusPreview() {
   return (
-    <div className="animus-preview" aria-label="Animus AI reasoning engine visualization">
+    <div className="animus-preview" aria-label="Archived knowledge graph visualization">
       <svg viewBox="0 0 480 320" className="animus-preview__svg">
         <defs>
           <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
@@ -16,7 +16,6 @@ export default function AnimusPreview() {
           </filter>
         </defs>
 
-        {/* Dot grid background */}
         {Array.from({ length: 12 }).map((_, row) =>
           Array.from({ length: 16 }).map((_, col) => (
             <circle
@@ -29,72 +28,103 @@ export default function AnimusPreview() {
           ))
         )}
 
-        {/* Connection lines */}
-        <line x1="120" y1="80" x2="240" y2="160" className="animus-line" />
-        <line x1="360" y1="80" x2="240" y2="160" className="animus-line" />
-        <line x1="90" y1="240" x2="240" y2="160" className="animus-line" />
-        <line x1="390" y1="240" x2="240" y2="160" className="animus-line" />
-        <line x1="120" y1="80" x2="90" y2="240" className="animus-line" style={{ opacity: 0.06 }} />
-        <line x1="360" y1="80" x2="390" y2="240" className="animus-line" style={{ opacity: 0.06 }} />
+        <line x1="110" y1="80" x2="240" y2="160" className="animus-line" />
+        <line x1="240" y1="55" x2="240" y2="160" className="animus-line" />
+        <line x1="370" y1="80" x2="240" y2="160" className="animus-line" />
+        <line x1="375" y1="250" x2="240" y2="160" className="animus-line" />
+        <line x1="105" y1="250" x2="240" y2="160" className="animus-line" />
+        <line x1="110" y1="80" x2="105" y2="250" className="animus-line" style={{ opacity: 0.05 }} />
+        <line x1="370" y1="80" x2="375" y2="250" className="animus-line" style={{ opacity: 0.05 }} />
 
-        {/* Traveling data pulses */}
         <circle r="2.5" className="animus-pulse">
-          <animateMotion dur="3s" repeatCount="indefinite" path="M120,80 L240,160" />
+          <animateMotion dur="3s" repeatCount="indefinite" path="M110,80 L240,160" />
         </circle>
         <circle r="2.5" className="animus-pulse">
-          <animateMotion dur="3.5s" repeatCount="indefinite" path="M360,80 L240,160" />
+          <animateMotion dur="2.8s" repeatCount="indefinite" path="M240,55 L240,160" />
         </circle>
         <circle r="2" className="animus-pulse">
-          <animateMotion dur="4s" repeatCount="indefinite" path="M90,240 L240,160" />
+          <animateMotion dur="3.5s" repeatCount="indefinite" path="M370,80 L240,160" />
         </circle>
         <circle r="2" className="animus-pulse">
-          <animateMotion dur="3.8s" repeatCount="indefinite" path="M390,240 L240,160" />
+          <animateMotion dur="3.8s" repeatCount="indefinite" path="M375,250 L240,160" />
+        </circle>
+        <circle r="2" className="animus-pulse">
+          <animateMotion dur="3.2s" repeatCount="indefinite" path="M105,250 L240,160" />
         </circle>
 
-        {/* Node: Markets (top-left) */}
+        {/* Node: Articles */}
         <g className="animus-node animus-node--1">
-          <circle cx="120" cy="80" r="24" className="animus-node__ring" />
-          <path d="M112,86 L116,78 L120,82 L124,74 L128,80" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <text x="120" y="114" textAnchor="middle" className="animus-node__label">Markets</text>
+          <circle cx="110" cy="80" r="24" className="animus-node__ring" />
+          <rect x="102" y="70" width="16" height="20" rx="2" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
+          <line x1="106" y1="76" x2="114" y2="76" stroke="rgba(212,160,23,0.4)" strokeWidth="1" />
+          <line x1="106" y1="80" x2="112" y2="80" stroke="rgba(212,160,23,0.4)" strokeWidth="1" />
+          <line x1="106" y1="84" x2="114" y2="84" stroke="rgba(212,160,23,0.4)" strokeWidth="1" />
+          <text x="110" y="114" textAnchor="middle" className="animus-node__label">Articles</text>
         </g>
 
-        {/* Node: Research (top-right) */}
+        {/* Node: Newsletters */}
         <g className="animus-node animus-node--2">
-          <circle cx="360" cy="80" r="24" className="animus-node__ring" />
-          <rect x="352" y="72" width="16" height="16" rx="2" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
-          <line x1="355" y1="78" x2="365" y2="78" stroke="rgba(212,160,23,0.4)" strokeWidth="1" />
-          <line x1="355" y1="82" x2="363" y2="82" stroke="rgba(212,160,23,0.4)" strokeWidth="1" />
-          <text x="360" y="114" textAnchor="middle" className="animus-node__label">Research</text>
+          <circle cx="240" cy="55" r="24" className="animus-node__ring" />
+          <rect x="229" y="47" width="22" height="16" rx="2" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
+          <path d="M229,48 L240,56 L251,48" fill="none" stroke="rgba(212,160,23,0.5)" strokeWidth="1" />
+          <text x="240" y="89" textAnchor="middle" className="animus-node__label">Newsletters</text>
         </g>
 
-        {/* Node: Memory (bottom-left) */}
+        {/* Node: YouTube */}
         <g className="animus-node animus-node--3">
-          <circle cx="90" cy="240" r="24" className="animus-node__ring" />
-          <circle cx="90" cy="237" r="8" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
-          <path d="M82,243 Q90,248 98,243" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
-          <text x="90" y="274" textAnchor="middle" className="animus-node__label">Memory</text>
+          <circle cx="370" cy="80" r="24" className="animus-node__ring" />
+          <rect x="359" y="71" width="22" height="18" rx="3" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
+          <path d="M366,75 L366,85 L376,80 Z" fill="rgba(212,160,23,0.5)" stroke="none" />
+          <text x="370" y="114" textAnchor="middle" className="animus-node__label">YouTube</text>
         </g>
 
-        {/* Node: Signals (bottom-right) */}
+        {/* Node: Reels */}
         <g className="animus-node animus-node--4">
-          <circle cx="390" cy="240" r="24" className="animus-node__ring" />
-          <path d="M383,240 L390,233 L397,240 L390,247 Z" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
-          <circle cx="390" cy="240" r="2" fill="rgba(212,160,23,0.6)" />
-          <text x="390" y="274" textAnchor="middle" className="animus-node__label">Signals</text>
+          <circle cx="375" cy="250" r="24" className="animus-node__ring" />
+          <rect x="365" y="241" width="20" height="18" rx="3" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" />
+          <circle cx="375" cy="250" r="4" fill="none" stroke="rgba(212,160,23,0.5)" strokeWidth="1" />
+          <circle cx="375" cy="250" r="1.5" fill="rgba(212,160,23,0.4)" />
+          <text x="375" y="284" textAnchor="middle" className="animus-node__label">Reels</text>
         </g>
 
-        {/* Central reasoning hub */}
-        <circle cx="240" cy="160" r="50" fill="url(#hub-glow)" />
-        <circle cx="240" cy="160" r="34" className="animus-hub__ring" />
-        <circle cx="240" cy="160" r="28" className="animus-hub__core" />
-        <text x="240" y="156" textAnchor="middle" className="animus-hub__label">Reasoning</text>
-        <text x="240" y="170" textAnchor="middle" className="animus-hub__sublabel">Engine</text>
+        {/* Node: Files */}
+        <g className="animus-node animus-node--5">
+          <circle cx="105" cy="250" r="24" className="animus-node__ring" />
+          <path d="M105,241 L105,253" stroke="rgba(212,160,23,0.7)" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M99,249 L105,255 L111,249" fill="none" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="97" y1="259" x2="113" y2="259" stroke="rgba(212,160,23,0.7)" strokeWidth="1.2" strokeLinecap="round" />
+          <text x="105" y="284" textAnchor="middle" className="animus-node__label">Files</text>
+        </g>
 
-        {/* Floating insight card */}
+        {/* Central knowledge graph hub */}
+        <circle cx="240" cy="160" r="50" fill="url(#hub-glow)" />
+        <circle cx="240" cy="160" r="36" className="animus-hub__ring" />
+
+        {/* Mini knowledge graph nodes inside hub */}
+        <circle cx="228" cy="148" r="4" className="animus-kg-node" />
+        <circle cx="252" cy="146" r="3.5" className="animus-kg-node animus-kg-node--2" />
+        <circle cx="244" cy="164" r="5" className="animus-kg-node animus-kg-node--3" />
+        <circle cx="225" cy="170" r="3" className="animus-kg-node animus-kg-node--4" />
+        <circle cx="260" cy="165" r="3.5" className="animus-kg-node animus-kg-node--5" />
+        <circle cx="238" cy="178" r="2.5" className="animus-kg-node animus-kg-node--6" />
+
+        {/* Knowledge graph edges */}
+        <line x1="228" y1="148" x2="252" y2="146" className="animus-kg-edge" />
+        <line x1="228" y1="148" x2="244" y2="164" className="animus-kg-edge" />
+        <line x1="252" y1="146" x2="244" y2="164" className="animus-kg-edge" />
+        <line x1="244" y1="164" x2="225" y2="170" className="animus-kg-edge" />
+        <line x1="244" y1="164" x2="260" y2="165" className="animus-kg-edge" />
+        <line x1="252" y1="146" x2="260" y2="165" className="animus-kg-edge" />
+        <line x1="225" y1="170" x2="238" y2="178" className="animus-kg-edge" />
+        <line x1="244" y1="164" x2="238" y2="178" className="animus-kg-edge" />
+
+        <text x="240" y="200" textAnchor="middle" className="animus-hub__sublabel">Knowledge Graph</text>
+
+        {/* Floating status card */}
         <g className="animus-insight" filter="url(#soft-glow)">
-          <rect x="175" y="270" width="130" height="30" rx="6" className="animus-insight__bg" />
-          <circle cx="192" cy="285" r="3.5" className="animus-insight__dot" />
-          <text x="205" y="289" className="animus-insight__text">Insight ready</text>
+          <rect x="172" y="272" width="136" height="30" rx="6" className="animus-insight__bg" />
+          <circle cx="189" cy="287" r="3.5" className="animus-insight__dot" />
+          <text x="202" y="291" className="animus-insight__text">Graph updated</text>
         </g>
       </svg>
     </div>

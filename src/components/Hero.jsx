@@ -22,13 +22,9 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero__buttons hero__entrance hero__entrance--3">
-            <a className="btn" href="#projects">
+            <a className="btn btn--primary" href="#field-notes">
               <ArrowDownIcon />
-              <span>View Product Demos</span>
-            </a>
-            <a className="btn" href="#about">
-              <ArrowDownIcon />
-              <span>Read My PM Story</span>
+              <span>Read my Field Notes</span>
             </a>
             <a className="btn" href={`mailto:${profile.email}`}>
               <MailIcon />
@@ -37,10 +33,10 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="hero__ticker" role="marquee" aria-label="Site continuously under maintenance —  I believe in continuous improvement">
+      <div className="hero__ticker" role="marquee" aria-label="Always iterating — I believe in continuous improvement">
         <div className="hero__ticker-track">
-          <span aria-hidden="true">Site continuously under maintenance —  I believe in continuous improvement</span>
-          <span aria-hidden="true">Site continuously under maintenance —  I believe in continuous improvement</span>
+          <span aria-hidden="true">Always iterating — I believe in continuous improvement</span>
+          <span aria-hidden="true">Always iterating — I believe in continuous improvement</span>
         </div>
       </div>
     </section>

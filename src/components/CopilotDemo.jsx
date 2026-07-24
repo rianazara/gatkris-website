@@ -18,7 +18,7 @@ export default function CopilotDemo() {
           <source src="/ms-copilot-demo.mp4" type="video/mp4" />
         </video>
       </div>
-      <p className="demo-disclaimer">Demo recreation — not actual company data</p>
+      <p className="demo-disclaimer">Recreated from publicly available information to illustrate the work. No proprietary data is shown.</p>
     </div>
   )
 }
