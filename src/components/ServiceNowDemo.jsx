@@ -61,7 +61,7 @@ export default function ServiceNowDemo() {
           )}
         </div>
       </div>
-      <p className="demo-disclaimer">Demo recreation — not actual company data</p>
+      <p className="demo-disclaimer">Recreated from publicly available information to illustrate the work. No proprietary data is shown.</p>
     </div>
   )
 }

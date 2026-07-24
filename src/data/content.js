@@ -80,19 +80,19 @@ export const tickerItems = [
 
 export const projects = [
   {
-    name: 'Animus',
+    name: 'Archived',
     type: 'flagship',
-    status: 'Building',
-    category: 'AI Product',
-    tagline: 'Your second brain for decisions that matter.',
-    description: 'An AI reasoning engine that synthesizes financial data, research, and market signals into actionable insight — not answers, but clarity. Animus connects long-term memory, real-time intelligence, and structured reasoning to help you think better about complex decisions.',
+    status: 'Expanding',
+    category: 'AI Knowledge System',
+    tagline: 'My second brain — extending Karpathy\'s LLM Wiki into a full knowledge archive.',
+    description: 'Started from Andrej Karpathy\'s LLM Wiki pattern — where an LLM incrementally builds and maintains a persistent, interlinked wiki from raw sources instead of re-deriving knowledge on every query. I extended it into a Claude Code skill that ingests any public URL, articles, newsletters, YouTube videos, Instagram reels, and downloaded files, then compiles them into a living knowledge graph where connections compound over time. The published skill is open-source; the larger product vision is in progress.',
     details: [
-      'Reasoning chains that show how conclusions are reached, not just what they are',
-      'Connected knowledge graph across documents, market data, and personal notes',
-      'Proactive alerts when your assumptions conflict with new evidence',
+      'Extends Karpathy\'s LLM Wiki with multi-source ingestion: public URLs, articles, newsletters, YouTube, Reels, and file uploads',
+      'Added a knowledge graph layer that maps and surfaces connections across saved artifacts — not just retrieval, but synthesis',
+      'Runs as a Claude Code skill today — store, search, revise, and quiz against my own knowledge base in plain markdown',
     ],
-    stack: ['Claude API', 'React', 'Python', 'Vector DB'],
-    href: null,
+    stack: ['Claude Skill', 'Claude API', 'Python', 'Markdown'],
+    href: 'https://github.com/rianazara/archived',
     preview: 'animus',
   },
   {
@@ -101,11 +101,11 @@ export const projects = [
     status: 'Live',
     category: 'SaaS Tool',
     tagline: 'SaaS pricing strategy, simulated in real time.',
-    description: 'An interactive pricing advisor that models revenue impact across tiers, runs elasticity scenarios, benchmarks against market data, and surfaces AI-driven pricing recommendations — built to help founders stop guessing their price points.',
+    description: 'An interactive pricing advisor I built to help founders stop guessing their price points — it models revenue impact across tiers, runs elasticity scenarios, benchmarks against market data, and surfaces AI-driven pricing recommendations.',
     details: [
       'Live revenue modeling with price elasticity (~0.6) baked into every calculation',
-      'Scenario analysis: what happens to MRR if you raise Enterprise by 20%?',
-      'AI advisor that critiques your pricing strategy and suggests improvements',
+      'Scenario analysis: what happens to MRR when Enterprise pricing goes up 20%?',
+      'AI advisor that critiques pricing strategy and suggests improvements',
     ],
     stack: ['React', 'TypeScript', 'Lovable', 'AI Advisor'],
     href: 'https://price-whisperer-41.lovable.app',
@@ -123,22 +123,6 @@ export const productVisions = [
   },
 ]
 
-export const productTaste = [
-  'AI should reduce cognitive load, not create another inbox.',
-  'Great products feel inevitable after you use them.',
-  'Taste matters because users feel friction before they can explain it.',
-  'The best PMs combine data, intuition, and moral judgment.',
-  'I like products that make people more capable.',
-]
-
-export const exploring = [
-  'AI agents for finance and investing',
-  'How great PMs build taste',
-  'Stock market decision systems',
-  'Google-scale product thinking',
-  'Human judgment in AI workflows',
-  'Elegant interfaces for complex decisions',
-]
 
 export const experience = [
   {

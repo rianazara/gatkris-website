@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { fieldNotes } from '../data/fieldNotes'
 
 function estimateReadTime(body) {
@@ -8,6 +8,38 @@ function estimateReadTime(body) {
     return count
   }, 0)
   return `${Math.max(1, Math.ceil(words / 220))} min read`
+}
+
+function PenIcon({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="fn-pen-icon">
+      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+      <path d="m15 5 4 4" />
+    </svg>
+  )
+}
+
+function NotebookCover({ onDone }) {
+  return (
+    <div
+      className="fn-cover-overlay"
+      onAnimationEnd={(e) => { if (e.animationName === 'fn-overlayFade') onDone() }}
+    >
+      <div className="fn-cover-book">
+        <div className="fn-cover-spine" aria-hidden="true" />
+        <div className="fn-cover-face">
+          <svg className="fn-cover-emblem" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+            <path d="m15 5 4 4" />
+          </svg>
+          <h2 className="fn-cover-title">Field Notes</h2>
+          <div className="fn-cover-rule" />
+          <p className="fn-cover-sub">A record of questions that refused to leave me alone.</p>
+        </div>
+        <div className="fn-cover-inside" aria-hidden="true" />
+      </div>
+    </div>
+  )
 }
 
 function NoteBody({ body }) {
@@ -79,11 +111,15 @@ function NoteView({ note, onBack }) {
               <span className="fn-note-dot">&middot;</span>
               <span className="fn-note-readtime">{estimateReadTime(note.body)}</span>
             </div>
-            <div className="fn-note-number">#{note.number}</div>
-            <h1 className="fn-note-title">{note.title}</h1>
+            <h1 className="fn-note-title">
+              <span className="fn-note-num">#{note.number}</span>
+              {note.title}
+            </h1>
             <div className="fn-note-divider" aria-hidden="true">
-              <svg width="60" height="8" viewBox="0 0 60 8">
-                <path d="M0 4 Q15 0, 30 4 Q45 8, 60 4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
+              <svg width="80" height="12" viewBox="0 0 80 12">
+                <line x1="0" y1="6" x2="33" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.25" />
+                <path d="M40 2 L44 6 L40 10 L36 6 Z" fill="currentColor" opacity="0.12" />
+                <line x1="47" y1="6" x2="80" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.25" />
               </svg>
             </div>
             {note.question && (
@@ -123,10 +159,14 @@ function IndexView({ onSelectNote }) {
           <div className="notebook__spine-lines" />
         </div>
         <div className="notebook__page">
-          <h1 className="fn-index-title">Field Notes</h1>
+          <div className="fn-index-header">
+            <PenIcon size={20} />
+            <h1 className="fn-index-title">Field Notes</h1>
+          </div>
           <p className="fn-index-sub">
             A record of questions that refused to leave me alone.
           </p>
+          <div className="fn-index-rule" aria-hidden="true" />
 
           <div className="fn-entries">
             {fieldNotes.map((note) => (
@@ -135,23 +175,20 @@ function IndexView({ onSelectNote }) {
                 className="fn-entry"
                 onClick={() => onSelectNote(note.number)}
               >
-                <div className="fn-entry__left">
-                  <span className="fn-entry__number">#{note.number}</span>
-                </div>
+                <span className="fn-entry__num">{note.number}</span>
                 <div className="fn-entry__body">
-                  <div className="fn-entry__top">
-                    <h2 className="fn-entry__title">{note.title}</h2>
-                    <span className="fn-entry__date">{note.date}</span>
-                  </div>
+                  <h2 className="fn-entry__title">{note.title}</h2>
                   {note.question && (
                     <p className="fn-entry__question">{note.question}</p>
                   )}
-                  <div className="fn-entry__bottom">
+                  <div className="fn-entry__meta-row">
+                    <span className="fn-entry__date">{note.date}</span>
+                    <span className="fn-entry__dot">&middot;</span>
                     <span className="fn-entry__readtime">{estimateReadTime(note.body)}</span>
                   </div>
                 </div>
                 <div className="fn-entry__arrow" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="m9 18 6-6-6-6" />
                   </svg>
                 </div>
@@ -167,6 +204,7 @@ function IndexView({ onSelectNote }) {
 
 export default function FieldNotes({ route }) {
   const noteId = route.replace('#field-notes', '').replace(/^\//, '')
+  const [coverVisible, setCoverVisible] = useState(true)
 
   const handleSelectNote = (number) => {
     window.location.hash = `field-notes/${number}`
@@ -200,5 +238,12 @@ export default function FieldNotes({ route }) {
     return <NoteView note={note} onBack={handleBack} />
   }
 
-  return <IndexView onSelectNote={handleSelectNote} />
+  return (
+    <>
+      {coverVisible && (
+        <NotebookCover onDone={() => setCoverVisible(false)} />
+      )}
+      <IndexView onSelectNote={handleSelectNote} />
+    </>
+  )
 }
