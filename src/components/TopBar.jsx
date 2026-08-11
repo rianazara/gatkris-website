@@ -14,12 +14,22 @@ const navLinks = [
 
 export default function TopBar({ showFieldNotes }) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   return (
     <>
@@ -38,8 +48,40 @@ export default function TopBar({ showFieldNotes }) {
             <span>{profile.location}</span>
           </span>
           <ThemeToggle />
+          <button
+            className={`topbar__hamburger ${menuOpen ? 'topbar__hamburger--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
       </nav>
+      {menuOpen && (
+        <div className="topbar__overlay" onClick={() => setMenuOpen(false)}>
+          <div className="topbar__mobile-menu" onClick={(e) => e.stopPropagation()}>
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`topbar__mobile-link topbar__link--${link.color}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   )
 }

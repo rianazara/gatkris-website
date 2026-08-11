@@ -29,11 +29,13 @@ export default function FieldNotesTeaser() {
           <PenIcon />
         </div>
         <div className="fn-teaser__body">
-          <div className="fn-teaser__meta">
+          <h4 className="fn-teaser__heading">
             <span className="fn-teaser__number">#{latest.number}</span>
+            {latest.title}
+          </h4>
+          <div className="fn-teaser__meta">
             <span className="fn-teaser__date">{latest.date}</span>
           </div>
-          <h4 className="fn-teaser__title">{latest.title}</h4>
           {latest.question && (
             <p className="fn-teaser__question">{latest.question}</p>
           )}
