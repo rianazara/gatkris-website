@@ -60,6 +60,7 @@ export const achievements = [
     title: 'National Talent Search Scholar',
     reflection: 'A reminder that curiosity became a habit early.',
     image: asset('img/signal-ntse.jpg'),
+    imagePosition: 'center 5%',
   },
   {
     phrase: 'Endurance.',

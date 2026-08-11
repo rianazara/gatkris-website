@@ -63,7 +63,7 @@ function SignalCard({ achievement, onImageClick }) {
         </div>
         <div className="signal__back" onClick={handleBackClick}>
           <div className="signal__image">
-            <img src={achievement.image} alt={achievement.title} />
+            <img src={achievement.image} alt={achievement.title} style={achievement.imagePosition ? { objectPosition: achievement.imagePosition } : undefined} />
           </div>
           <p className="signal__reflection">{achievement.reflection}</p>
         </div>
