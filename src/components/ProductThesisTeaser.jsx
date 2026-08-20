@@ -13,7 +13,7 @@ export default function ProductThesisTeaser() {
   return (
     <section className="card pt-teaser" id="product-thesis-preview">
       <div className="pt-teaser__header">
-        <h3 className="section-label section-label--navy">Product Thesis</h3>
+        <h3 className="section-label section-label--red">Product Thesis</h3>
         <p className="pt-teaser__intro">
           My current philosophy of product management — the lens through which the rest of my work should be read.
         </p>

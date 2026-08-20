@@ -19,7 +19,7 @@ export default function FieldNotesTeaser() {
   return (
     <section className="card fn-teaser" id="field-notes-preview">
       <div className="fn-teaser__header">
-        <h3 className="section-label section-label--gold">Field Notes</h3>
+        <h3 className="section-label section-label--yellow">Field Notes</h3>
         <p className="fn-teaser__intro">
           A notebook of questions, investigations, and evolving product thinking — written like a newsletter, updated as my judgment changes.
         </p>

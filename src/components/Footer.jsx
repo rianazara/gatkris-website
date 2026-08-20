@@ -9,7 +9,7 @@ const contactIcons = {
 export default function Footer() {
   return (
     <footer className="card contacts" id="contact">
-      <h3 className="section-label section-label--navy">Contact Me</h3>
+      <h3 className="section-label section-label--green">Contact Me</h3>
       {profile.contacts.map((c) => {
         const Icon = contactIcons[c.label]
         return (

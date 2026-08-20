@@ -5,12 +5,12 @@ import ThemeToggle from './ThemeToggle'
 
 const navLinks = [
   { label: 'About', href: '#about', color: 'blue' },
-  { label: 'Achievements', href: '#outside-work', color: 'rose' },
+  { label: 'Achievements', href: '#outside-work', color: 'red' },
   { label: 'Projects', href: '#projects', color: 'green' },
-  { label: 'Thesis', href: '#product-thesis', color: 'navy' },
-  { label: 'Field Notes', href: '#field-notes', color: 'gold' },
-  { label: 'Experience', href: '#experience', color: 'orange' },
-  { label: 'Contact', href: '#contact', color: 'orange' },
+  { label: 'Thesis', href: '#product-thesis', color: 'red' },
+  { label: 'Field Notes', href: '#field-notes', color: 'yellow' },
+  { label: 'Experience', href: '#experience', color: 'blue' },
+  { label: 'Contact', href: '#contact', color: 'green' },
 ]
 
 export default function TopBar({ showFieldNotes }) {
