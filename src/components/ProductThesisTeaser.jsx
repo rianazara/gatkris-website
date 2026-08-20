@@ -15,7 +15,7 @@ export default function ProductThesisTeaser() {
       <div className="pt-teaser__header">
         <h3 className="section-label section-label--red">Product Thesis</h3>
         <p className="pt-teaser__intro">
-          My current philosophy of product management — the lens through which the rest of my work should be read.
+          My current philosophy of product management — the lens through which the rest of my work could be read.
         </p>
       </div>
       <a href="#product-thesis" className="pt-teaser__card">
