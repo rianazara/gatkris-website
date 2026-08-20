@@ -42,6 +42,16 @@ function ThesisBody({ body }) {
       )
     }
 
+    if (block.type === 'pullquote') {
+      isFirst = false
+      return (
+        <blockquote key={i} className="pt-body__pullquote">
+          <span aria-hidden="true" className="pt-body__pullquote-mark">&ldquo;</span>
+          {block.text}
+        </blockquote>
+      )
+    }
+
     if (block.type === 'closer') {
       isFirst = false
       return (
@@ -98,7 +108,7 @@ export default function ProductThesis() {
             <p className="fn-note-question">{productThesis.subtitle}</p>
           </header>
 
-          <div className="fn-body">
+          <div className="fn-body pt-body">
             <ThesisBody body={productThesis.body} />
           </div>
 

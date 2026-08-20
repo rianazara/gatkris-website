@@ -1,6 +1,6 @@
 export const productThesis = {
   title: 'Where the Framework Ends',
-  subtitle: 'A reflection on how my understanding of product management changed after my first PM internship.',
+  subtitle: 'A reflection of my understanding of product management.',
   date: 'August 2025',
   body: [
     "I stepped into the summer of '25 with a fairly clean model of product management: a customer has a problem, the PM understands it, gathers evidence, develops a hypothesis, evaluates the alternatives, aligns the org, prioritizes, builds.",
@@ -18,6 +18,8 @@ export const productThesis = {
     "And despite all of that, someone still had to decide what the product ought to become.",
 
     "I walked in thinking a good PM finds clarity before making decisions. I left believing a great PM learns how to create enough clarity to make a good decision when complete clarity isn't coming.",
+
+    { type: 'pullquote', text: "A great PM learns how to create enough clarity to make a good decision when complete clarity isn't coming." },
 
     "On paper, that sounds like a small distinction. In practice, I think it defines much of the job.",
 
@@ -57,7 +59,7 @@ export const productThesis = {
 
     "Eventually, the question stops being, “What does the evidence say?” It becomes “What should this experience become?”",
 
-    "The first asks you to understand reality. The second asks you to imagine a better one. No dashboard has ever answered that question.",
+    { type: 'pullquote', text: "The first asks you to understand reality. The second asks you to imagine a better one. No dashboard has ever answered that question." },
 
     "For a while, I thought this meant great PMs simply have better instincts. I don't think that's the distinction anymore. I think they're better at making their judgment inspectable.",
 
@@ -195,7 +197,7 @@ export const productThesis = {
 
     "A product idea isn't ready because you've finished thinking about it. It's ready when other people can think through it with you.",
 
-    "A product gets built twice. First as a shared understanding. Then as software.",
+    { type: 'pullquote', text: 'A product gets built twice. First as a shared understanding. Then as software.' },
 
     { type: 'heading', text: 'Ownership begins where consensus ends' },
 
