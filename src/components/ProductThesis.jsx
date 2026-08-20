@@ -46,7 +46,6 @@ function ThesisBody({ body }) {
       isFirst = false
       return (
         <blockquote key={i} className="pt-body__pullquote">
-          <span aria-hidden="true" className="pt-body__pullquote-mark">&ldquo;</span>
           {block.text}
         </blockquote>
       )

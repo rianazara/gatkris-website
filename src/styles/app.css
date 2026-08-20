@@ -3609,12 +3609,13 @@ main {
    Product Thesis — Full essay page
    =========================================================================== */
 .pt-eyebrow {
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 600;
   color: #D93025;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
 }
 
 :root[data-theme='dark'] .pt-eyebrow {
@@ -3628,150 +3629,73 @@ main {
 }
 
 .pt-note-title {
-  letter-spacing: -0.015em;
-}
-
-/* ── Product Thesis: editorial body rhythm (scoped to .pt-body) ── */
-.pt-body {
-  max-width: 640px;
-}
-
-.pt-body .fn-body__p {
-  font-size: 1.125rem;
-  line-height: 1.75;
-  color: var(--text);
-  margin-bottom: 1.6em;
-  letter-spacing: -0.003em;
-}
-
-.pt-body .fn-body__p:first-of-type {
-  font-size: 1.2rem;
-  line-height: 1.65;
-  color: var(--text);
-  letter-spacing: -0.005em;
-}
-
-.pt-body .fn-dropcap {
-  font-size: 4.25rem;
-  line-height: 0.85;
-  color: #D93025;
-  margin-right: 12px;
-  margin-top: 4px;
-  font-weight: 700;
-}
-
-:root[data-theme='dark'] .pt-body .fn-dropcap {
-  color: #F28B82;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pt-body .fn-dropcap {
-    color: #F28B82;
-  }
-}
-
-.pt-body__heading {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text);
-  margin: 3.5rem 0 1.25rem;
+  font-weight: 400;
   letter-spacing: -0.02em;
-  text-wrap: balance;
-  position: relative;
-  padding-top: 1.5rem;
-}
-
-.pt-body__heading::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 32px;
-  height: 2px;
-  background: #D93025;
-  border-radius: 2px;
-}
-
-:root[data-theme='dark'] .pt-body__heading::before {
-  background: #F28B82;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pt-body__heading::before {
-    background: #F28B82;
-  }
-}
-
-.pt-body__pullquote {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--text);
-  margin: 2.5rem 0 2.5rem -0.5rem;
-  padding: 0.25rem 0 0.25rem 1.4rem;
-  border-left: 3px solid #D93025;
-  text-wrap: pretty;
-  position: relative;
-}
-
-:root[data-theme='dark'] .pt-body__pullquote {
-  border-left-color: #F28B82;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pt-body__pullquote {
-    border-left-color: #F28B82;
-  }
-}
-
-.pt-body__pullquote-mark {
-  position: absolute;
-  top: -0.55em;
-  left: 0.6rem;
-  font-size: 2.6rem;
-  font-family: var(--font-serif);
-  line-height: 1;
-  color: #D93025;
-  opacity: 0.35;
-  pointer-events: none;
-  font-style: normal;
-}
-
-:root[data-theme='dark'] .pt-body__pullquote-mark {
-  color: #F28B82;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pt-body__pullquote-mark {
-    color: #F28B82;
-  }
-}
-
-.pt-body__closer {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.5rem;
-  line-height: 1.4;
-  color: var(--text);
-  text-align: center;
-  margin: 3.5rem 0 1rem;
-  padding: 2.2rem 1rem;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  text-wrap: balance;
-  letter-spacing: -0.01em;
+  font-size: 2.25rem;
+  line-height: 1.1;
 }
 
 @media (max-width: 680px) {
-  .pt-body .fn-body__p { font-size: 1.0625rem; line-height: 1.7; margin-bottom: 1.4em; }
-  .pt-body .fn-body__p:first-of-type { font-size: 1.125rem; }
-  .pt-body .fn-dropcap { font-size: 3.5rem; margin-right: 10px; }
-  .pt-body__heading { font-size: 1.4rem; margin: 2.4rem 0 1rem; padding-top: 1.1rem; }
-  .pt-body__heading::before { width: 24px; }
-  .pt-body__pullquote { font-size: 1.2rem; margin: 2rem 0; padding-left: 1.1rem; }
-  .pt-body__pullquote-mark { font-size: 2rem; top: -0.4em; left: 0.5rem; }
-  .pt-body__closer { font-size: 1.15rem; padding: 1.6rem 0.5rem; }
+  .pt-note-title { font-size: 1.75rem; }
+}
+
+/* ── Product Thesis: section rhythm and set-pieces (body inherits .fn-body__p) ── */
+.pt-body {
+  max-width: 600px;
+}
+
+/* Section headings — Playfair 400 to match hero/proj titles, not bold */
+.pt-body__heading {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 3.25em 0 1em;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.pt-body__heading:first-child {
+  margin-top: 0;
+}
+
+/* Pull quotes — italic serif, subtle left rule using --border, no colored flourishes */
+.pt-body__pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 2em 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--accent);
+  text-wrap: pretty;
+}
+
+.pt-body__pullquote-mark {
+  display: none;
+}
+
+/* Closer — Playfair italic, single hairline top rule; understated signature */
+.pt-body__closer {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--text);
+  text-align: center;
+  margin: 3em 0 0.5em;
+  padding-top: 1.75em;
+  border-top: 1px solid var(--border);
+  text-wrap: balance;
+  letter-spacing: -0.005em;
+}
+
+@media (max-width: 680px) {
+  .pt-body__heading { font-size: 20px; margin: 2.5em 0 0.9em; }
+  .pt-body__pullquote { font-size: 17px; margin: 1.6em 0; padding-left: 16px; }
+  .pt-body__closer { font-size: 17px; padding-top: 1.4em; margin-top: 2.4em; }
 }
