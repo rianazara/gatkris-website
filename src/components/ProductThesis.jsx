@@ -42,12 +42,23 @@ function ThesisBody({ body }) {
       )
     }
 
-    if (block.type === 'pullquote') {
+    if (block.type === 'lines') {
       isFirst = false
       return (
-        <blockquote key={i} className="pt-body__pullquote">
+        <div key={i} className="pt-body__lines">
+          {block.items.map((line, j) => (
+            <p key={j} className="pt-body__lines-item">{line}</p>
+          ))}
+        </div>
+      )
+    }
+
+    if (block.type === 'emphasis') {
+      isFirst = false
+      return (
+        <p key={i} className="pt-body__emphasis">
           {block.text}
-        </blockquote>
+        </p>
       )
     }
 

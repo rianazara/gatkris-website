@@ -11,15 +11,20 @@ export const productThesis = {
 
     "By the end of summer, that neat little sequence had become considerably less neat.",
 
-    "The customer could often describe the pain, but not always the problem. The data I wanted often didn't exist. And the data that did exist had an annoying habit of answering a slightly different question from the one I was asking.",
+    {
+      type: 'lines',
+      items: [
+        'The customer could often describe the pain, but not always the problem.',
+        "The data I wanted often didn't exist.",
+        'And the data that did exist had an annoying habit of answering a slightly different question from the one I was asking.',
+      ],
+    },
 
     "The people around me rarely held the whole picture either. And assembling more of that picture rarely made the decision obvious. It simply made the tradeoffs impossible to ignore. Several solutions were defensible at the same time. Thoughtful people looking at the same evidence still disagreed for perfectly reasonable reasons.",
 
     "And despite all of that, someone still had to decide what the product ought to become.",
 
     "I walked in thinking a good PM finds clarity before making decisions. I left believing a great PM learns how to create enough clarity to make a good decision when complete clarity isn't coming.",
-
-    { type: 'pullquote', text: "A great PM learns how to create enough clarity to make a good decision when complete clarity isn't coming." },
 
     "On paper, that sounds like a small distinction. In practice, I think it defines much of the job.",
 
@@ -31,7 +36,7 @@ export const productThesis = {
 
     "The technical history lived with one engineer. A customer pattern lived with one CSM. Someone else remembered why a seemingly strange decision had been made two years earlier, a piece of context that had quietly disappeared everywhere else. An adjacent team knew about a dependency that completely changed how I should have been thinking about the experience, and I only discovered it by accident.",
 
-    "Everyone was right about something and complete about almost nothing. Nobody was wrong. They were simply looking at the same product from different altitudes.",
+    { type: 'emphasis', text: 'Everyone was right about something and complete about almost nothing. Nobody was wrong. They were simply looking at the same product from different altitudes.' },
 
     "I had assumed this kind of fragmentation belonged to smaller companies. It didn't. If anything, scale amplified it. Documentation existed. Processes existed. Exceptionally smart people existed. The problem was never a lack of information. It was that no one place held all of it.",
 
@@ -45,7 +50,15 @@ export const productThesis = {
 
     "For a surprising chunk of the summer, I was just searching.",
 
-    "Surely somebody has already measured this. Surely there's another dashboard. Surely there's usage data somewhere that captures exactly the behavior I care about. Surely one more conversation will resolve the contradiction between the last two people I talked to.",
+    {
+      type: 'lines',
+      items: [
+        'Surely somebody has already measured this.',
+        "Surely there's another dashboard.",
+        "Surely there's usage data somewhere that captures exactly the behavior I care about.",
+        'Surely one more conversation will resolve the contradiction between the last two people I talked to.',
+      ],
+    },
 
     "Sometimes it did. More often, it produced a better question.",
 
@@ -57,13 +70,28 @@ export const productThesis = {
 
     "Data can show you where customers abandon a workflow, what they use, what they ignore, and where the friction exists. It can expose assumptions you didn't realize you were making. All of that should shape the decision. None of it can make it for you.",
 
-    "Eventually, the question stops being, “What does the evidence say?” It becomes “What should this experience become?”",
+    {
+      type: 'lines',
+      items: [
+        'Eventually, the question stops being,',
+        'What does the evidence say?',
+        'It becomes',
+        'What should this experience become?',
+      ],
+    },
 
-    { type: 'pullquote', text: "The first asks you to understand reality. The second asks you to imagine a better one. No dashboard has ever answered that question." },
+    "The first asks you to understand reality. The second asks you to imagine a better one. No dashboard has ever answered that question.",
 
     "For a while, I thought this meant great PMs simply have better instincts. I don't think that's the distinction anymore. I think they're better at making their judgment inspectable.",
 
-    "What have I observed? What am I inferring? What assumption is this recommendation resting on?",
+    {
+      type: 'lines',
+      items: [
+        'What have I observed?',
+        'What am I inferring?',
+        'What assumption is this recommendation resting on?',
+      ],
+    },
 
     "That's when I stopped thinking of rigor as completeness. Completeness asks whether you've understood everything. Rigor asks whether you've understood the things that actually move the decision. The first is usually impossible. The second is the job.",
 
@@ -81,7 +109,16 @@ export const productThesis = {
 
     "A good PM doesn't merely tolerate ambiguity. They progressively reduce it, not by pretending certainty exists where it doesn't, but by imposing structure on what's unclear and working out which uncertainties actually need to be resolved before a decision can be made.",
 
-    "Do I still need more information, or do I already know enough to choose? If several options are reasonable, what am I optimizing for? Which tradeoff am I willing to accept? What would genuinely make me change my mind? Which uncertainty is only uncomfortable to leave unresolved?",
+    {
+      type: 'lines',
+      items: [
+        'Do I still need more information, or do I already know enough to choose?',
+        'If several options are reasonable, what am I optimizing for?',
+        'Which tradeoff am I willing to accept?',
+        'What would genuinely make me change my mind?',
+        'Which uncertainty is only uncomfortable to leave unresolved?',
+      ],
+    },
 
     "Those eventually became the questions that mattered most. Not because they were about the product. Because they were about my judgment.",
 
@@ -89,11 +126,11 @@ export const productThesis = {
 
     "Looking back, a lot of it wasn't. I wasn't reducing uncertainty anymore.",
 
-    "I was simply postponing the decision.",
+    { type: 'emphasis', text: 'I was simply postponing the decision.' },
 
     "That realization changed how I think about curiosity.",
 
-    "Curiosity is genuinely one of the best things a PM can have. But unbounded curiosity can become its own failure mode, another rabbit hole that feels urgent but isn't.",
+    { type: 'emphasis', text: "Curiosity is genuinely one of the best things a PM can have. But unbounded curiosity can become its own failure mode, another rabbit hole that feels urgent but isn't." },
 
     "At some point you have to draw an information boundary, a line beyond which more digging makes you more knowledgeable but doesn't change what you'd choose. Where that line sits is rarely obvious. Knowing where to draw it is itself a judgment call.",
 
@@ -111,7 +148,15 @@ export const productThesis = {
 
     "The decision was no longer about discovering the correct answer. It was about deciding what deserved to be optimized. Every reasonable solution improved something important and sacrificed something else.",
 
-    "The question that kept bringing me back wasn't, “Which solution is objectively best?” It was, “Which one genuinely improves the customer's experience the most when I zoom out and look at the whole system?”",
+    {
+      type: 'lines',
+      items: [
+        "The question that kept bringing me back wasn't,",
+        'Which solution is objectively best?',
+        'It was,',
+        "Which one genuinely improves the customer's experience the most when I zoom out and look at the whole system?",
+      ],
+    },
 
     "That's a harder question than it sounds.",
 
@@ -123,7 +168,13 @@ export const productThesis = {
 
     "All of that is gold, but it still leaves a PM with a different question.",
 
-    "Not, “What did the customer ask for?” But, “What would actually make their experience better?”",
+    {
+      type: 'lines',
+      items: [
+        'Not, “What did the customer ask for?”',
+        'But, “What would actually make their experience better?”',
+      ],
+    },
 
     "Those are not always the same question.",
 
@@ -131,7 +182,15 @@ export const productThesis = {
 
     "That's what changed my understanding of customer obsession. It isn't difficult because customers are hard to understand. It's difficult because organizations gradually become experts in the product they've built.",
 
-    "Strange edges quietly become normal. Workarounds stop feeling like workarounds. Friction starts looking like “just how the product works.” Internal language slowly replaces the customer's language.",
+    {
+      type: 'lines',
+      items: [
+        'Strange edges quietly become normal.',
+        'Workarounds stop feeling like workarounds.',
+        'Friction starts looking like “just how the product works.”',
+        "Internal language slowly replaces the customer's language.",
+      ],
+    },
 
     "I now think part of customer obsession is resisting that drift.",
 
@@ -149,21 +208,44 @@ export const productThesis = {
 
     "I knew PMs wrote a lot. I didn't understand what writing actually does to thinking until this summer. I had assumed the sequence went: understand the problem, decide what you believe, and then write it down. I left with almost the opposite understanding.",
 
-    "Writing wasn't where I documented a point of view. It was where I discovered whether I actually had one.",
+    { type: 'emphasis', text: "Writing wasn't where I documented a point of view. It was where I discovered whether I actually had one." },
 
     "An idea would feel coherent in my head, and then I'd sit down to explain the customer, the problem, why it mattered now, and why this direction was better than the alternatives — and the gaps would show up almost immediately.",
 
-    "I'd describe the customer and realize I had quietly collapsed two different users into one. I'd describe the problem and realize I was actually describing a symptom of something deeper. I'd lay out the future experience and notice a step that only existed because I'd unconsciously inherited a constraint from the current product.",
+    {
+      type: 'lines',
+      items: [
+        "I'd describe the customer and realize I had quietly collapsed two different users into one.",
+        "I'd describe the problem and realize I was actually describing a symptom of something deeper.",
+        "I'd lay out the future experience and notice a step that only existed because I'd unconsciously inherited a constraint from the current product.",
+      ],
+    },
 
     "The document didn't create those weaknesses. It exposed them.",
 
-    "A good product doc doesn't communicate a finished thought. It pressure-tests one.",
+    { type: 'emphasis', text: "A good product doc doesn't communicate a finished thought. It pressure-tests one." },
 
-    "Can this argument survive being made explicit? Can someone else follow the chain from problem to choice? Can I separate what I observed from what I concluded? Can I name the tradeoff instead of burying it under confident language?",
+    {
+      type: 'lines',
+      items: [
+        'Can this argument survive being made explicit?',
+        'Can someone else follow the chain from problem to choice?',
+        'Can I separate what I observed from what I concluded?',
+        'Can I name the tradeoff instead of burying it under confident language?',
+      ],
+    },
 
     "Once I started seeing documents that way, I stopped waiting for them to feel finished before sharing them. The purpose of an early document isn't to communicate certainty. It's to expose uncertainty while it's still cheap to fix — one comment on a rough draft is often worth more than another day spent refining it alone.",
 
-    "Someone challenges your customer definition. Someone flags a dependency you missed. Someone disagrees with the recommendation entirely. That's the point.",
+    {
+      type: 'lines',
+      items: [
+        'Someone challenges your customer definition.',
+        'Someone flags a dependency you missed.',
+        'Someone disagrees with the recommendation entirely.',
+        "That's the point.",
+      ],
+    },
 
     "The document isn't failing. It's doing its job.",
 
@@ -185,19 +267,35 @@ export const productThesis = {
 
     "The point isn't to smooth those differences over with diplomacy. It's to make the reasoning legible enough that disagreement becomes useful. A good product conversation sounds something like this in my head:",
 
-    "Here's what we know, here's what we don't, here's what customers seem to value, here are the tradeoffs. Here's why I believe this is the right direction — now tell me what I'm missing.",
+    {
+      type: 'lines',
+      items: [
+        "Here's what we know,",
+        "Here's what we don't,",
+        "Here's what customers seem to value,",
+        'Here are the tradeoffs.',
+        "Here's why I believe this is the right direction — now tell me what I'm missing.",
+      ],
+    },
 
     "That's a different kind of conviction. It isn't stubborn, it doesn't depend on everyone agreeing, and it stays open to better arguments while still being willing to make a recommendation.",
 
     "It also gave stakeholder conversations a completely different purpose in my mind. They weren't obstacles standing between me and the product. They were part of how the product became better.",
 
-    "Engineering needs to understand why the problem is worth solving. Design needs enough context to challenge the proposed experience intelligently. Leadership needs to understand why this deserves resources over something else.",
+    {
+      type: 'lines',
+      items: [
+        'Engineering needs to understand why the problem is worth solving.',
+        'Design needs enough context to challenge the proposed experience intelligently.',
+        'Leadership needs to understand why this deserves resources over something else.',
+      ],
+    },
 
     "Each of those perspectives improves the product differently, but only if they can see the reasoning clearly enough to engage with it. That's why I no longer think writing, reviews, and stakeholder conversations are side activities to “the real work.” They are the work.",
 
     "A product idea isn't ready because you've finished thinking about it. It's ready when other people can think through it with you.",
 
-    { type: 'pullquote', text: 'A product gets built twice. First as a shared understanding. Then as software.' },
+    'A product gets built twice. First as a shared understanding. Then as software.',
 
     { type: 'heading', text: 'Ownership begins where consensus ends' },
 
@@ -219,7 +317,16 @@ export const productThesis = {
 
     "That's where I think the role really earns its place. Not by always knowing the answer, not by having the most ideas, not by winning every argument.",
 
-    "By understanding the customer and the system deeply enough to know what matters. By separating signal from noise. By working out which uncertainties are worth chasing and which aren't. By making the reasoning legible enough that other people can push back on it. And then by taking responsibility for the choice anyway.",
+    {
+      type: 'lines',
+      items: [
+        'By understanding the customer and the system deeply enough to know what matters.',
+        'By separating signal from noise.',
+        "By working out which uncertainties are worth chasing and which aren't.",
+        'By making the reasoning legible enough that other people can push back on it.',
+        'And then by taking responsibility for the choice anyway.',
+      ],
+    },
 
     "There are a handful of distinctions I understand very differently now than I did in May: between evidence and proof, rigor and completeness, knowledge and useful depth, disagreement and disproof, agreement and alignment, listening and outsourcing judgment, responsibility and ownership. They sound subtle written out like that. In practice I think they're most of the job.",
 

@@ -24,7 +24,7 @@ export default function FieldNotesTeaser() {
           A notebook of questions, investigations, and evolving product thinking — written like a newsletter, updated as my judgment changes.
         </p>
       </div>
-      <a href="#field-notes" className="fn-teaser__card">
+      <a href={`#field-notes/${latest.number}`} className="fn-teaser__card">
         <div className="fn-teaser__icon">
           <PenIcon />
         </div>
