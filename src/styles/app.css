@@ -3660,22 +3660,36 @@ main {
   margin-top: 0;
 }
 
-/* Pull quotes — italic serif, subtle left rule using --border, no colored flourishes */
-.pt-body__pullquote {
+/* Italicized line-blocks — for lists of parallel questions/statements */
+.pt-body__lines {
+  margin: 1.75em 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+}
+
+.pt-body__lines-item {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 1.5;
-  color: var(--text);
-  margin: 2em 0;
-  padding: 4px 0 4px 20px;
-  border-left: 2px solid var(--accent);
-  text-wrap: pretty;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 0.5em;
 }
 
-.pt-body__pullquote-mark {
-  display: none;
+.pt-body__lines-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Standalone emphasized sentences — bolded from the original doc */
+.pt-body__emphasis {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text);
+  margin: 1.75em 0;
+  letter-spacing: -0.005em;
 }
 
 /* Closer — Playfair italic, single hairline top rule; understated signature */
@@ -3696,6 +3710,8 @@ main {
 
 @media (max-width: 680px) {
   .pt-body__heading { font-size: 20px; margin: 2.5em 0 0.9em; }
-  .pt-body__pullquote { font-size: 17px; margin: 1.6em 0; padding-left: 16px; }
+  .pt-body__lines { padding-left: 16px; margin: 1.5em 0; }
+  .pt-body__lines-item { font-size: 15.5px; }
+  .pt-body__emphasis { font-size: 15.5px; margin: 1.5em 0; }
   .pt-body__closer { font-size: 17px; padding-top: 1.4em; margin-top: 2.4em; }
 }
