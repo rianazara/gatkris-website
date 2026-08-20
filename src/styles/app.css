@@ -3452,3 +3452,219 @@ main {
   .fn-cover-book { min-height: min(380px, 50vh); }
   .fn-back { min-height: 48px; font-size: 14px; }
 }
+
+/* ===========================================================================
+   Product Thesis — Teaser section on main page
+   =========================================================================== */
+.pt-teaser__header {
+  margin-bottom: 16px;
+}
+
+.pt-teaser__intro {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+.pt-teaser__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(27, 42, 74, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+:root[data-theme='dark'] .pt-teaser__card {
+  background: rgba(147, 171, 211, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-teaser__card {
+    background: rgba(147, 171, 211, 0.06);
+  }
+}
+
+.pt-teaser__card:hover {
+  border-color: var(--accent-navy);
+  box-shadow: 0 4px 24px rgba(27, 42, 74, 0.08);
+  transform: translateY(-1px);
+}
+
+.pt-teaser__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(27, 42, 74, 0.10);
+  color: var(--accent-navy);
+}
+
+:root[data-theme='dark'] .pt-teaser__icon {
+  background: rgba(147, 171, 211, 0.12);
+  color: #93ABD3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-teaser__icon {
+    background: rgba(147, 171, 211, 0.12);
+    color: #93ABD3;
+  }
+}
+
+.pt-teaser__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.pt-teaser__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.pt-teaser__heading {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.pt-teaser__date {
+  font-size: 12px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pt-teaser__subtitle {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.pt-teaser__arrow {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s;
+  padding-top: 10px;
+}
+
+.pt-teaser__card:hover .pt-teaser__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.pt-teaser__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-navy);
+  letter-spacing: 0.02em;
+  transition: gap 0.2s ease;
+}
+
+:root[data-theme='dark'] .pt-teaser__cta {
+  color: #93ABD3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-teaser__cta {
+    color: #93ABD3;
+  }
+}
+
+.pt-teaser__cta:hover {
+  gap: 10px;
+}
+
+@media (max-width: 680px) {
+  .pt-teaser__card {
+    padding: 16px;
+    gap: 12px;
+  }
+  .pt-teaser__icon { display: none; }
+  .pt-teaser__heading { font-size: 19px; }
+}
+
+/* ===========================================================================
+   Product Thesis — Full essay page
+   =========================================================================== */
+.pt-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+}
+
+:root[data-theme='dark'] .pt-eyebrow {
+  color: #93ABD3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-eyebrow {
+    color: #93ABD3;
+  }
+}
+
+.pt-note-title {
+  letter-spacing: -0.015em;
+}
+
+.pt-body__heading {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 2.4rem 0 0.9rem;
+  letter-spacing: -0.01em;
+}
+
+.pt-body__closer {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--accent-navy);
+  text-align: center;
+  margin: 2.6rem 0 1rem;
+  padding: 1.4rem 1rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+:root[data-theme='dark'] .pt-body__closer {
+  color: #93ABD3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-body__closer {
+    color: #93ABD3;
+  }
+}
+
+@media (max-width: 680px) {
+  .pt-body__heading { font-size: 1.25rem; margin: 1.8rem 0 0.75rem; }
+  .pt-body__closer { font-size: 1.05rem; padding: 1.1rem 0.5rem; }
+}
