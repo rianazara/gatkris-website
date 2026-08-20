@@ -70,8 +70,8 @@ export default function App() {
         <main>
           <Hero />
           <About />
-          <ProductThesisTeaser />
           <FieldNotesTeaser />
+          <ProductThesisTeaser />
           <Projects />
           <Experience />
           <Signals />

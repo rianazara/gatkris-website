@@ -7,7 +7,6 @@ const navLinks = [
   { label: 'About', href: '#about', color: 'blue' },
   { label: 'Achievements', href: '#outside-work', color: 'rose' },
   { label: 'Projects', href: '#projects', color: 'green' },
-  { label: 'Thesis', href: '#product-thesis', color: 'navy' },
   { label: 'Field Notes', href: '#field-notes', color: 'gold' },
   { label: 'Experience', href: '#experience', color: 'orange' },
   { label: 'Contact', href: '#contact', color: 'orange' },
