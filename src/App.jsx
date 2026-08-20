@@ -7,9 +7,11 @@ import Signals from './components/Signals'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
 import FieldNotesTeaser from './components/FieldNotesTeaser'
+import ProductThesisTeaser from './components/ProductThesisTeaser'
 import Footer from './components/Footer'
 import Accessibility from './components/Accessibility'
 import FieldNotes from './components/FieldNotes'
+import ProductThesis from './components/ProductThesis'
 
 function useScrollReveal() {
   useEffect(() => {
@@ -50,6 +52,7 @@ export default function App() {
   useScrollReveal()
   const route = useHashRoute()
   const showFieldNotes = route.startsWith('#field-notes')
+  const showProductThesis = route.startsWith('#product-thesis')
 
   return (
     <>
@@ -59,10 +62,15 @@ export default function App() {
         <main>
           <FieldNotes route={route} />
         </main>
+      ) : showProductThesis ? (
+        <main>
+          <ProductThesis />
+        </main>
       ) : (
         <main>
           <Hero />
           <About />
+          <ProductThesisTeaser />
           <FieldNotesTeaser />
           <Projects />
           <Experience />
