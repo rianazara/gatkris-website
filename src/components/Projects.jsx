@@ -13,16 +13,17 @@ function StatusBadge({ status }) {
   return <span className={`proj-badge ${cls}`}>{status}</span>
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, alwaysExpanded = false }) {
   const Preview = previews[project.preview]
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(alwaysExpanded)
   const contentRef = useRef(null)
   const [overflows, setOverflows] = useState(false)
 
   useEffect(() => {
+    if (alwaysExpanded) return
     const el = contentRef.current
     if (el) setOverflows(el.scrollHeight > 360)
-  }, [])
+  }, [alwaysExpanded])
 
   return (
     <article className="proj">
@@ -121,7 +122,7 @@ export default function Projects() {
         <h4 className="proj-group__heading">Product Prototypes</h4>
         <div className="proj-showcase">
           {productPrototypes.map((p) => (
-            <ProjectCard key={p.name} project={p} />
+            <ProjectCard key={p.name} project={p} alwaysExpanded />
           ))}
         </div>
       </div>
