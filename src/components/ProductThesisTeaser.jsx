@@ -29,14 +29,14 @@ export default function ProductThesisTeaser() {
           </div>
           <p className="pt-teaser__subtitle">{productThesis.subtitle}</p>
         </div>
-        <div className="pt-teaser__arrow" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+        <div className="pt-teaser__action" aria-hidden="true">
+          <span className="pt-teaser__action-label">Read the thesis</span>
+          <span className="pt-teaser__arrow">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </span>
         </div>
-      </a>
-      <a href="#product-thesis" className="pt-teaser__cta">
-        Read the thesis <span aria-hidden="true">&rarr;</span>
       </a>
     </section>
   )
