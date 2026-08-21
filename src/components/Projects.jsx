@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { projects, productVisions } from '../data/content'
+import { projects, productPrototypes, productVisions } from '../data/content'
 import AnimusPreview from './AnimusPreview'
 import PriceWhispererPreview from './PriceWhispererPreview'
 
@@ -77,9 +77,6 @@ function VisionCard({ vision }) {
         </svg>
       </div>
       <div className="proj-vision__body">
-        <div className="proj-vision__meta">
-          <span className="proj__category">{vision.category}</span>
-        </div>
         <h4 className="proj-vision__name">{vision.name}</h4>
         <p className="proj-vision__tagline">{vision.tagline}</p>
         <p className="proj-vision__desc">{vision.description}</p>
@@ -93,20 +90,63 @@ function VisionCard({ vision }) {
   )
 }
 
+function LockedFolder({ hint, label }) {
+  return (
+    <div className="proj-locked" role="group" aria-label={`${label} (private)`}>
+      <div className="proj-locked__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="4" y="10" width="16" height="10" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+          <circle cx="12" cy="15" r="1" fill="currentColor" />
+        </svg>
+      </div>
+      <p className="proj-locked__hint">{hint}</p>
+      <span className="proj-locked__badge" aria-hidden="true">Private</span>
+    </div>
+  )
+}
+
 export default function Projects() {
   return (
     <section className="card" id="projects">
-      <h3 className="section-label section-label--green">Things I've Been Building</h3>
+      <h3 className="section-label section-label--green">Products I've built</h3>
+
       <div className="proj-showcase">
         {projects.map((p) => (
           <ProjectCard key={p.name} project={p} />
         ))}
       </div>
-      <div className="proj-visions">
-        <h4 className="proj-visions__heading">What I'm Envisioning</h4>
+
+      <div className="proj-group">
+        <h4 className="proj-group__heading">Product Prototypes</h4>
+        <div className="proj-showcase">
+          {productPrototypes.map((p) => (
+            <ProjectCard key={p.name} project={p} />
+          ))}
+        </div>
+      </div>
+
+      <div className="proj-group">
+        <h4 className="proj-group__heading">Product Visions</h4>
         {productVisions.map((v) => (
           <VisionCard key={v.name} vision={v} />
         ))}
+      </div>
+
+      <div className="proj-group">
+        <h4 className="proj-group__heading">Product Explorations</h4>
+        <LockedFolder
+          label="Product Explorations"
+          hint="Work-in-progress explorations kept private while I sharpen them."
+        />
+      </div>
+
+      <div className="proj-group">
+        <h4 className="proj-group__heading">Product Graveyard</h4>
+        <LockedFolder
+          label="Product Graveyard"
+          hint="Ideas I tried and set aside — kept private, not for public scrutiny."
+        />
       </div>
     </section>
   )

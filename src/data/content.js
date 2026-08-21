@@ -96,6 +96,9 @@ export const projects = [
     href: 'https://github.com/rianazara/archived',
     preview: 'animus',
   },
+]
+
+export const productPrototypes = [
   {
     name: 'Price Whisperer',
     type: 'shipped',
@@ -119,7 +122,6 @@ export const productVisions = [
     name: 'Google Finance Beta',
     tagline: 'What if Google rebuilt finance tools with AI-native reasoning?',
     description: 'A product vision document reimagining stock screening, portfolio analytics, and investment research through the lens of Google-scale AI — not as a feature list, but as a fundamentally different way to interact with financial data.',
-    category: 'Product Vision',
     href: 'https://claude.ai/code/artifact/ceda3365-0ef7-4d30-ae68-a05154e4424f',
   },
 ]
