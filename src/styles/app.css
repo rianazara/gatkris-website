@@ -3614,44 +3614,54 @@ main {
   line-height: 1.55;
 }
 
-.pt-teaser__arrow {
+.pt-teaser__action {
   flex-shrink: 0;
-  color: var(--text-faint);
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s;
-  padding-top: 10px;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 16px;
+  border-radius: 999px;
+  background: transparent;
+  color: #D93025;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: gap 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pt-teaser__arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.pt-teaser__card:hover .pt-teaser__action {
+  gap: 12px;
+  background: rgba(217, 48, 37, 0.08);
 }
 
 .pt-teaser__card:hover .pt-teaser__arrow {
-  opacity: 1;
-  transform: translateX(0);
+  transform: translateX(2px);
 }
 
-.pt-teaser__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #D93025;
-  letter-spacing: 0.02em;
-  transition: gap 0.2s ease;
-}
-
-:root[data-theme='dark'] .pt-teaser__cta {
+:root[data-theme='dark'] .pt-teaser__action {
   color: #F28B82;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .pt-teaser__cta {
-    color: #F28B82;
-  }
+:root[data-theme='dark'] .pt-teaser__card:hover .pt-teaser__action {
+  background: rgba(242, 139, 130, 0.10);
 }
 
-.pt-teaser__cta:hover {
-  gap: 10px;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pt-teaser__action {
+    color: #F28B82;
+  }
+  :root:not([data-theme='light']) .pt-teaser__card:hover .pt-teaser__action {
+    background: rgba(242, 139, 130, 0.10);
+  }
 }
 
 @media (max-width: 680px) {
@@ -3661,6 +3671,8 @@ main {
   }
   .pt-teaser__icon { display: none; }
   .pt-teaser__heading { font-size: 19px; }
+  .pt-teaser__action { padding: 6px 10px 6px 12px; font-size: 12px; }
+  .pt-teaser__action-label { display: none; }
 }
 
 /* ===========================================================================
@@ -3724,6 +3736,11 @@ main {
 .pt-em {
   font-style: italic;
   color: var(--text-muted);
+}
+
+.pt-body__bold {
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* Section heading — colored eyebrow number + serif title */

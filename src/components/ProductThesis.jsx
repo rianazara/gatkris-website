@@ -24,7 +24,7 @@ function renderInline(text, accent) {
       const end = text.indexOf('**', i + 2)
       if (end !== -1) {
         parts.push(
-          <strong key={key++} className={`pt-hl pt-hl--${accent}`}>
+          <strong key={key++} className="pt-body__bold">
             {text.slice(i + 2, end)}
           </strong>
         )
@@ -159,7 +159,6 @@ export default function ProductThesis() {
               <span className="fn-note-dot">&middot;</span>
               <span className="fn-note-readtime">{estimateReadTime(productThesis.body)}</span>
             </div>
-            <p className="pt-eyebrow">Product Thesis</p>
             <h1 className="fn-note-title pt-note-title">{productThesis.title}</h1>
             <div className="fn-note-divider" aria-hidden="true">
               <svg width="80" height="12" viewBox="0 0 80 12">
