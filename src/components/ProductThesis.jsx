@@ -1,17 +1,66 @@
 import { useEffect, useRef } from 'react'
 import { productThesis } from '../data/productThesis'
 
+const HEADING_COLORS = ['blue', 'red', 'yellow', 'green']
+
 function estimateReadTime(body) {
   const words = body.reduce((count, block) => {
     if (typeof block === 'string') return count + block.split(/\s+/).length
     if (block && block.text) return count + block.text.split(/\s+/).length
+    if (block && block.items) return count + block.items.join(' ').split(/\s+/).length
     return count
   }, 0)
   return `${Math.max(1, Math.ceil(words / 220))} min read`
 }
 
+// Parse a string into React nodes, honoring **bold** and *italic* markers.
+// Bold spans get the given accent color; italics stay in the muted serif italic style.
+function renderInline(text, accent) {
+  const parts = []
+  let i = 0
+  let key = 0
+  while (i < text.length) {
+    if (text.startsWith('**', i)) {
+      const end = text.indexOf('**', i + 2)
+      if (end !== -1) {
+        parts.push(
+          <strong key={key++} className={`pt-hl pt-hl--${accent}`}>
+            {text.slice(i + 2, end)}
+          </strong>
+        )
+        i = end + 2
+        continue
+      }
+    }
+    if (text.startsWith('*', i) && text[i - 1] !== '*') {
+      const end = text.indexOf('*', i + 1)
+      if (end !== -1 && text[end + 1] !== '*') {
+        parts.push(
+          <em key={key++} className="pt-em">
+            {text.slice(i + 1, end)}
+          </em>
+        )
+        i = end + 1
+        continue
+      }
+    }
+    // grab a run of plain text until the next marker
+    let next = text.length
+    const nb = text.indexOf('**', i)
+    const ni = text.indexOf('*', i)
+    if (nb !== -1 && nb < next) next = nb
+    if (ni !== -1 && ni < next) next = ni
+    if (next === i) next = i + 1
+    parts.push(text.slice(i, next))
+    i = next
+  }
+  return parts
+}
+
 function ThesisBody({ body }) {
   let isFirst = true
+  let observationIndex = 0
+  let currentAccent = HEADING_COLORS[0]
 
   return body.map((block, i) => {
     if (typeof block === 'string') {
@@ -22,30 +71,43 @@ function ThesisBody({ body }) {
         return (
           <p key={i} className="fn-body__p">
             <span className="fn-dropcap">{first}</span>
-            {rest}
+            {renderInline(rest, currentAccent)}
           </p>
         )
       }
       return (
         <p key={i} className="fn-body__p">
-          {block}
+          {renderInline(block, currentAccent)}
         </p>
       )
     }
 
     if (block.type === 'heading') {
       isFirst = false
+      if (block.number) {
+        const accent = HEADING_COLORS[(block.number - 1) % HEADING_COLORS.length]
+        currentAccent = accent
+        observationIndex = block.number
+        const numStr = String(block.number).padStart(2, '0')
+        return (
+          <div key={i} className="pt-section-heading">
+            <span className={`pt-section-heading__num pt-hl--${accent}`}>Observation {numStr}</span>
+            <h2 className="pt-body__heading">{block.text}</h2>
+          </div>
+        )
+      }
+      // Unnumbered heading (e.g., "What I think the job is now")
       return (
-        <h2 key={i} className="pt-body__heading">
-          {block.text}
-        </h2>
+        <div key={i} className="pt-section-heading pt-section-heading--closing">
+          <h2 className="pt-body__heading">{block.text}</h2>
+        </div>
       )
     }
 
     if (block.type === 'lines') {
       isFirst = false
       return (
-        <div key={i} className="pt-body__lines">
+        <div key={i} className={`pt-body__lines pt-body__lines--${currentAccent}`}>
           {block.items.map((line, j) => (
             <p key={j} className="pt-body__lines-item">{line}</p>
           ))}
@@ -56,16 +118,7 @@ function ThesisBody({ body }) {
     if (block.type === 'emphasis') {
       isFirst = false
       return (
-        <p key={i} className="pt-body__emphasis">
-          {block.text}
-        </p>
-      )
-    }
-
-    if (block.type === 'closer') {
-      isFirst = false
-      return (
-        <p key={i} className="pt-body__closer">
+        <p key={i} className={`pt-body__emphasis pt-body__emphasis--${currentAccent}`}>
           {block.text}
         </p>
       )
