@@ -1411,19 +1411,77 @@ main {
 }
 
 /* --- Product visions subsection --- */
-.proj-visions {
+.proj-visions,
+.proj-group {
   margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
 }
 
-.proj-visions__heading {
+.proj-visions__heading,
+.proj-group__heading {
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 400;
   color: var(--text-faint);
   margin-bottom: 20px;
   font-style: italic;
+}
+
+/* Locked folder — a private placeholder card */
+.proj-locked {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  position: relative;
+}
+
+.proj-locked__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-faint);
+}
+
+.proj-locked__hint {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.proj-locked__badge {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 680px) {
+  .proj-locked { padding: 14px 16px; gap: 12px; }
+  .proj-locked__icon { width: 32px; height: 32px; }
+  .proj-locked__hint { font-size: 13px; }
+  .proj-locked__badge { font-size: 9px; padding: 3px 8px; }
 }
 
 .proj-vision {
