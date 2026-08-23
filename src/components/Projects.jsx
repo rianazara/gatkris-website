@@ -44,6 +44,22 @@ function ProjectCard({ project, alwaysExpanded = false }) {
           <h4 className="proj__name">{project.name}</h4>
           <p className="proj__tagline">{project.tagline}</p>
           <p className="proj__desc">{project.description}</p>
+          {project.time && (
+            <div className="proj__time" aria-label="Time saved with this product">
+              <div className="proj__time-cell">
+                <span className="proj__time-label">Before</span>
+                <span className="proj__time-value">{project.time.before}</span>
+              </div>
+              <div className="proj__time-cell">
+                <span className="proj__time-label">Now</span>
+                <span className="proj__time-value">{project.time.after}</span>
+              </div>
+              <div className="proj__time-cell proj__time-cell--accent">
+                <span className="proj__time-label">Saved</span>
+                <span className="proj__time-value">{project.time.reduction}</span>
+              </div>
+            </div>
+          )}
           <ul className="proj__details">
             {project.details.map((d, i) => (
               <li key={i}>{d}</li>

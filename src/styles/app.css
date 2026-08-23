@@ -1039,6 +1039,60 @@ main {
   color: var(--text-muted);
 }
 
+.proj__time {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 12px;
+  margin: 4px 0 2px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.proj__time-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.proj__time-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.proj__time-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.proj__time-cell--accent .proj__time-value {
+  color: #1E8E3E;
+  font-weight: 600;
+}
+
+:root[data-theme='dark'] .proj__time-cell--accent .proj__time-value {
+  color: #81C995;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .proj__time-cell--accent .proj__time-value {
+    color: #81C995;
+  }
+}
+
+@media (max-width: 680px) {
+  .proj__time { padding: 10px; gap: 6px; }
+  .proj__time-value { font-size: 12px; }
+  .proj__time-label { font-size: 9px; }
+}
+
 .proj__details {
   display: flex;
   flex-direction: column;
