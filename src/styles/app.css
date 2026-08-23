@@ -3331,7 +3331,7 @@ main {
   justify-content: center;
   padding: 80px 16px 16px;
   background: var(--bg);
-  animation: fn-overlayFade 0.6s ease 2.3s forwards;
+  animation: fn-overlayFade 0.5s ease 1.7s forwards;
   pointer-events: none;
 }
 
@@ -3343,9 +3343,7 @@ main {
   border-radius: 14px;
   overflow: visible;
   box-shadow: 0 12px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
-  animation:
-    fn-coverEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-    fn-coverZoom 0.9s cubic-bezier(0.4, 0, 0.2, 1) 1.6s both;
+  animation: fn-coverEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   perspective: 1800px;
 }
 
@@ -3384,7 +3382,7 @@ main {
   border-radius: 0 14px 14px 0;
   transform-origin: left center;
   backface-visibility: hidden;
-  animation: fn-coverTurn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+  animation: fn-coverTurn 1s cubic-bezier(0.55, 0, 0.25, 1) 0.55s forwards;
   z-index: 1;
 }
 
@@ -3402,7 +3400,7 @@ main {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  animation: fn-insideReveal 0.4s ease 1.2s forwards;
+  animation: fn-insideReveal 0.4s ease 0.9s forwards;
 }
 
 .fn-cover-inside-text {
@@ -3445,39 +3443,27 @@ main {
 @keyframes fn-coverEnter {
   0% {
     opacity: 0;
-    transform: scale(0.82) translateY(50px);
-  }
-  65% {
-    opacity: 1;
-    transform: scale(1.03) translateY(-6px);
+    transform: translateY(24px);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0);
   }
 }
 
+/* Natural page-flip — the front cover rotates open on its left spine
+   and settles flat against the back, revealing the interior. */
 @keyframes fn-coverTurn {
   0% {
     transform: rotateY(0deg);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
   }
   60% {
-    transform: rotateY(-172deg);
-  }
-  80% {
-    transform: rotateY(-156deg);
+    box-shadow: -30px 0 40px -10px rgba(0,0,0,0.25);
   }
   100% {
-    transform: rotateY(-162deg);
-  }
-}
-
-@keyframes fn-coverZoom {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.5);
+    transform: rotateY(-178deg);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
   }
 }
 
