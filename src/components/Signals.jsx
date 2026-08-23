@@ -58,8 +58,8 @@ function SignalCard({ achievement, onImageClick }) {
     >
       <div className="signal__inner">
         <div className="signal__front">
-          <p className="signal__phrase">{achievement.phrase}</p>
           <p className="signal__title">{achievement.title}</p>
+          <p className="signal__phrase">{achievement.phrase}</p>
         </div>
         <div className="signal__back" onClick={handleBackClick}>
           <div className="signal__image">
