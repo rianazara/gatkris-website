@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Accessibility from './components/Accessibility'
 import FieldNotes from './components/FieldNotes'
 import ProductThesis from './components/ProductThesis'
+import ProductDoc from './components/ProductDoc'
 
 function useScrollReveal() {
   useEffect(() => {
@@ -53,6 +54,8 @@ export default function App() {
   const route = useHashRoute()
   const showFieldNotes = route.startsWith('#field-notes')
   const showProductThesis = route.startsWith('#product-thesis')
+  const productDocMatch = route.match(/^#products\/([\w-]+)/)
+  const productDocSlug = productDocMatch ? productDocMatch[1] : null
 
   return (
     <>
@@ -65,6 +68,10 @@ export default function App() {
       ) : showProductThesis ? (
         <main>
           <ProductThesis />
+        </main>
+      ) : productDocSlug ? (
+        <main>
+          <ProductDoc slug={productDocSlug} />
         </main>
       ) : (
         <main>

@@ -81,6 +81,25 @@ export const tickerItems = [
 
 export const projects = [
   {
+    name: 'Application Studio',
+    type: 'flagship',
+    status: 'Live',
+    category: 'AI Workflow',
+    tagline: "An AI workflow that decides which jobs are worth applying to, tailors my resume from what's already true, and drafts outreach that gets a reply.",
+    description: "One workflow, four moves: a gate that screens out roles not worth my time; a resume pass that reorders and lifts from my 3-page master doc — never inventing, never keyword-stuffing; an outreach pack of four messages tuned to the reader (alum, hiring manager, recruiter, connection invite); and a bundle organized by date and company. Application forms are autofilled through Simplify, and I confirm before submitting. The whole thing runs on one rule: same facts, different protagonist.",
+    details: [
+      "Signal-to-apply gate that reads the JD and refuses to tailor when the role isn't honestly worth an hour",
+      "Semantic tailoring loop with recruiter/HM/ATS review passes — one page, real hyperlinks, no fabricated metrics",
+      'Warm-but-genuine outreach pack: referral request, HM/recruiter message, and two under-300-char connection notes',
+      'Ranked LinkedIn networking shortlist filtered by shared alma mater, mutual connections, and role relevance',
+      'Per-role bundle: resume PDF + editable docx, alignment assessment, verification list, outreach, networking, JD summary, tracker row',
+    ],
+    stack: ['Claude Agent SDK', 'Claude Skills', 'Python', 'LinkedIn', 'Simplify'],
+    href: '#products/application-studio',
+    hrefLabel: 'Read the story',
+    preview: 'appstudio',
+  },
+  {
     name: 'Archived',
     type: 'flagship',
     status: 'Expanding',

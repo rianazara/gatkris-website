@@ -2,10 +2,12 @@ import { useState, useRef, useEffect } from 'react'
 import { projects, productPrototypes, productVisions } from '../data/content'
 import AnimusPreview from './AnimusPreview'
 import PriceWhispererPreview from './PriceWhispererPreview'
+import AppStudioPreview from './AppStudioPreview'
 
 const previews = {
   animus: AnimusPreview,
   pricewhisperer: PriceWhispererPreview,
+  appstudio: AppStudioPreview,
 }
 
 function StatusBadge({ status }) {
@@ -52,11 +54,20 @@ function ProjectCard({ project, alwaysExpanded = false }) {
               <span key={t} className="proj__tech">{t}</span>
             ))}
           </div>
-          {project.href && (
-            <a href={project.href} target="_blank" rel="noopener noreferrer" className="proj__cta">
-              Try it live <span aria-hidden="true">→</span>
-            </a>
-          )}
+          {project.href && (() => {
+            const external = project.href.startsWith('http')
+            const label = project.hrefLabel || (external ? 'Try it live' : 'Read more')
+            return (
+              <a
+                href={project.href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                className="proj__cta"
+              >
+                {label} <span aria-hidden="true">→</span>
+              </a>
+            )
+          })()}
         </div>
         {overflows && (
           <button className="proj__more" onClick={() => setExpanded(!expanded)}>
