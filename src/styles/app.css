@@ -2710,6 +2710,7 @@ main {
   .os-grid { grid-template-columns: 1fr; }
 
   .contact { min-height: 56px; }
+  .contact__label { display: none; }
 
   .fn-teaser__heading { font-size: 17px; }
   .fn-teaser__card { padding: 16px; gap: 12px; }
