@@ -3539,6 +3539,44 @@ main {
   margin-bottom: 0;
 }
 
+/* Principle — a hidden-thought postscript at the end of a note.
+   Visually secondary. Reads like a signature underneath a plate. */
+.fn-body__principle {
+  margin: 3.5em 0 0;
+  padding-top: 1.75em;
+  border-top: 1px solid var(--border);
+  text-align: right;
+  display: block;
+}
+
+.fn-body__principle-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-faint);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.fn-body__principle-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  color: var(--text);
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+@media (max-width: 680px) {
+  .fn-body__principle { margin-top: 2.6em; padding-top: 1.4em; }
+  .fn-body__principle-text { font-size: 1.05rem; }
+}
+
 /* Drop cap */
 .fn-dropcap {
   float: left;

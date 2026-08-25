@@ -89,6 +89,16 @@ function NoteBody({ body }) {
       )
     }
 
+    if (block.type === 'principle') {
+      isFirst = false
+      return (
+        <aside key={i} className="fn-body__principle" aria-label="Principle beneath the note">
+          <span className="fn-body__principle-label">{block.label || 'The subtext'}</span>
+          <p className="fn-body__principle-text">{block.text}</p>
+        </aside>
+      )
+    }
+
     return null
   })
 }
