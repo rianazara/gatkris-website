@@ -3471,24 +3471,26 @@ main {
   color: var(--accent);
   opacity: 0.65;
 }
+.fn-note-num {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  opacity: 0.9;
+}
+
 .fn-note-title {
   font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   text-wrap: balance;
-  margin-bottom: 10px;
-}
-.fn-note-num {
-  font-family: var(--font-sans);
-  font-size: 0.5em;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  vertical-align: super;
-  margin-right: 6px;
-  opacity: 0.75;
+  margin-bottom: 12px;
 }
 .fn-note-divider {
   display: flex;
@@ -3515,6 +3517,26 @@ main {
   line-height: 1.85;
   color: var(--text);
   margin-bottom: 1.5em;
+}
+
+/* Stanza — a tight rhythmic group of related short lines. Each line sits
+   closer to the next than a full paragraph break would allow, while the
+   stanza as a whole carries the same air below as a paragraph. */
+.fn-body__stanza {
+  margin: 0 0 1.5em;
+}
+
+.fn-body__stanza-line {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin: 0 0 0.35em;
+  text-wrap: pretty;
+}
+
+.fn-body__stanza-line:last-child {
+  margin-bottom: 0;
 }
 
 /* Drop cap */

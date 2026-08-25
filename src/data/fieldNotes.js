@@ -17,12 +17,17 @@ export const fieldNotes = [
 
       "When someone says they're “AI fluent,” or that they're looking for someone who is, what are they really claiming?",
 
-      "Is it understanding how large language models work?",
-      "Is it writing effective prompts?",
-      "Is it building applications with AI?",
-      "Is it automating workflows with AI?",
-      "Is it knowing when AI can solve a problem, but also recognizing when it shouldn't?",
-      "Or is it simply knowing how to collaborate effectively with AI?",
+      {
+        type: 'stanza',
+        lines: [
+          'Is it understanding how large language models work?',
+          'Is it writing effective prompts?',
+          'Is it building applications with AI?',
+          'Is it automating workflows with AI?',
+          "Is it knowing when AI can solve a problem, but also recognizing when it shouldn't?",
+          'Or is it simply knowing how to collaborate effectively with AI?',
+        ],
+      },
 
       "Read that list again.",
 
@@ -47,19 +52,29 @@ export const fieldNotes = [
 
       "If you have an immediate answer, pause for a moment and ask yourself why. What made you choose them?",
 
-      "Was it because one person uses more sophisticated tools?",
-      "Because they know the AI parseltongue?",
-      "Because they can make AI generate useful code?",
-      "Because they automate more instead of prompting?",
-      "Or because they've become better at working with AI as a team of digital employees?",
+      {
+        type: 'stanza',
+        lines: [
+          'Was it because one person uses more sophisticated tools?',
+          'Because they know the AI parseltongue?',
+          'Because they can make AI generate useful code?',
+          'Because they automate more instead of prompting?',
+          "Or because they've become better at working with AI as a team of digital employees?",
+        ],
+      },
 
       "In fact, your answer probably reveals more about how you define AI fluency than it does about the three people themselves.",
 
       "Look at them again and notice that what separates them isn't really how much AI they use. It's the relationship they have with it.",
 
-      "Person A interacts with AI.",
-      "Person B evaluates AI.",
-      "Person C designs systems around AI.",
+      {
+        type: 'stanza',
+        lines: [
+          'Person A interacts with AI.',
+          'Person B evaluates AI.',
+          'Person C designs systems around AI.',
+        ],
+      },
 
       "Those are fundamentally different capabilities, yet we've been describing all three with the same phrase.",
 
@@ -83,9 +98,13 @@ export const fieldNotes = [
 
       "It may have been a useful umbrella term when our interactions with AI looked similar. But today, those interactions are already beginning to diverge.",
 
-      "And perhaps the first step toward measuring AI capability isn't building a better assessment.",
-
-      "It's becoming much more precise about what we're really trying to measure.",
+      {
+        type: 'stanza',
+        lines: [
+          "And perhaps the first step toward measuring AI capability isn't building a better assessment.",
+          "It's becoming much more precise about what we're really trying to measure.",
+        ],
+      },
     ],
   },
   {
@@ -99,70 +118,137 @@ export const fieldNotes = [
       "This notebook isn't a collection of answers. It's a record of questions that refused to leave me alone.",
 
       "There is a temptation, when building products, to document only what works.",
-      "The polished launch.",
-      "The successful experiment.",
-      "The shipped feature.",
-      "The lesson learned in hindsight.",
+
+      {
+        type: 'stanza',
+        lines: [
+          'The polished launch.',
+          'The successful experiment.',
+          'The shipped feature.',
+          'The lesson learned in hindsight.',
+        ],
+      },
 
       "Over time, I realized that those were rarely the most interesting parts of the work.",
 
-      "The moments that changed my thinking almost never looked like success.",
-      "They looked like discovering that I had been asking the wrong question.",
-      "Or realizing that a product I had become excited about solved a problem that didn't actually exist.",
-      "Or abandoning weeks of work because a single observation invalidated an assumption I hadn't questioned closely enough.",
+      {
+        type: 'stanza',
+        lines: [
+          'The moments that changed my thinking almost never looked like success.',
+          'They looked like discovering that I had been asking the wrong question.',
+          "Or realizing that a product I had become excited about solved a problem that didn't actually exist.",
+          "Or abandoning weeks of work because a single observation invalidated an assumption I hadn't questioned closely enough.",
+        ],
+      },
 
-      "Those moments rarely appear in portfolios.",
-      "They're usually compressed into a sentence like “we pivoted” or disappear entirely.",
+      {
+        type: 'stanza',
+        lines: [
+          'Those moments rarely appear in portfolios.',
+          "They're usually compressed into a sentence like “we pivoted” or disappear entirely.",
+        ],
+      },
 
       "I think that's a loss.",
 
       "Because those moments are where judgment is built.",
 
       "This notebook exists because I wanted a place to preserve that part of the process.",
-      "Not just the products that were built.",
-      "But the reasoning that led to them.",
-      "The assumptions that survived.",
-      "The ones that didn't.",
-      "The questions that became more interesting than their answers.",
 
-      "Every note begins with a question.",
-      "Not because questions are inherently more valuable than answers.",
-      "But because I've found that the quality of a product is often constrained by the quality of the question that produced it.",
+      {
+        type: 'stanza',
+        lines: [
+          'Not just the products that were built.',
+          'But the reasoning that led to them.',
+          'The assumptions that survived.',
+          "The ones that didn't.",
+          'The questions that became more interesting than their answers.',
+        ],
+      },
 
-      "Sometimes the answer is a product.",
-      "Sometimes it's a framework.",
-      "Sometimes it's the realization that the original question wasn't worth answering.",
+      {
+        type: 'stanza',
+        lines: [
+          'Every note begins with a question.',
+          'Not because questions are inherently more valuable than answers.',
+          "But because I've found that the quality of a product is often constrained by the quality of the question that produced it.",
+        ],
+      },
+
+      {
+        type: 'stanza',
+        lines: [
+          'Sometimes the answer is a product.',
+          "Sometimes it's a framework.",
+          "Sometimes it's the realization that the original question wasn't worth answering.",
+        ],
+      },
 
       "I consider all three outcomes equally valuable.",
 
-      "You'll find ideas here that eventually became products.",
-      "You'll also find ideas that never should have become products.",
+      {
+        type: 'stanza',
+        lines: [
+          "You'll find ideas here that eventually became products.",
+          "You'll also find ideas that never should have become products.",
+        ],
+      },
 
-      "There are investigations that end with confidence.",
-      "Others end with uncertainty.",
+      {
+        type: 'stanza',
+        lines: [
+          'There are investigations that end with confidence.',
+          'Others end with uncertainty.',
+        ],
+      },
 
-      "Some notes will age well.",
-      "Others won't.",
+      {
+        type: 'stanza',
+        lines: [
+          'Some notes will age well.',
+          "Others won't.",
+        ],
+      },
 
       "I'm deliberately leaving both in place.",
 
       "If this notebook only preserved the conclusions that turned out to be correct, it wouldn't be an honest record of how my thinking evolved.",
 
-      "The internet tends to reward certainty.",
-      "Building products rarely does.",
+      {
+        type: 'stanza',
+        lines: [
+          'The internet tends to reward certainty.',
+          'Building products rarely does.',
+        ],
+      },
 
-      "The best product decisions I've been part of didn't come from defending an opinion more forcefully.",
-      "They came from noticing that reality disagreed with one of my assumptions.",
+      {
+        type: 'stanza',
+        lines: [
+          "The best product decisions I've been part of didn't come from defending an opinion more forcefully.",
+          'They came from noticing that reality disagreed with one of my assumptions.',
+        ],
+      },
 
       "That's the moment I care most about preserving.",
 
-      "Not because changing your mind is admirable on its own.",
-      "Because every meaningful improvement in judgment begins there.",
+      {
+        type: 'stanza',
+        lines: [
+          'Not because changing your mind is admirable on its own.',
+          'Because every meaningful improvement in judgment begins there.',
+        ],
+      },
 
       "That also means this notebook comes with an implicit contract.",
 
-      "I won't pretend every conclusion here is correct.",
-      "Some won't be.",
+      {
+        type: 'stanza',
+        lines: [
+          "I won't pretend every conclusion here is correct.",
+          "Some won't be.",
+        ],
+      },
 
       "When I encounter evidence that materially changes my thinking, I'll update the note instead of quietly pretending I never held the earlier view.",
 
@@ -183,48 +269,98 @@ export const fieldNotes = [
         ],
       },
 
-      "Those categories matter.",
-      "Conflating them is one of the easiest ways to become confidently wrong.",
+      {
+        type: 'stanza',
+        lines: [
+          'Those categories matter.',
+          'Conflating them is one of the easiest ways to become confidently wrong.',
+        ],
+      },
 
-      "You'll probably notice another pattern.",
-      "Many of these notes don't end with certainty.",
-      "They end with a decision.",
+      {
+        type: 'stanza',
+        lines: [
+          "You'll probably notice another pattern.",
+          "Many of these notes don't end with certainty.",
+          'They end with a decision.',
+        ],
+      },
 
-      "Sometimes that decision is to build.",
-      "Sometimes it's to pause.",
-      "Sometimes it's to archive an idea entirely.",
+      {
+        type: 'stanza',
+        lines: [
+          'Sometimes that decision is to build.',
+          "Sometimes it's to pause.",
+          "Sometimes it's to archive an idea entirely.",
+        ],
+      },
 
       "Occasionally, the most valuable outcome of an investigation is replacing an interesting product idea with a better question.",
 
-      "I no longer think of those investigations as failures.",
-      "In many cases, they're the reason later ideas became stronger.",
+      {
+        type: 'stanza',
+        lines: [
+          'I no longer think of those investigations as failures.',
+          "In many cases, they're the reason later ideas became stronger.",
+        ],
+      },
 
-      "If you're reading this because of a product I built, I hope these notes explain how that product came to exist.",
-      "If you're reading this because you're interested in AI, I hope you find ideas worth challenging rather than conclusions worth repeating.",
-      "And if you're reading this because you're trying to understand how I think, then this notebook is probably the most accurate representation I can offer.",
+      {
+        type: 'stanza',
+        lines: [
+          "If you're reading this because of a product I built, I hope these notes explain how that product came to exist.",
+          "If you're reading this because you're interested in AI, I hope you find ideas worth challenging rather than conclusions worth repeating.",
+          "And if you're reading this because you're trying to understand how I think, then this notebook is probably the most accurate representation I can offer.",
+        ],
+      },
 
-      "Not because it captures every idea.",
-      "Because it captures how those ideas changed.",
+      {
+        type: 'stanza',
+        lines: [
+          'Not because it captures every idea.',
+          'Because it captures how those ideas changed.',
+        ],
+      },
 
-      "I don't know what this notebook will look like five years from now.",
-      "I hope many of these notes will have been revised.",
-      "I hope several predictions will have been proven wrong.",
-      "I hope I'll look back at some of my earlier reasoning and realize how much I still had to learn.",
+      {
+        type: 'stanza',
+        lines: [
+          "I don't know what this notebook will look like five years from now.",
+          'I hope many of these notes will have been revised.',
+          'I hope several predictions will have been proven wrong.',
+          "I hope I'll look back at some of my earlier reasoning and realize how much I still had to learn.",
+        ],
+      },
 
       "If that happens, then this notebook will be doing exactly what I intended it to do.",
 
-      "Not preserve certainty.",
-      "Preserve the evolution of judgment.",
+      {
+        type: 'stanza',
+        lines: [
+          'Not preserve certainty.',
+          'Preserve the evolution of judgment.',
+        ],
+      },
 
       "So before we begin, one request.",
 
-      "Don't read these notes looking for definitive answers.",
-      "Read them as snapshots of an ongoing investigation.",
+      {
+        type: 'stanza',
+        lines: [
+          "Don't read these notes looking for definitive answers.",
+          'Read them as snapshots of an ongoing investigation.',
+        ],
+      },
 
       "If a page leaves you with a better question than the one you started with, then it has done its job.",
 
-      "Welcome.",
-      "Let's begin.",
+      {
+        type: 'stanza',
+        lines: [
+          'Welcome.',
+          "Let's begin.",
+        ],
+      },
     ],
   },
 ]

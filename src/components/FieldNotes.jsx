@@ -78,6 +78,17 @@ function NoteBody({ body }) {
       )
     }
 
+    if (block.type === 'stanza') {
+      isFirst = false
+      return (
+        <div key={i} className="fn-body__stanza">
+          {block.lines.map((line, j) => (
+            <p key={j} className="fn-body__stanza-line">{line}</p>
+          ))}
+        </div>
+      )
+    }
+
     return null
   })
 }
@@ -111,10 +122,8 @@ function NoteView({ note, onBack }) {
               <span className="fn-note-dot">&middot;</span>
               <span className="fn-note-readtime">{estimateReadTime(note.body)}</span>
             </div>
-            <h1 className="fn-note-title">
-              <span className="fn-note-num">#{note.number}</span>
-              {note.title}
-            </h1>
+            <p className="fn-note-num" aria-label={`Note ${note.number}`}>№ {note.number}</p>
+            <h1 className="fn-note-title">{note.title}</h1>
             <div className="fn-note-divider" aria-hidden="true">
               <svg width="80" height="12" viewBox="0 0 80 12">
                 <line x1="0" y1="6" x2="33" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.25" />
