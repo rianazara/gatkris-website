@@ -1,5 +1,94 @@
 export const fieldNotes = [
   {
+    number: '001',
+    title: "Why “AI Fluent” Isn't Specific Enough",
+    question: "What do we actually mean when we say someone is “AI fluent”?",
+    date: 'February 2026',
+    category: 'observation',
+    status: 'active',
+    body: [
+      "Over the last year, I've noticed that companies want AI-fluent employees, universities are launching AI fluency programs, recruiters are searching for AI-native talent, and product managers are adding AI fluency to their resumes. Clearly, everyone seems to agree it's becoming an essential skill.",
+
+      "At first, I didn't think much of it. My own understanding of AI fluency was fairly simple. Knowing how to use AI to get useful output, and being able to understand and participate in conversations around AI. That seemed reasonable to me.",
+
+      "Then I started paying closer attention.",
+
+      "I kept seeing the phrase used in job descriptions, course brochures, and conference talks, but almost never explained. Everyone seemed to know they wanted AI fluency, yet the more I looked for a definition, the less certain I became that all of them meant the same thing.",
+
+      "When someone says they're “AI fluent,” or that they're looking for someone who is, what are they really claiming?",
+
+      "Is it understanding how large language models work?",
+      "Is it writing effective prompts?",
+      "Is it building applications with AI?",
+      "Is it automating workflows with AI?",
+      "Is it knowing when AI can solve a problem, but also recognizing when it shouldn't?",
+      "Or is it simply knowing how to collaborate effectively with AI?",
+
+      "Read that list again.",
+
+      "You'll realize that those aren't different levels of the same skill.",
+
+      "They're different skills altogether. Yet we routinely lump them all into a single phrase, “AI fluency,” as though it describes one coherent capability.",
+
+      "I'm not convinced they can all be put under one phrase.",
+
+      "Imagine three people.",
+
+      {
+        type: 'list',
+        items: [
+          { term: 'Person A', def: 'uses Claude for 10 hours every day. They write excellent prompts, get impressive outputs quickly, and know how to make the model produce exactly what they want. They rarely question what it produces.' },
+          { term: 'Person B', def: 'spends much less time using AI. Instead, they challenge almost every output, compare models, build evaluation workflows, and redesign their work around what AI does well and what it consistently gets wrong.' },
+          { term: 'Person C', def: 'hardly prompts AI directly anymore. They build agents and loops, orchestrate MCP integrations, create automations, and design evaluation pipelines that allow AI systems to work together.' },
+        ],
+      },
+
+      "Who is the most AI fluent?",
+
+      "If you have an immediate answer, pause for a moment and ask yourself why. What made you choose them?",
+
+      "Was it because one person uses more sophisticated tools?",
+      "Because they know the AI parseltongue?",
+      "Because they can make AI generate useful code?",
+      "Because they automate more instead of prompting?",
+      "Or because they've become better at working with AI as a team of digital employees?",
+
+      "In fact, your answer probably reveals more about how you define AI fluency than it does about the three people themselves.",
+
+      "Look at them again and notice that what separates them isn't really how much AI they use. It's the relationship they have with it.",
+
+      "Person A interacts with AI.",
+      "Person B evaluates AI.",
+      "Person C designs systems around AI.",
+
+      "Those are fundamentally different capabilities, yet we've been describing all three with the same phrase.",
+
+      "Let me make it clearer. Think of these roles. Frontend engineer, backend engineer, compiler engineer, network engineer, quality engineer, and theoretical computer scientist.",
+
+      "Nobody would argue they're the same profession simply because they all involve computers. We know how different those disciplines are because the field has matured enough to develop a richer vocabulary. We stopped describing people by the technology they use and started describing them by the work they actually do.",
+
+      "Imagine a hiring manager today saying, “I'm looking for someone who's computer fluent.”",
+
+      "It sounds almost meaningless, right? Not because computers aren't important, but because the phrase no longer tells us anything useful about what that person actually knows how to do.",
+
+      "I wonder if we're at the same point with AI.",
+
+      "The phrase isn't failing because it's incorrect. It's failing because it's trying to describe a collection of capabilities that have already started separating.",
+
+      "I suspect part of the reason it persists is because its ambiguity is useful. A recruiter can ask for AI fluency without deciding which capability the role actually demands. A candidate can claim AI fluency without explaining what they're particularly good at.",
+
+      "Nobody in that exchange is being dishonest. They're simply using a phrase broad enough that each person fills in their own definition.",
+
+      "The more I think about it, the less convinced I become that “AI fluent” is a useful description of a person.",
+
+      "It may have been a useful umbrella term when our interactions with AI looked similar. But today, those interactions are already beginning to diverge.",
+
+      "And perhaps the first step toward measuring AI capability isn't building a better assessment.",
+
+      "It's becoming much more precise about what we're really trying to measure.",
+    ],
+  },
+  {
     number: '000',
     title: 'Before We Begin',
     question: 'What is this notebook for?',
