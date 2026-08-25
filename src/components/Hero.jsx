@@ -22,9 +22,9 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero__buttons hero__entrance hero__entrance--3">
-            <a className="btn btn--primary" href="#field-notes">
+            <a className="btn btn--primary" href="#product-thesis">
               <ArrowDownIcon />
-              <span>Read my Field Notes</span>
+              <span>Read my Product Thesis</span>
             </a>
             <a className="btn" href={`mailto:${profile.email}`}>
               <MailIcon />
