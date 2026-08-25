@@ -42,6 +42,40 @@ function NotebookCover({ onDone }) {
   )
 }
 
+// Parse a string with **bold** and *italic* markers into React nodes.
+function renderInline(text) {
+  const parts = []
+  let i = 0
+  let key = 0
+  while (i < text.length) {
+    if (text.startsWith('**', i)) {
+      const end = text.indexOf('**', i + 2)
+      if (end !== -1) {
+        parts.push(<strong key={key++} className="fn-body__bold">{text.slice(i + 2, end)}</strong>)
+        i = end + 2
+        continue
+      }
+    }
+    if (text.startsWith('*', i) && text[i - 1] !== '*') {
+      const end = text.indexOf('*', i + 1)
+      if (end !== -1 && text[end + 1] !== '*') {
+        parts.push(<em key={key++} className="fn-body__em">{text.slice(i + 1, end)}</em>)
+        i = end + 1
+        continue
+      }
+    }
+    let next = text.length
+    const nb = text.indexOf('**', i)
+    const ni = text.indexOf('*', i)
+    if (nb !== -1 && nb < next) next = nb
+    if (ni !== -1 && ni < next) next = ni
+    if (next === i) next = i + 1
+    parts.push(text.slice(i, next))
+    i = next
+  }
+  return parts
+}
+
 function NoteBody({ body }) {
   let isFirst = true
 
@@ -54,13 +88,13 @@ function NoteBody({ body }) {
         return (
           <p key={i} className="fn-body__p">
             <span className="fn-dropcap">{first}</span>
-            {rest}
+            {renderInline(rest)}
           </p>
         )
       }
       return (
         <p key={i} className="fn-body__p">
-          {block}
+          {renderInline(block)}
         </p>
       )
     }
@@ -78,24 +112,45 @@ function NoteBody({ body }) {
       )
     }
 
+    if (block.type === 'bullets') {
+      isFirst = false
+      return (
+        <ul key={i} className="fn-body__bullets">
+          {block.items.map((item, j) => (
+            <li key={j}>{renderInline(item)}</li>
+          ))}
+        </ul>
+      )
+    }
+
     if (block.type === 'stanza') {
       isFirst = false
       return (
         <div key={i} className="fn-body__stanza">
           {block.lines.map((line, j) => (
-            <p key={j} className="fn-body__stanza-line">{line}</p>
+            <p key={j} className="fn-body__stanza-line">{renderInline(line)}</p>
           ))}
         </div>
       )
     }
 
-    if (block.type === 'principle') {
+    if (block.type === 'questions') {
       isFirst = false
       return (
-        <aside key={i} className="fn-body__principle" aria-label="Principle beneath the note">
-          <span className="fn-body__principle-label">{block.label || 'The subtext'}</span>
-          <p className="fn-body__principle-text">{block.text}</p>
-        </aside>
+        <div key={i} className="fn-body__questions">
+          {block.items.map((line, j) => (
+            <p key={j} className="fn-body__questions-item">{line}</p>
+          ))}
+        </div>
+      )
+    }
+
+    if (block.type === 'emphasis') {
+      isFirst = false
+      return (
+        <p key={i} className="fn-body__emphasis">
+          {renderInline(block.text)}
+        </p>
       )
     }
 
@@ -132,7 +187,7 @@ function NoteView({ note, onBack }) {
               <span className="fn-note-dot">&middot;</span>
               <span className="fn-note-readtime">{estimateReadTime(note.body)}</span>
             </div>
-            <p className="fn-note-num" aria-label={`Note ${note.number}`}>№ {note.number}</p>
+            <p className="fn-note-num" aria-label={`Field Note ${note.number}`}>Field Note {note.number}</p>
             <h1 className="fn-note-title">{note.title}</h1>
             <div className="fn-note-divider" aria-hidden="true">
               <svg width="80" height="12" viewBox="0 0 80 12">

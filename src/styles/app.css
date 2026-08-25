@@ -3473,11 +3473,10 @@ main {
 }
 .fn-note-num {
   font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--accent);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  letter-spacing: 0.12em;
   margin: 0 0 14px;
   opacity: 0.9;
 }
@@ -3539,42 +3538,91 @@ main {
   margin-bottom: 0;
 }
 
-/* Principle — a hidden-thought postscript at the end of a note.
-   Visually secondary. Reads like a signature underneath a plate. */
-.fn-body__principle {
-  margin: 3.5em 0 0;
-  padding-top: 1.75em;
-  border-top: 1px solid var(--border);
-  text-align: right;
-  display: block;
-}
-
-.fn-body__principle-label {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 10px;
+/* Inline emphasis inside body paragraphs */
+.fn-body__bold {
   font-weight: 700;
-  color: var(--text-faint);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  color: var(--text);
 }
 
-.fn-body__principle-text {
+.fn-body__em {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Questions — a tabbed italic-serif block for a rhythmic list of rhetorical
+   questions. Same family as Product Thesis's line-blocks. */
+.fn-body__questions {
+  margin: 1.75em 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+}
+
+.fn-body__questions-item {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.35;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 0.5em;
+}
+
+.fn-body__questions-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Bullets — a proper bulleted list for enumerated paragraph-length items */
+.fn-body__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 1.5em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.fn-body__bullets li {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
   color: var(--text);
+  padding-left: 24px;
+  position: relative;
+}
+
+.fn-body__bullets li::before {
+  content: '';
+  position: absolute;
+  top: 0.75em;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.85;
+}
+
+/* Emphasis — a bold standalone paragraph with a gold left rule.
+   Reserved for the essay's core turn or landing. */
+.fn-body__emphasis {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 1.75em 0;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
   letter-spacing: -0.005em;
-  margin: 0;
-  text-wrap: balance;
 }
 
 @media (max-width: 680px) {
-  .fn-body__principle { margin-top: 2.6em; padding-top: 1.4em; }
-  .fn-body__principle-text { font-size: 1.05rem; }
+  .fn-body__questions { padding-left: 16px; margin: 1.5em 0; }
+  .fn-body__questions-item { font-size: 15.5px; }
+  .fn-body__bullets { gap: 0.85em; }
+  .fn-body__bullets li { padding-left: 20px; font-size: 15.5px; }
+  .fn-body__bullets li::before { top: 0.7em; left: 4px; width: 5px; height: 5px; }
+  .fn-body__emphasis { font-size: 15.75px; margin: 1.5em 0; padding-left: 14px; }
 }
 
 /* Drop cap */
