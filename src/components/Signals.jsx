@@ -49,11 +49,18 @@ function SignalCard({ achievement, onImageClick }) {
     onImageClick()
   }
 
+  const handlePointerEnter = (e) => {
+    if (e.pointerType === 'mouse') setFlipped(true)
+  }
+  const handlePointerLeave = (e) => {
+    if (e.pointerType === 'mouse') setFlipped(false)
+  }
+
   return (
     <div
       className={`signal ${flipped ? 'signal--flipped' : ''}`}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
       onClick={() => setFlipped((f) => !f)}
     >
       <div className="signal__inner">
