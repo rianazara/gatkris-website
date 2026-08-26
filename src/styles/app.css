@@ -3617,6 +3617,41 @@ main {
   letter-spacing: -0.005em;
 }
 
+/* Callout — a reflective, italic-serif line set apart with breathing room.
+   Reserved for inner-voice questions the essay poses to itself. */
+.fn-body__callout {
+  margin: 2.5em 0;
+  padding: 1.25em 1em;
+  text-align: center;
+  position: relative;
+}
+
+.fn-body__callout::before,
+.fn-body__callout::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.4;
+  margin: 0 auto;
+}
+
+.fn-body__callout::before { margin-bottom: 1em; }
+.fn-body__callout::after  { margin-top: 1em; }
+
+.fn-body__callout-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--text);
+  letter-spacing: -0.005em;
+  margin: 0;
+  text-wrap: balance;
+}
+
 @media (max-width: 680px) {
   .fn-body__questions { padding-left: 16px; margin: 1.5em 0; }
   .fn-body__questions-item { font-size: 15.5px; }
@@ -3624,6 +3659,10 @@ main {
   .fn-body__bullets li { padding-left: 20px; font-size: 15.5px; }
   .fn-body__bullets li::before { top: 0.7em; left: 4px; width: 5px; height: 5px; }
   .fn-body__emphasis { font-size: 15.75px; margin: 1.5em 0; padding-left: 14px; }
+  .fn-body__callout { margin: 2em 0; padding: 1em 0.5em; }
+  .fn-body__callout-text { font-size: 18px; }
+  .fn-body__callout::before,
+  .fn-body__callout::after { width: 32px; }
 }
 
 /* Drop cap */
