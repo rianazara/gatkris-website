@@ -139,7 +139,7 @@ function NoteBody({ body }) {
       return (
         <div key={i} className="fn-body__questions">
           {block.items.map((line, j) => (
-            <p key={j} className="fn-body__questions-item">{line}</p>
+            <p key={j} className="fn-body__questions-item">{renderInline(line)}</p>
           ))}
         </div>
       )
@@ -151,6 +151,15 @@ function NoteBody({ body }) {
         <p key={i} className="fn-body__emphasis">
           {renderInline(block.text)}
         </p>
+      )
+    }
+
+    if (block.type === 'callout') {
+      isFirst = false
+      return (
+        <aside key={i} className="fn-body__callout" role="note">
+          <p className="fn-body__callout-text">{renderInline(block.text)}</p>
+        </aside>
       )
     }
 
