@@ -123,29 +123,13 @@ export const fieldNotes = [
         ],
       },
 
-      "Over time, I realized that those were rarely the most interesting parts of the work.",
+      "Over time, I realized that those were rarely the most interesting parts of the work. The moments that changed my thinking almost never looked like success. They looked like discovering that I had been asking the wrong question, realizing that a product I had become excited about solved a problem that didn't actually exist, or abandoning weeks of work because a single observation invalidated an assumption I hadn't questioned closely enough.",
 
-      {
-        type: 'stanza',
-        lines: [
-          'The moments that changed my thinking almost never looked like success.',
-          'They looked like discovering that I had been asking the wrong question.',
-          "Or realizing that a product I had become excited about solved a problem that didn't actually exist.",
-          "Or abandoning weeks of work because a single observation invalidated an assumption I hadn't questioned closely enough.",
-        ],
-      },
-
-      {
-        type: 'stanza',
-        lines: [
-          'Those moments rarely appear in portfolios.',
-          "They're usually compressed into a sentence like “we pivoted” or disappear entirely.",
-        ],
-      },
+      "Those moments rarely appear in portfolios. They're usually compressed into a sentence like “we pivoted” or they disappear entirely.",
 
       "I think that's a loss.",
 
-      "Because those moments are where judgment is built.",
+      { type: 'emphasis', text: 'Because those moments are where judgment is built.' },
 
       "This notebook exists because I wanted a place to preserve that part of the process.",
 
@@ -160,14 +144,7 @@ export const fieldNotes = [
         ],
       },
 
-      {
-        type: 'stanza',
-        lines: [
-          'Every note begins with a question.',
-          'Not because questions are inherently more valuable than answers.',
-          "But because I've found that the quality of a product is often constrained by the quality of the question that produced it.",
-        ],
-      },
+      "Every note begins with a question, not because questions are inherently more valuable than answers, but because I've found that the quality of a product is often constrained by **the quality of the question** that produced it.",
 
       {
         type: 'stanza',
@@ -180,105 +157,23 @@ export const fieldNotes = [
 
       "I consider all three outcomes equally valuable.",
 
-      {
-        type: 'stanza',
-        lines: [
-          "You'll find ideas here that eventually became products.",
-          "You'll also find ideas that never should have become products.",
-        ],
-      },
-
-      {
-        type: 'stanza',
-        lines: [
-          'There are investigations that end with confidence.',
-          'Others end with uncertainty.',
-        ],
-      },
-
-      {
-        type: 'stanza',
-        lines: [
-          'Some notes will age well.',
-          "Others won't.",
-        ],
-      },
-
-      "I'm deliberately leaving both in place.",
+      "You'll find ideas here that eventually became products, and ideas that never should have. You'll find investigations that end with confidence, and others that end with uncertainty. Some notes will age well. Others won't. I'm deliberately leaving both in place.",
 
       "If this notebook only preserved the conclusions that turned out to be correct, it wouldn't be an honest record of how my thinking evolved.",
 
-      {
-        type: 'stanza',
-        lines: [
-          'The internet tends to reward certainty.',
-          'Building products rarely does.',
-        ],
-      },
+      { type: 'emphasis', text: 'The internet tends to reward certainty. Building products rarely does.' },
 
-      {
-        type: 'stanza',
-        lines: [
-          "The best product decisions I've been part of didn't come from defending an opinion more forcefully.",
-          'They came from noticing that reality disagreed with one of my assumptions.',
-        ],
-      },
+      "The best product decisions I've been part of didn't come from defending an opinion more forcefully. They came from noticing that reality disagreed with one of my assumptions.",
 
-      "That's the moment I care most about preserving.",
+      "That's the moment I care most about preserving. Not because changing your mind is admirable on its own, but because every meaningful improvement in judgment begins there.",
 
-      {
-        type: 'stanza',
-        lines: [
-          'Not because changing your mind is admirable on its own.',
-          'Because every meaningful improvement in judgment begins there.',
-        ],
-      },
-
-      "That also means this notebook comes with an implicit contract.",
-
-      {
-        type: 'stanza',
-        lines: [
-          "I won't pretend every conclusion here is correct.",
-          "Some won't be.",
-        ],
-      },
-
-      "When I encounter evidence that materially changes my thinking, I'll update the note instead of quietly pretending I never held the earlier view.",
+      "That also means this notebook comes with an implicit contract. I won't pretend every conclusion here is correct. Some won't be. When I encounter evidence that materially changes my thinking, I'll update the note instead of quietly pretending I never held the earlier view.",
 
       "The revision is part of the work.",
 
       "If a note never changes, it probably means I stopped asking whether it still reflects reality.",
 
-      "This also isn't a collection of opinions.",
-      "Whenever possible, I want readers to distinguish between four different things:",
-
-      {
-        type: 'list',
-        items: [
-          { term: 'Observation', def: 'something I experienced directly or repeatedly noticed.' },
-          { term: 'Evidence', def: 'research, data, papers, conversations, or documented facts that informed my thinking.' },
-          { term: 'Interpretation', def: 'the mental model I currently use to explain those observations.' },
-          { term: 'Speculation', def: 'where I think things might be headed, and why.' },
-        ],
-      },
-
-      {
-        type: 'stanza',
-        lines: [
-          'Those categories matter.',
-          'Conflating them is one of the easiest ways to become confidently wrong.',
-        ],
-      },
-
-      {
-        type: 'stanza',
-        lines: [
-          "You'll probably notice another pattern.",
-          "Many of these notes don't end with certainty.",
-          'They end with a decision.',
-        ],
-      },
+      "You'll notice a pattern in how these notes end. Many of them don't end with certainty. They end with a decision.",
 
       {
         type: 'stanza',
@@ -289,15 +184,7 @@ export const fieldNotes = [
         ],
       },
 
-      "Occasionally, the most valuable outcome of an investigation is replacing an interesting product idea with a better question.",
-
-      {
-        type: 'stanza',
-        lines: [
-          'I no longer think of those investigations as failures.',
-          "In many cases, they're the reason later ideas became stronger.",
-        ],
-      },
+      "Occasionally, the most valuable outcome of an investigation is replacing an interesting product idea with a better question. I no longer think of those investigations as failures. In many cases, they're the reason later ideas became stronger.",
 
       {
         type: 'stanza',
@@ -308,18 +195,13 @@ export const fieldNotes = [
         ],
       },
 
-      {
-        type: 'stanza',
-        lines: [
-          'Not because it captures every idea.',
-          'Because it captures how those ideas changed.',
-        ],
-      },
+      "Not because it captures every idea, but because it captures how those ideas changed.",
+
+      "I don't know what this notebook will look like five years from now.",
 
       {
         type: 'stanza',
         lines: [
-          "I don't know what this notebook will look like five years from now.",
           'I hope many of these notes will have been revised.',
           'I hope several predictions will have been proven wrong.',
           "I hope I'll look back at some of my earlier reasoning and realize how much I still had to learn.",
@@ -328,23 +210,9 @@ export const fieldNotes = [
 
       "If that happens, then this notebook will be doing exactly what I intended it to do.",
 
-      {
-        type: 'stanza',
-        lines: [
-          'Not preserve certainty.',
-          'Preserve the evolution of judgment.',
-        ],
-      },
+      { type: 'emphasis', text: 'Not preserve certainty. Preserve the evolution of judgment.' },
 
-      "So before we begin, one request.",
-
-      {
-        type: 'stanza',
-        lines: [
-          "Don't read these notes looking for definitive answers.",
-          'Read them as snapshots of an ongoing investigation.',
-        ],
-      },
+      "So before we begin, one request. Don't read these notes looking for definitive answers. Read them as snapshots of an ongoing investigation.",
 
       "If a page leaves you with a better question than the one you started with, then it has done its job.",
 
