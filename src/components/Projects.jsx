@@ -108,11 +108,19 @@ function VisionCard({ vision }) {
         <h4 className="proj-vision__name">{vision.name}</h4>
         <p className="proj-vision__tagline">{vision.tagline}</p>
         <p className="proj-vision__desc">{vision.description}</p>
-        {vision.href && (
-          <a href={vision.href} target="_blank" rel="noopener noreferrer" className="proj__cta">
-            Read the vision <span aria-hidden="true">→</span>
-          </a>
-        )}
+        {vision.href && (() => {
+          const external = vision.href.startsWith('http')
+          return (
+            <a
+              href={vision.href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
+              className="proj__cta"
+            >
+              Read the vision <span aria-hidden="true">→</span>
+            </a>
+          )
+        })()}
       </div>
     </article>
   )
