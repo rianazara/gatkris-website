@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
+<title>From Reference Tool to Wealth Assistant &middot; Gayatri Gopalakrishnan</title>
+
+<style>
+/* ── Tokens — aligned with gatkris.com's day / night theme ── */
+:root {
+  --ground: #F8F3EB;
+  --surface: #FEFDFB;
+  --surface-dim: #EEEAE4;
+  --text: #1D1B18;
+  --text-2: #5C564D;
+  --text-3: #918A7E;
+  --border: #DDD8D0;
+  --accent: #B8860B;
+  --accent-h: #9A7209;
+  --sky:      rgba(26,115,232,0.06);
+  --sky-deep: rgba(26,115,232,0.14);
+  --cloud:    rgba(26,115,232,0.03);
+  --gold-bg:  rgba(184,134,11,0.06);
+  --green:    #1E8E3E;
+  --red:      #D93025;
+  /* Google palette — Product Thesis + Field Notes shared system */
+  --g-blue:   #1A73E8;
+  --g-red:    #D93025;
+  --g-yellow: #B06000;
+  --g-green:  #1E8E3E;
+  --g-blue-bg:   rgba(26,115,232,0.06);
+  --g-red-bg:    rgba(217,48,37,0.06);
+  --g-yellow-bg: rgba(242,153,0,0.08);
+  --g-green-bg:  rgba(30,142,62,0.06);
+  --font-ed: "Iowan Old Style","Palatino Linotype","Playfair Display",Palatino,Georgia,serif;
+  --font-ui: "Geist",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono: ui-monospace,"SF Mono","Cascadia Code",monospace;
+  --window-glow: rgba(184,134,11,0.10);
+}
+@media(prefers-color-scheme:dark){:root{
+  --ground:#0a0a0f;--surface:#1C1A17;--surface-dim:#252320;
+  --text:#F0EBE3;--text-2:#B5AFA5;--text-3:#7A756D;
+  --border:#353230;--accent:#D4A017;--accent-h:#EBB93F;
+  --sky:      rgba(138,180,248,0.06);
+  --sky-deep: rgba(138,180,248,0.16);
+  --cloud:    rgba(138,180,248,0.04);
+  --gold-bg:  rgba(212,160,23,0.10);
+  --green:    #81C995;
+  --red:      #F28B82;
+  --window-glow:rgba(212,160,23,0.10);
+  --g-blue:   #8AB4F8;
+  --g-red:    #F28B82;
+  --g-yellow: #E2B93D;
+  --g-green:  #81C995;
+  --g-blue-bg:   rgba(138,180,248,0.08);
+  --g-red-bg:    rgba(242,139,130,0.08);
+  --g-yellow-bg: rgba(226,185,61,0.08);
+  --g-green-bg:  rgba(129,201,149,0.08);
+}}
+:root[data-theme="dark"]{
+  --ground:#0a0a0f;--surface:#1C1A17;--surface-dim:#252320;
+  --text:#F0EBE3;--text-2:#B5AFA5;--text-3:#7A756D;
+  --border:#353230;--accent:#D4A017;--accent-h:#EBB93F;
+  --sky:      rgba(138,180,248,0.06);
+  --sky-deep: rgba(138,180,248,0.16);
+  --cloud:    rgba(138,180,248,0.04);
+  --gold-bg:  rgba(212,160,23,0.10);
+  --green:    #81C995;
+  --red:      #F28B82;
+  --window-glow:rgba(212,160,23,0.10);
+  --g-blue:   #8AB4F8;
+  --g-red:    #F28B82;
+  --g-yellow: #E2B93D;
+  --g-green:  #81C995;
+  --g-blue-bg:   rgba(138,180,248,0.08);
+  --g-red-bg:    rgba(242,139,130,0.08);
+  --g-yellow-bg: rgba(226,185,61,0.08);
+  --g-green-bg:  rgba(129,201,149,0.08);
+}
+:root[data-theme="light"]{
+  --ground:#F8F3EB;--surface:#FEFDFB;--surface-dim:#EEEAE4;
+  --text:#1D1B18;--text-2:#5C564D;--text-3:#918A7E;
+  --border:#DDD8D0;--accent:#B8860B;--accent-h:#9A7209;
+  --sky:      rgba(26,115,232,0.06);
+  --sky-deep: rgba(26,115,232,0.14);
+  --cloud:    rgba(26,115,232,0.03);
+  --gold-bg:  rgba(184,134,11,0.06);
+  --green:    #1E8E3E;
+  --red:      #D93025;
+  --window-glow:rgba(184,134,11,0.10);
+  --g-blue:   #1A73E8;
+  --g-red:    #D93025;
+  --g-yellow: #B06000;
+  --g-green:  #1E8E3E;
+  --g-blue-bg:   rgba(26,115,232,0.06);
+  --g-red-bg:    rgba(217,48,37,0.06);
+  --g-yellow-bg: rgba(242,153,0,0.08);
+  --g-green-bg:  rgba(30,142,62,0.06);
+}
+
+/* ── Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0}
+img,svg{display:block}
+a{color:var(--accent-h);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Window frame ── */
+.window-wrap {
+  min-height:100vh;
+  background:var(--ground);
+  display:flex;
+  justify-content:center;
+  padding:2rem 1rem 4rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.window-wrap::before,
+.window-wrap::after {
+  content:'';
+  position:fixed;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.5;
+}
+.window-wrap::before {
+  width:600px;height:350px;
+  top:-80px;right:-120px;
+  background:radial-gradient(ellipse at 40% 50%, var(--sky) 0%, transparent 70%);
+}
+.window-wrap::after {
+  width:500px;height:300px;
+  bottom:10%;left:-100px;
+  background:radial-gradient(ellipse at 60% 40%, var(--sky) 0%, transparent 70%);
+}
+
+.window-frame {
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:46rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 1px 3px rgba(0,0,0,0.04),
+    0 8px 40px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  overflow:hidden;
+}
+
+.window-sill {
+  padding:1.25rem 2rem 1rem;
+  background:linear-gradient(180deg, var(--cloud) 0%, var(--surface) 100%);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.window-sill__label {
+  font-family:var(--font-ui);
+  font-size:0.6875rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--g-blue);
+}
+.window-sill__dots {
+  display:flex;gap:6px;
+}
+.window-sill__dots span {
+  width:8px;height:8px;border-radius:50%;
+  background:var(--border);
+  opacity:0.7;
+}
+
+.page {
+  padding:2.5rem 2.5rem 3rem;
+}
+@media(max-width:640px){
+  .page{padding:1.5rem 1.25rem 2rem}
+  .window-frame{border-radius:14px}
+}
+
+/* ── Hero ── */
+.hero{margin-bottom:2.5rem}
+.hero h1{
+  font-family:var(--font-ed);font-size:2rem;font-weight:700;
+  line-height:1.2;color:var(--text);text-wrap:balance;
+  margin-bottom:0.5rem;
+}
+@media(min-width:640px){.hero h1{font-size:2.25rem}}
+.hero__sub{
+  font-family:var(--font-ed);font-size:1.0625rem;font-style:italic;
+  color:var(--text-2);line-height:1.5;margin-bottom:1.25rem;
+}
+.hero__meta{
+  font-family:var(--font-ui);font-size:0.8125rem;color:var(--text-3);
+  display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;
+}
+.hero__dot{opacity:0.4}
+
+/* ── Epigraph card — the AI response that sparked everything ── */
+.epigraph {
+  background:var(--gold-bg);
+  border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;
+  padding:1.25rem 1.5rem;
+  margin-bottom:1.5rem;
+}
+.epigraph__source {
+  font-family:var(--font-ui);font-size:0.6875rem;font-weight:600;
+  letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:0.375rem;
+}
+.epigraph__text {
+  font-family:var(--font-ed);font-size:1.0625rem;line-height:1.65;
+  color:var(--text);font-style:italic;
+}
+.epigraph + .epigraph-after {
+  font-family:var(--font-ed);font-size:1.0625rem;line-height:1.75;
+  color:var(--text);margin-bottom:2rem;
+}
+
+/* ── Article Body Typography ── */
+.ar h2{
+  font-family:var(--font-ed);font-size:1.5rem;font-weight:700;
+  line-height:1.3;color:var(--text);margin:2.75rem 0 1rem;
+  text-wrap:balance;
+}
+.ar h3{
+  font-family:var(--font-ed);font-size:1.1875rem;font-weight:700;
+  line-height:1.35;color:var(--text);margin:0 0 0.75rem;
+}
+.ar p{
+  font-family:var(--font-ed);font-size:1.0625rem;line-height:1.75;
+  color:var(--text-2);margin-bottom:1rem;
+}
+.ar p strong{color:var(--text);font-weight:600}
+.ar blockquote{
+  border-left:3px solid var(--accent);
+  padding:0.75rem 0 0.75rem 1.25rem;
+  margin:1.5rem 0;
+  background:var(--gold-bg);
+  border-radius:0 6px 6px 0;
+}
+.ar blockquote p{
+  font-style:italic;color:var(--text);margin-bottom:0;
+  font-size:1rem;line-height:1.7;
+}
+.ar ul{
+  font-family:var(--font-ed);font-size:1.0625rem;line-height:1.75;
+  color:var(--text-2);margin:0 0 1rem 1.25rem;
+  padding:0;list-style:none;
+}
+.ar ul li{position:relative;padding-left:1rem;margin-bottom:0.5rem}
+.ar ul li::before{
+  content:'';position:absolute;left:0;top:0.625rem;
+  width:5px;height:5px;border-radius:50%;background:var(--accent);
+}
+.ar code {
+  font-family:var(--font-mono);font-size:0.9em;
+  background:var(--surface-dim);padding:2px 5px;border-radius:3px;
+}
+
+/* ── Gap eyebrow — numbered subsection markers in the Google palette ── */
+.gap-num {
+  font-family:var(--font-ui);
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  margin:2.75rem 0 0.5rem;
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+}
+.gap-num::before {
+  content:'';
+  display:inline-block;
+  width:18px;
+  height:1px;
+  background:currentColor;
+  opacity:0.5;
+}
+.gap-num--01 { color:var(--g-blue); }
+.gap-num--02 { color:var(--g-red); }
+.gap-num--03 { color:var(--g-yellow); }
+.gap-num--04 { color:var(--g-green); }
+.gap-num--05 { color:var(--g-blue); }
+
+/* ── Cloud divider — a hairline weaving Google Blue into the site's gold ── */
+.cloud-break {
+  margin:2.5rem 0;
+  height:2px;
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--sky-deep) 18%,
+    var(--g-blue) 50%,
+    var(--sky-deep) 82%,
+    transparent 100%
+  );
+  border:none;
+  opacity:0.55;
+  border-radius:2px;
+}
+
+/* ── Note to team, expandable ── */
+.note-to-team {
+  margin:2rem 0 1rem;
+}
+.note-to-team summary {
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding:1rem 1.25rem;
+  background:var(--g-blue-bg);
+  border-left:3px solid var(--g-blue);
+  border-radius:0 8px 8px 0;
+  font-family:var(--font-ui);
+  transition:background 0.2s ease;
+}
+.note-to-team summary::-webkit-details-marker { display:none; }
+.note-to-team summary:hover {
+  background:rgba(26,115,232,0.10);
+}
+:root[data-theme="dark"] .note-to-team summary:hover,
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .note-to-team summary:hover {
+    background:rgba(138,180,248,0.14);
+  }
+}
+.note-to-team__prompt {
+  display:inline-flex;
+  align-items:baseline;
+  gap:0.75rem;
+  flex-wrap:wrap;
+}
+.note-to-team__label {
+  font-size:0.6875rem;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--g-blue);
+}
+.note-to-team__cta {
+  font-family:var(--font-ed);
+  font-size:1rem;
+  color:var(--text);
+  font-style:italic;
+}
+.note-to-team__chevron {
+  color:var(--g-blue);
+  font-size:1rem;
+  transition:transform 0.25s ease;
+  flex-shrink:0;
+}
+.note-to-team[open] .note-to-team__chevron {
+  transform:rotate(180deg);
+}
+.note-to-team__body {
+  padding:1.25rem 1.25rem 0.25rem;
+}
+.note-to-team__body p:last-child {
+  margin-bottom:0;
+}
+
+/* ── Back to home — a subtle nav-out link at the top of the page ── */
+.back-home {
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  font-family:var(--font-ui);
+  font-size:0.8125rem;
+  font-weight:500;
+  color:var(--text-2);
+  padding:0.4rem 0 0.4rem 0;
+  margin-bottom:1.75rem;
+  transition:color 0.15s ease, gap 0.15s ease;
+}
+.back-home:hover {
+  color:var(--g-blue);
+  text-decoration:none;
+  gap:0.55rem;
+}
+.back-home svg {
+  width:14px;height:14px;
+  color:currentColor;
+}
+
+/* ── Colophon — end-of-article sign-off, replacing the old bio ── */
+.colophon {
+  margin-top:3.25rem;
+  padding-top:2.5rem;
+  border-top:1px solid var(--border);
+}
+.colophon__eyebrow {
+  font-family:var(--font-ui);
+  font-size:0.6875rem;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--g-blue);
+  margin-bottom:0.35rem;
+}
+.colophon__name {
+  font-family:var(--font-ed);
+  font-size:1.375rem;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.2;
+  margin-bottom:0.8rem;
+  letter-spacing:-0.01em;
+}
+.colophon__bio {
+  font-family:var(--font-ed);
+  font-size:0.9375rem;
+  line-height:1.7;
+  color:var(--text-2);
+  margin-bottom:1.5rem;
+  max-width:34rem;
+  font-style:italic;
+}
+.colophon__rule {
+  width:40px;
+  height:1px;
+  background:var(--accent);
+  opacity:0.5;
+  margin-bottom:1.1rem;
+  border:none;
+}
+.colophon__links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.35rem 0.9rem;
+  align-items:center;
+  font-family:var(--font-ui);
+  font-size:0.875rem;
+}
+.colophon__links a {
+  color:var(--g-blue);
+  font-weight:500;
+  transition:color 0.15s ease;
+}
+.colophon__links a:hover {
+  color:var(--accent);
+  text-decoration:none;
+}
+.colophon__dot {
+  color:var(--text-3);
+  opacity:0.5;
+  user-select:none;
+}
+
+/* ── Sparkle icon ── */
+.sparkle-icon {
+  display:inline-block;width:14px;height:14px;vertical-align:-2px;
+  color:var(--g-blue);
+}
+</style>
+
+</head>
+<body>
+<div class="window-wrap">
+  <div class="window-frame">
+    <!-- Frosted sill -->
+    <div class="window-sill">
+      <span class="window-sill__label">Product Vision</span>
+      <div class="window-sill__dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="page">
+      <!-- Back to home -->
+      <a class="back-home" href="/#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Products
+      </a>
+
+      <!-- Hero -->
+      <header class="hero">
+        <h1>From Reference Tool to Wealth Assistant</h1>
+        <p class="hero__sub">What Google Finance Beta Gets Right, and the Next Mountain</p>
+        <div class="hero__meta">
+          <span>Gayatri Gopalakrishnan</span>
+          <span class="hero__dot">&middot;</span>
+          <span>June 2026</span>
+          <span class="hero__dot">&middot;</span>
+          <span>12 min read</span>
+        </div>
+      </header>
+
+      <!-- Epigraph -->
+      <div class="epigraph">
+        <div class="epigraph__source">
+          <svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+          Google Finance Beta &middot; Research
+        </div>
+        <p class="epigraph__text">"I cannot schedule automated daily messages or send recurring notifications at specific times."</p>
+      </div>
+      <p class="epigraph-after">That single response, more than any feature I could list, is why I wrote this piece.</p>
+
+      <!-- Article Body -->
+      <div class="ar">
+        <p>I've spent the last two weeks using Google Finance Beta as my primary stock research surface. As a retail investor and not an institutional one, what I'm looking for is the same thing most retail investors quietly want. A single window that helps me understand what I own, what I'm watching, and what I should do next. Not a Bloomberg Terminal. Not a chat toy. Something in between.</p>
+
+        <p>Finance Beta is, in many ways, the closest anyone has come to that product. It's also one decision away from becoming something much bigger, and this piece is about that decision.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>What Google nailed</h2>
+
+        <p>Before I critique anything, I want to be direct. <strong>Finance Beta is the best retail investor product I have used in a long time.</strong> A few things stand out to me as a user.</p>
+
+        <p><strong>The integration thesis is correct.</strong> Putting price, news, earnings, 10-K-grade financials, analyst ratings, and now politician and insider activity in one window is the right product bet. Most retail investors today bounce across five tools to assemble the picture Finance Beta assembles in one, and the fact that I haven't opened SEC EDGAR in two weeks is the most concrete way I can say that.</p>
+
+        <p><strong>The political and insider trading panel is a small feature with outsized strategic weight.</strong> It taps into a real cultural moment. Retail investors do not trust that they're getting the same information as Congress, and turning that data into a default tab signals trust without ever having to say the word.</p>
+
+        <p><strong>Native infographics and the comparison flow are quietly excellent.</strong> The fact that the URL itself encodes comparisons (<code>?comparison=NBIS:NASDAQ</code>) means every research conversation I have is shareable, which is a small detail with a large compounding effect on word-of-mouth.</p>
+
+        <p>I want to put a flag in the ground here. The team has clearly thought hard about what a modern retail research product looks like, and the bones of this product are right.</p>
+
+        <p>The rest of this piece is about the room above those bones.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>The product question: reference tool, or assistant?</h2>
+
+        <blockquote><p>Today, Finance Beta is the best <strong>reference tool</strong> for retail investors I've used. The next product mountain is becoming a <strong>wealth-growth assistant</strong>, something that doesn't just answer questions but proactively helps me act.</p></blockquote>
+
+        <p>A reference tool is something you pull. You go to it. You look something up. You leave.</p>
+
+        <p>An assistant is something that pushes. It knows you. It surfaces. It compounds.</p>
+
+        <p>Finance Beta today behaves like a reference tool that occasionally tries to be an assistant, and the gap between those two products is where the next year of work probably lives. The five observations below are the most concrete ways I felt that gap during two weeks of daily use.</p>
+
+        <p>I want to flag upfront that the team is almost certainly aware of most of these, and in several cases I may be misreading deliberate v1 scoping for an oversight. I've tried to mark where I'm less sure.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>Five things that would move Finance Beta from reference to assistant</h2>
+
+        <div class="gap-num gap-num--01">Gap 01</div>
+        <h3>Daily briefs, the missing push layer</h3>
+
+        <p>The single biggest behavioral gap I noticed is that Finance Beta gives me no reason to come back daily unless I have a ticker in mind. There is no morning brief. There is no evening recap. There is no "since you last visited, X happened in your watchlist."</p>
+
+        <p>I tried to ask the Research panel directly. The screenshot at the top of this piece is what happened. I asked for a daily 10pm recap, and the AI told me it couldn't schedule recurring notifications.</p>
+
+        <p>That answer is fixable in two ways. The narrow fix is to teach the AI panel to register scheduled prompts. The broader fix is to ship a first-class <strong>Briefs</strong> primitive in the product. Opt-in, configurable, with two flavors.</p>
+
+        <ul>
+          <li><strong>Market brief.</strong> Macro context, major index moves, the day's biggest movers, what's reporting tomorrow.</li>
+          <li><strong>Watchlist brief.</strong> <em>Your</em> watchlist's moves, anomalies, and earnings or insider events.</li>
+        </ul>
+
+        <p>Both should arrive on a schedule the user picks. Both should be in plain English. Both should be three sentences, not three paragraphs.</p>
+
+        <p>This is the single highest-leverage retention move available to Finance Beta, and it would also be the first feature that makes the product feel like it knows me.</p>
+
+        <blockquote><p>The brief is the cheapest, fastest way to convert Finance Beta from a "destination I visit when I have a question" to a "habit I check before market open and after market close."</p></blockquote>
+
+        <div class="gap-num gap-num--02">Gap 02</div>
+        <h3>Smart alerts on the watchlist</h3>
+
+        <p>Today my watchlist is a sortable table of tickers. It's a good table. But a watchlist's job isn't to display tickers. It's to <strong>tell me when something on it deserves my attention.</strong></p>
+
+        <p>Right now, I have to look at every row, every day, to know if anything has changed. That's the opposite of how an assistant works.</p>
+
+        <p>The version I'd build:</p>
+
+        <ul>
+          <li><strong>Price alerts</strong> with one-tap setup from any ticker row. For example, "alert me if NVDA closes below $500."</li>
+          <li><strong>Event alerts</strong> for earnings within X days, ex-dividend dates, and FDA decision dates.</li>
+          <li><strong>Anomaly alerts</strong> for unusual volume, large insider transactions, analyst upgrades or downgrades, and news sentiment spikes.</li>
+          <li><strong>AI keyword alerts.</strong> The most differentiated of the bunch. "Alert me if 'guidance cut' appears in MU's next earnings call." "Alert me if any of my holdings have an executive depart." This is the kind of monitoring only an AI-native product can ship.</li>
+        </ul>
+
+        <p>The watchlist becomes an inbox of notable things, not a table of static rows.</p>
+
+        <div class="gap-num gap-num--03">Gap 03</div>
+        <h3>Notes, theses, and price targets per stock</h3>
+
+        <p>Serious retail investors take notes. They write down why they bought a stock, what would make them sell, and what they're watching for. Today they do this in Notes apps, in spreadsheets, in their head. Finance Beta has none of this.</p>
+
+        <p>If Finance Beta is going to be the single window for retail investors, it has to absorb the thesis layer. What that looks like in practice:</p>
+
+        <ul>
+          <li>A <strong>Notes</strong> field per ticker. Free text, your private write-up.</li>
+          <li>A <strong>Thesis tracker.</strong> The user states a thesis ("AI capex peaks in 2027 and NVDA derates"), and the product surfaces evidence for and against that thesis over time via earnings, news, and macro data.</li>
+          <li><strong>Personal price targets</strong> with reasoning. "Sell half above $600. Add below $440." These link to the alerts system above.</li>
+        </ul>
+
+        <p>The strategic point is that every note, thesis, and target the user enters increases lock-in. Switching products means losing your written investing history. That's a moat Google Finance can build with a few hundred lines of UI work.</p>
+
+        <div class="gap-num gap-num--04">Gap 04</div>
+        <h3>Cross-ticker AI research</h3>
+
+        <p>In late June, Micron (MU) dropped over 13% on softer guidance. I wanted to ask Finance Beta a question I'd ask a financial-advisor friend. <em>"Is MU's drop today a buying opportunity, or does SNDK look better on the same AI memory demand trend?"</em></p>
+
+        <p>Finance Beta can show me MU. It can show me SNDK. The Research panel can answer questions about either one. What it can't do is hold both in its head at once and reason across them.</p>
+
+        <p>This is a structural limitation, not a feature gap. The Research panel is anchored to a single ticker context, and most real research questions are comparative.</p>
+
+        <p>The product behavior I'd want:</p>
+
+        <ul>
+          <li>Multi-ticker context in the Research panel. Type or paste 2 to 5 tickers, and the AI now reasons across all of them.</li>
+          <li>A side-by-side comparison view with AI-generated commentary on each dimension (valuation, growth, risk, exposure).</li>
+          <li>Citations and confidence indicators on each AI claim. Non-negotiable for a finance product.</li>
+        </ul>
+
+        <p>Adding multi-ticker research is the change I'd ship first if I were on the team, because it's the moment Finance Beta becomes meaningfully more capable than any competitor.</p>
+
+        <div class="gap-num gap-num--05">Gap 05</div>
+        <h3>Personalization controls and trust</h3>
+
+        <p>The current AI surfaces, like "Top insights for CRWV," "At a glance," and generated summaries, are the same for every user looking at the same stock. There's no concept of <em>me</em> in the AI experience.</p>
+
+        <p>A few specific gaps:</p>
+
+        <ul>
+          <li><strong>No way to toggle AI summaries on or off.</strong> Some users want them on every page. Some find them noisy. Today, neither group gets what they want.</li>
+          <li><strong>No way to tune the lens.</strong> I'd like to set my own bias for the AI commentary. Something like "I'm a long-term holder, surface long-term considerations, not day-trading signals."</li>
+          <li><strong>No memory.</strong> The AI doesn't remember what I read yesterday, what I asked about last week, or what's in my watchlist.</li>
+          <li><strong>Limited source attribution.</strong> When the AI makes a claim, it's not always clear which underlying news article, filing, or transcript it came from. For finance, traceability is trust.</li>
+        </ul>
+
+        <p>The fix is a small <strong>Personalization</strong> surface with preferences, AI toggles, source verbosity, and model behavior, plus a memory layer that makes the AI assistant feel like <em>my</em> assistant, not everyone's.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>One thing I'm less sure about: the research panel state</h2>
+
+        <p>Here's one observation I'm holding loosely. When I navigate away from a stock and come back, my Research panel context appears to reset rather than persist. This breaks the natural flow of cross-ticker research, because I lose my thread every time I open a new ticker.</p>
+
+        <p>I want to flag this with humility. It's possible this is deliberate (a privacy or freshness consideration), possible I'm misreading my own session state, and possible it's already on the roadmap. But if it's none of those, persisting the Research thread across tickers would meaningfully improve the cross-ticker research workflow described above.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>The hard question I keep avoiding: brokerage linking</h2>
+
+        <p>A version of this piece could have led with "Finance Beta should let me link my brokerage and see my actual holdings." It's the most obvious personalization unlock. It's also the most strategically loaded, and I want to handle it honestly.</p>
+
+        <p>Linking a brokerage is technically straightforward. Plaid and direct broker OAuth (Schwab, Fidelity, IBKR, Robinhood) are commodity infrastructure. The hard part is that touching a user's holdings data moves Google one step closer to fiduciary territory, with all the regulatory weight that brings.</p>
+
+        <p>But the personalization wins I described above (briefs, alerts, holdings-aware research, thesis tracking) <em>do not require trade execution.</em> They require <strong>read-only positions data.</strong> That's a defensible v1. See your portfolio inside Finance Beta, get a smarter assistant on top of it, never execute a trade through Google. Trade execution can be a v3 question or a never question.</p>
+
+        <p>Decoupling the regulatory hard problem from the product value is, I think, what unlocks the personalization layer at Google scale.</p>
+
+        <div class="cloud-break"></div>
+
+        <h2>What's next in this series</h2>
+
+        <p>This piece focused on the desktop experience and the personalization layer. There's a parallel conversation worth having about mobile, because most retail investors check stocks on a phone, and Finance Beta's mobile experience deserves its own teardown. That's the next post.</p>
+
+        <p>After that, I'd like to write about trust and explainability in AI-generated financial summaries. How to make AI claims auditable in a domain where wrong information costs real money.</p>
+
+        <!-- Expandable note to the team -->
+        <details class="note-to-team">
+          <summary>
+            <span class="note-to-team__prompt">
+              <span class="note-to-team__label">Personal note</span>
+              <span class="note-to-team__cta">A note to the Finance Beta team</span>
+            </span>
+            <span class="note-to-team__chevron" aria-hidden="true">&#x25BE;</span>
+          </summary>
+          <div class="note-to-team__body">
+            <p>If you're reading this from inside Google, most of what I've written is praise wrapped in critique. The team has shipped the hardest part of this product, which is the integrated information surface and the AI foundation. Everything I've described above is the next quarter or two of work on top of a product that already, on its worst day, beats Yahoo Finance and most retail brokerage research surfaces.</p>
+
+            <p>The reason I wrote this much is because I think Finance Beta is one of the few products at Google's scale that can credibly become the default research assistant for tens of millions of retail investors. The reference tool that became an assistant. The assistant that became a habit.</p>
+
+            <p>I'd love to be part of building it.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="colophon">
+        <div class="colophon__eyebrow">Written by</div>
+        <div class="colophon__name">Gayatri Gopalakrishnan</div>
+        <p class="colophon__bio">Product thinker exploring AI and retail investing. Former ServiceNow engineer, Amazon Senior Product Manager (Technical), and Foster MBA. Writing about product philosophy, AI-native products, and the language we use to describe both.</p>
+        <hr class="colophon__rule">
+        <div class="colophon__links">
+          <a href="/">Portfolio</a>
+          <span class="colophon__dot">&middot;</span>
+          <a href="/#field-notes">Field Notes</a>
+          <span class="colophon__dot">&middot;</span>
+          <a href="/#product-thesis">Product Thesis</a>
+          <span class="colophon__dot">&middot;</span>
+          <a href="mailto:gayatrigopu@gmail.com">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

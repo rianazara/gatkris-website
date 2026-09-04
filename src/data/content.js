@@ -156,7 +156,7 @@ export const productVisions = [
     name: 'Google Finance Beta',
     tagline: 'What if Google rebuilt finance tools with AI-native reasoning?',
     description: 'A product vision document reimagining stock screening, portfolio analytics, and investment research through the lens of Google-scale AI. Not as a feature list, but as a fundamentally different way to interact with financial data.',
-    href: 'https://claude.ai/code/artifact/ceda3365-0ef7-4d30-ae68-a05154e4424f',
+    href: '/visions/google-finance-beta.html',
   },
 ]
 
