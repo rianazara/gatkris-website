@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { fieldNotes } from '../data/fieldNotes'
 import NotebookCover from './NotebookCover'
 
@@ -226,13 +226,14 @@ function NoteView({ note, onBack }) {
   )
 }
 
-function IndexView({ onSelectNote }) {
+function IndexView({ onSelectNote, cover }) {
   const handleBackHome = () => {
     window.location.hash = ''
   }
   return (
     <div className="notebook-wrap">
       <div className="notebook" role="navigation" aria-label="Field Notes index">
+        {cover}
         <div className="notebook__spine" aria-hidden="true">
           <div className="notebook__spine-lines" />
         </div>
@@ -289,7 +290,6 @@ function IndexView({ onSelectNote }) {
 
 export default function FieldNotes({ route }) {
   const noteId = route.replace('#field-notes', '').replace(/^\//, '')
-  const [coverVisible, setCoverVisible] = useState(true)
 
   const handleSelectNote = (number) => {
     window.location.hash = `field-notes/${number}`
@@ -324,16 +324,15 @@ export default function FieldNotes({ route }) {
   }
 
   return (
-    <>
-      {coverVisible && (
+    <IndexView
+      onSelectNote={handleSelectNote}
+      cover={
         <NotebookCover
           title="Field Notes"
           subtitle="A record of questions that refused to leave me alone."
           sessionKey="field-notes"
-          onDone={() => setCoverVisible(false)}
         />
-      )}
-      <IndexView onSelectNote={handleSelectNote} />
-    </>
+      }
+    />
   )
 }

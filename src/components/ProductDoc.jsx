@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { productDocs } from '../data/productDocs'
 import NotebookCover from './NotebookCover'
 
@@ -45,7 +45,6 @@ function DocBody({ body }) {
 export default function ProductDoc({ slug }) {
   const doc = productDocs[slug]
   const pageRef = useRef(null)
-  const [coverVisible, setCoverVisible] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -72,17 +71,13 @@ export default function ProductDoc({ slug }) {
   }
 
   return (
-    <>
-      {coverVisible && (
+    <div className="notebook-wrap">
+      <div className="notebook" role="article">
         <NotebookCover
           title={doc.title}
           subtitle={doc.subtitle}
           sessionKey={`product-doc-${slug}`}
-          onDone={() => setCoverVisible(false)}
         />
-      )}
-    <div className="notebook-wrap">
-      <div className="notebook" role="article">
         <div className="notebook__spine" aria-hidden="true">
           <div className="notebook__spine-lines" />
         </div>
@@ -135,6 +130,5 @@ export default function ProductDoc({ slug }) {
         <div className="notebook__edge" aria-hidden="true" />
       </div>
     </div>
-    </>
   )
 }
