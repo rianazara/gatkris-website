@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { productThesis } from '../data/productThesis'
+import NotebookCover from './NotebookCover'
 
 const HEADING_COLORS = ['blue', 'red', 'yellow', 'green']
 
@@ -136,6 +137,7 @@ function ThesisBody({ body }) {
 
 export default function ProductThesis() {
   const pageRef = useRef(null)
+  const [coverVisible, setCoverVisible] = useState(true)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -146,6 +148,15 @@ export default function ProductThesis() {
   }
 
   return (
+    <>
+      {coverVisible && (
+        <NotebookCover
+          title="Product Thesis"
+          subtitle="Where the Framework Ends."
+          sessionKey="product-thesis"
+          onDone={() => setCoverVisible(false)}
+        />
+      )}
     <div className="notebook-wrap">
       <div className="notebook" role="article">
         <div className="notebook__spine" aria-hidden="true">
@@ -197,5 +208,6 @@ export default function ProductThesis() {
         <div className="notebook__edge" aria-hidden="true" />
       </div>
     </div>
+    </>
   )
 }
