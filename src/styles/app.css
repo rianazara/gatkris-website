@@ -3130,7 +3130,7 @@ main {
   .hero { padding: 12px 16px 0; border-radius: 16px; }
 
   .fn-cover-sub { display: none; }
-  .fn-cover-book { min-height: min(320px, 45vh); }
+  .fn-cover-book { min-height: 280px; }
 }
 
 /* ===========================================================================
@@ -3840,6 +3840,13 @@ main {
 }
 
 /* ── Notebook Cover Animation ── */
+/* Cover overlay dimensions match the notebook page underneath exactly.
+   Padding-top matches #root's padding-top (topbar clearance), sides match
+   the wrap's horizontal padding, no bottom padding so the cover extends
+   to viewport-bottom just like the notebook first viewport does. Book is
+   align-stretched so it fills the available box. When the cover fades,
+   the notebook page reveals at identical horizontal position and top —
+   no vertical or horizontal jump. */
 .fn-cover-overlay {
   position: fixed;
   top: 0;
@@ -3848,9 +3855,9 @@ main {
   bottom: 0;
   z-index: 90;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  padding: 80px 16px 16px;
+  padding: 80px 16px 0;
   background: var(--bg);
   animation: fn-overlayFade 0.55s ease 2.3s forwards;
   pointer-events: none;
@@ -3860,11 +3867,14 @@ main {
   display: flex;
   max-width: 880px;
   width: 100%;
-  min-height: min(480px, 55vh);
+  /* No explicit height — the overlay's align-items: stretch makes the book
+     fill the overlay content-box height, which equals the visible viewport
+     area of the notebook page underneath. */
+  min-height: 400px;
   border-radius: 14px;
   overflow: visible;
   box-shadow: 0 12px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
-  animation: fn-coverEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fn-coverEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   perspective: 1800px;
 }
 
@@ -3962,14 +3972,8 @@ main {
 }
 
 @keyframes fn-coverEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* Cover-fold — inspired by Angela Jiang's notebook animation.
@@ -4024,8 +4028,8 @@ main {
   .fn-index-title { font-size: 1.5rem; }
   .fn-cover-spine { width: 12px; }
   .fn-cover-title { font-size: 1.6rem; }
-  .fn-cover-overlay { padding: 56px 10px 10px; }
-  .fn-cover-book { min-height: min(380px, 50vh); }
+  .fn-cover-overlay { padding: 64px 16px 0; }
+  .fn-cover-book { min-height: 320px; }
   .fn-back { min-height: 48px; font-size: 14px; }
 }
 
