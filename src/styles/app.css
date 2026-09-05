@@ -1,4 +1,73 @@
 /* ===========================================================================
+   Time-of-day ambient light
+   A very subtle, fixed radial glow that tints one corner of the viewport
+   depending on the current hour. Inspired by Angela Jiang's day/night
+   scenery but scaled way down — mood, not illustration.
+   =========================================================================== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 700px at 90% -10%, var(--tod-a) 0%, transparent 55%),
+    radial-gradient(900px 600px at 10% 110%, var(--tod-b) 0%, transparent 55%);
+  transition: background 900ms ease;
+}
+
+/* Defaults (afternoon) */
+:root {
+  --tod-a: rgba(255, 224, 178, 0.09);
+  --tod-b: rgba(180, 200, 235, 0.06);
+}
+
+/* Dawn — soft peach glow from top-right */
+:root[data-tod='dawn'] {
+  --tod-a: rgba(255, 190, 170, 0.18);
+  --tod-b: rgba(255, 210, 180, 0.10);
+}
+/* Morning — warm yellow lift */
+:root[data-tod='morning'] {
+  --tod-a: rgba(255, 220, 160, 0.14);
+  --tod-b: rgba(255, 235, 200, 0.06);
+}
+/* Afternoon — cool clarity, minimal tint */
+:root[data-tod='afternoon'] {
+  --tod-a: rgba(200, 220, 240, 0.08);
+  --tod-b: rgba(255, 240, 220, 0.05);
+}
+/* Evening — golden hour warm rose */
+:root[data-tod='evening'] {
+  --tod-a: rgba(255, 170, 130, 0.18);
+  --tod-b: rgba(255, 140, 120, 0.09);
+}
+/* Night — deep cool ambient */
+:root[data-tod='night'] {
+  --tod-a: rgba(140, 170, 235, 0.10);
+  --tod-b: rgba(90, 110, 190, 0.10);
+}
+
+/* Dark mode: soften every period so it doesn't glow like a spotlight */
+:root[data-theme='dark'][data-tod='dawn']      { --tod-a: rgba(210, 150, 130, 0.14); --tod-b: rgba(180, 155, 140, 0.08); }
+:root[data-theme='dark'][data-tod='morning']   { --tod-a: rgba(220, 190, 130, 0.10); --tod-b: rgba(180, 170, 140, 0.05); }
+:root[data-theme='dark'][data-tod='afternoon'] { --tod-a: rgba(170, 190, 220, 0.07); --tod-b: rgba(190, 195, 220, 0.05); }
+:root[data-theme='dark'][data-tod='evening']   { --tod-a: rgba(210, 130, 110, 0.14); --tod-b: rgba(180, 110, 130, 0.09); }
+:root[data-theme='dark'][data-tod='night']     { --tod-a: rgba(90, 120, 210, 0.14); --tod-b: rgba(120, 130, 200, 0.10); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light'])[data-tod='dawn']      { --tod-a: rgba(210, 150, 130, 0.14); --tod-b: rgba(180, 155, 140, 0.08); }
+  :root:not([data-theme='light'])[data-tod='morning']   { --tod-a: rgba(220, 190, 130, 0.10); --tod-b: rgba(180, 170, 140, 0.05); }
+  :root:not([data-theme='light'])[data-tod='afternoon'] { --tod-a: rgba(170, 190, 220, 0.07); --tod-b: rgba(190, 195, 220, 0.05); }
+  :root:not([data-theme='light'])[data-tod='evening']   { --tod-a: rgba(210, 130, 110, 0.14); --tod-b: rgba(180, 110, 130, 0.09); }
+  :root:not([data-theme='light'])[data-tod='night']     { --tod-a: rgba(90, 120, 210, 0.14); --tod-b: rgba(120, 130, 200, 0.10); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { transition: none; }
+}
+
+/* ===========================================================================
    Skip link (WCAG 2.4.1)
    =========================================================================== */
 .skip-link {
@@ -217,50 +286,66 @@ main {
 }
 
 .section-label {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 24px;
 }
 
-/* Section color accents — AAA contrast (7:1+ on #FEFDFB light, 4.5:1+ on #1C1A17 dark) */
-.section-label--blue    { background: rgba(26, 115, 232, 0.10); color: #1A73E8; }
-.section-label--red     { background: rgba(217, 48, 37, 0.10); color: #D93025; }
-.section-label--green   { background: rgba(30, 142, 62, 0.10); color: #1E8E3E; }
-.section-label--yellow  { background: rgba(242, 153, 0, 0.12); color: #B06000; }
-.section-label--purple  { background: rgba(114, 20, 134, 0.10); color: #721486; }
-.section-label--teal    { background: rgba(0, 105, 92, 0.10); color: #00695c; }
-.section-label--orange  { background: rgba(198, 70, 0, 0.10); color: #c64600; }
-.section-label--navy    { background: rgba(27, 42, 74, 0.12); color: #1B2A4A; }
-.section-label--rose    { background: rgba(181, 23, 158, 0.10); color: #b5179e; }
-.section-label--gold    { background: var(--accent-soft); color: var(--accent); }
+/* Colored square marker to the left of the label — Angela-inspired
+   category-color identity, kept in gatkris.com's editorial voice. */
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: currentColor;
+  border-radius: 2px;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
 
-:root[data-theme='dark'] .section-label--blue    { background: rgba(120, 174, 237, 0.12); color: #78aeed; }
-:root[data-theme='dark'] .section-label--red     { background: rgba(242, 139, 130, 0.12); color: #f28b82; }
-:root[data-theme='dark'] .section-label--green   { background: rgba(129, 201, 149, 0.12); color: #81c995; }
-:root[data-theme='dark'] .section-label--yellow  { background: rgba(226, 185, 61, 0.14); color: #e2b93d; }
-:root[data-theme='dark'] .section-label--purple  { background: rgba(206, 147, 216, 0.12); color: #ce93d8; }
-:root[data-theme='dark'] .section-label--teal    { background: rgba(128, 203, 196, 0.12); color: #80cbc4; }
-:root[data-theme='dark'] .section-label--orange  { background: rgba(244, 132, 95, 0.12); color: #f4845f; }
-:root[data-theme='dark'] .section-label--navy    { background: rgba(242, 139, 130, 0.14); color: #93ABD3; }
-:root[data-theme='dark'] .section-label--rose    { background: rgba(240, 171, 252, 0.12); color: #f0abfc; }
+/* Section color accents — AAA contrast (7:1+ on #FEFDFB light, 4.5:1+ on #1C1A17 dark) */
+.section-label--blue    { color: #1A73E8; }
+.section-label--red     { color: #D93025; }
+.section-label--green   { color: #1E8E3E; }
+.section-label--yellow  { color: #B06000; }
+.section-label--purple  { color: #721486; }
+.section-label--teal    { color: #00695c; }
+.section-label--orange  { color: #c64600; }
+.section-label--navy    { color: #1B2A4A; }
+.section-label--rose    { color: #b5179e; }
+.section-label--gold    { color: var(--accent); }
+
+:root[data-theme='dark'] .section-label--blue    { color: #78aeed; }
+:root[data-theme='dark'] .section-label--red     { color: #f28b82; }
+:root[data-theme='dark'] .section-label--green   { color: #81c995; }
+:root[data-theme='dark'] .section-label--yellow  { color: #e2b93d; }
+:root[data-theme='dark'] .section-label--purple  { color: #ce93d8; }
+:root[data-theme='dark'] .section-label--teal    { color: #80cbc4; }
+:root[data-theme='dark'] .section-label--orange  { color: #f4845f; }
+:root[data-theme='dark'] .section-label--navy    { color: #93ABD3; }
+:root[data-theme='dark'] .section-label--rose    { color: #f0abfc; }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .section-label--blue    { background: rgba(120, 174, 237, 0.12); color: #78aeed; }
-  :root:not([data-theme='light']) .section-label--red     { background: rgba(242, 139, 130, 0.12); color: #f28b82; }
-  :root:not([data-theme='light']) .section-label--green   { background: rgba(129, 201, 149, 0.12); color: #81c995; }
-  :root:not([data-theme='light']) .section-label--yellow  { background: rgba(226, 185, 61, 0.14); color: #e2b93d; }
-  :root:not([data-theme='light']) .section-label--purple  { background: rgba(206, 147, 216, 0.12); color: #ce93d8; }
-  :root:not([data-theme='light']) .section-label--teal    { background: rgba(128, 203, 196, 0.12); color: #80cbc4; }
-  :root:not([data-theme='light']) .section-label--orange  { background: rgba(244, 132, 95, 0.12); color: #f4845f; }
-  :root:not([data-theme='light']) .section-label--navy    { background: rgba(242, 139, 130, 0.14); color: #93ABD3; }
-  :root:not([data-theme='light']) .section-label--rose    { background: rgba(240, 171, 252, 0.12); color: #f0abfc; }
+  :root:not([data-theme='light']) .section-label--blue    { color: #78aeed; }
+  :root:not([data-theme='light']) .section-label--red     { color: #f28b82; }
+  :root:not([data-theme='light']) .section-label--green   { color: #81c995; }
+  :root:not([data-theme='light']) .section-label--yellow  { color: #e2b93d; }
+  :root:not([data-theme='light']) .section-label--purple  { color: #ce93d8; }
+  :root:not([data-theme='light']) .section-label--teal    { color: #80cbc4; }
+  :root:not([data-theme='light']) .section-label--orange  { color: #f4845f; }
+  :root:not([data-theme='light']) .section-label--navy    { color: #93ABD3; }
+  :root:not([data-theme='light']) .section-label--rose    { color: #f0abfc; }
 }
 
 /* ===========================================================================
