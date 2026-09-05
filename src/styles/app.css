@@ -3877,12 +3877,6 @@ main {
 
 /* Front of the cover — leather, with the embossed title */
 .nb-cover-front {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 40px;
   background: linear-gradient(
     155deg,
     #3E2723 0%,
@@ -3891,6 +3885,19 @@ main {
     #4E342E 75%,
     #3E2723 100%
   );
+}
+
+/* The cover can be as tall as the whole article, but the title must sit
+   in the first viewport the visitor actually sees — so the content block
+   is capped at one viewport height and centers within that. */
+.nb-cover-front__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  height: min(calc(100dvh - 140px), 100%);
 }
 
 /* Spine strip painted onto the front face so the cover reads as one slab */
@@ -3919,6 +3926,20 @@ main {
   transform: rotateY(180deg);
   background: var(--cover-inside);
   border: 1px solid var(--border);
+  /* Left-edge shading + endpaper texture so the opened cover reads
+     clearly against the page background while it lies flat and slides
+     under the page. */
+  box-shadow: inset -6px 0 14px -8px rgba(0,0,0,0.25);
+}
+
+.nb-cover-back::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  right: 16px;
+  width: 0;
+  border-right: 2px dashed rgba(122, 90, 61, 0.35);
 }
 
 .nb-cover-emblem {
