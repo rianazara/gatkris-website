@@ -1,10 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 import { fieldNotes } from '../data/fieldNotes'
 
+function countWords(str) {
+  return String(str).trim().split(/\s+/).filter(Boolean).length
+}
+
 function estimateReadTime(body) {
   const words = body.reduce((count, block) => {
-    if (typeof block === 'string') return count + block.split(/\s+/).length
-    if (block.type === 'list') return count + block.items.reduce((c, i) => c + i.term.split(/\s+/).length + i.def.split(/\s+/).length, 0)
+    if (typeof block === 'string') return count + countWords(block)
+    if (!block || typeof block !== 'object') return count
+    if (block.type === 'list' && Array.isArray(block.items)) {
+      return count + block.items.reduce((c, i) => c + countWords(i.term || '') + countWords(i.def || ''), 0)
+    }
+    if (Array.isArray(block.lines)) {
+      return count + block.lines.reduce((c, line) => c + countWords(line), 0)
+    }
+    if (Array.isArray(block.items)) {
+      return count + block.items.reduce((c, item) => c + countWords(typeof item === 'string' ? item : (item.text || '')), 0)
+    }
+    if (typeof block.text === 'string') return count + countWords(block.text)
     return count
   }, 0)
   return `${Math.max(1, Math.ceil(words / 220))} min read`

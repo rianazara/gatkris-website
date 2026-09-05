@@ -3,11 +3,17 @@ import { productThesis } from '../data/productThesis'
 
 const HEADING_COLORS = ['blue', 'red', 'yellow', 'green']
 
+function countWords(str) {
+  return String(str).trim().split(/\s+/).filter(Boolean).length
+}
+
 function estimateReadTime(body) {
   const words = body.reduce((count, block) => {
-    if (typeof block === 'string') return count + block.split(/\s+/).length
-    if (block && block.text) return count + block.text.split(/\s+/).length
-    if (block && block.items) return count + block.items.join(' ').split(/\s+/).length
+    if (typeof block === 'string') return count + countWords(block)
+    if (!block || typeof block !== 'object') return count
+    if (Array.isArray(block.lines)) return count + block.lines.reduce((c, l) => c + countWords(l), 0)
+    if (Array.isArray(block.items)) return count + block.items.reduce((c, it) => c + countWords(typeof it === 'string' ? it : (it.text || '')), 0)
+    if (typeof block.text === 'string') return count + countWords(block.text)
     return count
   }, 0)
   return `${Math.max(1, Math.ceil(words / 220))} min read`

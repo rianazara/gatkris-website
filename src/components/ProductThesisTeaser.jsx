@@ -13,7 +13,7 @@ export default function ProductThesisTeaser() {
   return (
     <section className="card pt-teaser" id="product-thesis-preview">
       <div className="pt-teaser__header">
-        <h3 className="section-label section-label--red">Product Thesis</h3>
+        <h2 className="section-label section-label--red">Product Thesis</h2>
         <p className="pt-teaser__intro">
           My current philosophy of product management — the lens through which the rest of my work could be read.
         </p>
@@ -23,7 +23,7 @@ export default function ProductThesisTeaser() {
           <CompassIcon />
         </div>
         <div className="pt-teaser__body">
-          <h4 className="pt-teaser__heading">{productThesis.title}</h4>
+          <h3 className="pt-teaser__heading">{productThesis.title}</h3>
           <div className="pt-teaser__meta">
             <span className="pt-teaser__date">{productThesis.date}</span>
           </div>

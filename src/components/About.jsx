@@ -4,7 +4,7 @@ import { profile } from '../data/content'
 export default function About() {
   return (
     <section className="card about" id="about">
-      <h3 className="section-label section-label--blue">About Me</h3>
+      <h2 className="section-label section-label--blue">About Me</h2>
       <p className="about__text">
         {profile.about.map((para, i) => (
           <Fragment key={i}>

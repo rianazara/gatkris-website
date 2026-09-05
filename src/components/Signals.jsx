@@ -14,7 +14,7 @@ export default function Signals() {
 
   return (
     <section className="card" id="outside-work">
-      <h3 className="section-label section-label--red">Achievements Outside Work</h3>
+      <h2 className="section-label section-label--red">Achievements Outside Work</h2>
       <div className="signals">
         {achievements.map((a) => (
           <SignalCard key={a.title} achievement={a} onImageClick={() => setLightbox(a)} />
