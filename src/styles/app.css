@@ -218,15 +218,15 @@ main {
 
 .section-label {
   display: inline-block;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 999px;
   font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 /* Section color accents — AAA contrast (7:1+ on #FEFDFB light, 4.5:1+ on #1C1A17 dark) */
@@ -288,12 +288,12 @@ main {
 }
 
 :root[data-theme='dark'] .topbar {
-  background: rgba(28, 26, 23, 0.85);
+  background: rgba(18, 20, 32, 0.92);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .topbar {
-    background: rgba(28, 26, 23, 0.85);
+    background: rgba(18, 20, 32, 0.92);
   }
 }
 
@@ -361,26 +361,6 @@ main {
   :root:not([data-theme='light']) .topbar__link--rose { color: #f0abfc; }
   :root:not([data-theme='light']) .topbar__link--gold  { color: var(--accent); }
 }
-
-/* ┌──────────────────────────────────────────────────────────────────┐
-   │ AAA-CONTRAST NAV OVERRIDE (dark mode)                            │
-   │ Bumps colored topbar links from AA (~4.7–6:1) to AAA (~7–7.5:1)  │
-   │ against the effective topbar surface. Trade-off: colors lose a   │
-   │ little saturation and read closer to "chalk" than "brand."       │
-   │ To REVERT — delete this whole block. Nothing else depends on it. │
-   └──────────────────────────────────────────────────────────────────┘ */
-:root[data-theme='dark'] .topbar__link--blue   { color: #B8D0F7; }
-:root[data-theme='dark'] .topbar__link--red    { color: #FAC5BD; }
-:root[data-theme='dark'] .topbar__link--green  { color: #B5E1C2; }
-:root[data-theme='dark'] .topbar__link--yellow { color: #EDD481; }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .topbar__link--blue   { color: #B8D0F7; }
-  :root:not([data-theme='light']) .topbar__link--red    { color: #FAC5BD; }
-  :root:not([data-theme='light']) .topbar__link--green  { color: #B5E1C2; }
-  :root:not([data-theme='light']) .topbar__link--yellow { color: #EDD481; }
-}
-/* └──────────────── end AAA-CONTRAST NAV OVERRIDE ────────────────┘ */
 
 .topbar__right {
   display: flex;
