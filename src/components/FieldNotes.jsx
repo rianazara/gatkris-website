@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { fieldNotes } from '../data/fieldNotes'
+import NotebookCover from './NotebookCover'
 
 function countWords(str) {
   return String(str).trim().split(/\s+/).filter(Boolean).length
@@ -30,30 +31,6 @@ function PenIcon({ size = 14 }) {
       <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
       <path d="m15 5 4 4" />
     </svg>
-  )
-}
-
-function NotebookCover({ onDone }) {
-  return (
-    <div
-      className="fn-cover-overlay"
-      aria-hidden="true"
-      onAnimationEnd={(e) => { if (e.animationName === 'fn-overlayFade') onDone() }}
-    >
-      <div className="fn-cover-book">
-        <div className="fn-cover-spine" aria-hidden="true" />
-        <div className="fn-cover-face">
-          <svg className="fn-cover-emblem" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-            <path d="m15 5 4 4" />
-          </svg>
-          <div className="fn-cover-title">Field Notes</div>
-          <div className="fn-cover-rule" />
-          <p className="fn-cover-sub">A record of questions that refused to leave me alone.</p>
-        </div>
-        <div className="fn-cover-inside" aria-hidden="true" />
-      </div>
-    </div>
   )
 }
 
@@ -349,7 +326,12 @@ export default function FieldNotes({ route }) {
   return (
     <>
       {coverVisible && (
-        <NotebookCover onDone={() => setCoverVisible(false)} />
+        <NotebookCover
+          title="Field Notes"
+          subtitle="A record of questions that refused to leave me alone."
+          sessionKey="field-notes"
+          onDone={() => setCoverVisible(false)}
+        />
       )}
       <IndexView onSelectNote={handleSelectNote} />
     </>
