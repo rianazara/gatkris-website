@@ -37,6 +37,7 @@ function NotebookCover({ onDone }) {
   return (
     <div
       className="fn-cover-overlay"
+      aria-hidden="true"
       onAnimationEnd={(e) => { if (e.animationName === 'fn-overlayFade') onDone() }}
     >
       <div className="fn-cover-book">
@@ -46,7 +47,7 @@ function NotebookCover({ onDone }) {
             <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
             <path d="m15 5 4 4" />
           </svg>
-          <h2 className="fn-cover-title">Field Notes</h2>
+          <div className="fn-cover-title">Field Notes</div>
           <div className="fn-cover-rule" />
           <p className="fn-cover-sub">A record of questions that refused to leave me alone.</p>
         </div>
@@ -249,6 +250,9 @@ function NoteView({ note, onBack }) {
 }
 
 function IndexView({ onSelectNote }) {
+  const handleBackHome = () => {
+    window.location.hash = ''
+  }
   return (
     <div className="notebook-wrap">
       <div className="notebook" role="navigation" aria-label="Field Notes index">
@@ -256,6 +260,13 @@ function IndexView({ onSelectNote }) {
           <div className="notebook__spine-lines" />
         </div>
         <div className="notebook__page">
+          <button className="fn-back" onClick={handleBackHome} aria-label="Back to home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+            Back to home
+          </button>
+
           <div className="fn-index-header">
             <PenIcon size={20} />
             <h1 className="fn-index-title">Field Notes</h1>
