@@ -53,7 +53,7 @@ function Showcase({ highlights, Demo }) {
 export default function Experience() {
   return (
     <section className="card" id="experience">
-      <h3 className="section-label section-label--blue">Professional Experience</h3>
+      <h2 className="section-label section-label--blue">Professional Experience</h2>
       <ul className="exp">
         {experience.map((e) => {
           const showcase = showcaseData[e.company]

@@ -41,7 +41,7 @@ function ProjectCard({ project, alwaysExpanded = false }) {
             <span className="proj__category">{project.category}</span>
             <StatusBadge status={project.status} />
           </div>
-          <h4 className="proj__name">{project.name}</h4>
+          <h3 className="proj__name">{project.name}</h3>
           <p className="proj__tagline">{project.tagline}</p>
           <p className="proj__desc">{project.description}</p>
           {project.time && (
@@ -105,7 +105,7 @@ function VisionCard({ vision }) {
         </svg>
       </div>
       <div className="proj-vision__body">
-        <h4 className="proj-vision__name">{vision.name}</h4>
+        <h3 className="proj-vision__name">{vision.name}</h3>
         <p className="proj-vision__tagline">{vision.tagline}</p>
         <p className="proj-vision__desc">{vision.description}</p>
         {vision.href && (() => {
@@ -145,7 +145,7 @@ function LockedFolder({ hint, label }) {
 export default function Projects() {
   return (
     <section className="card" id="projects">
-      <h3 className="section-label section-label--green">Products I've built</h3>
+      <h2 className="section-label section-label--green">Products I've built</h2>
 
       <div className="proj-showcase">
         {projects.map((p) => (
@@ -154,7 +154,7 @@ export default function Projects() {
       </div>
 
       <div className="proj-group">
-        <h4 className="proj-group__heading">Product Prototypes</h4>
+        <h3 className="proj-group__heading">Product Prototypes</h3>
         <div className="proj-showcase">
           {productPrototypes.map((p) => (
             <ProjectCard key={p.name} project={p} alwaysExpanded />
@@ -163,14 +163,14 @@ export default function Projects() {
       </div>
 
       <div className="proj-group">
-        <h4 className="proj-group__heading">Product Visions</h4>
+        <h3 className="proj-group__heading">Product Visions</h3>
         {productVisions.map((v) => (
           <VisionCard key={v.name} vision={v} />
         ))}
       </div>
 
       <div className="proj-group">
-        <h4 className="proj-group__heading">Product Explorations</h4>
+        <h3 className="proj-group__heading">Product Explorations</h3>
         <LockedFolder
           label="Product Explorations"
           hint="Work-in-progress explorations kept private while I sharpen them."
@@ -178,7 +178,7 @@ export default function Projects() {
       </div>
 
       <div className="proj-group">
-        <h4 className="proj-group__heading">Product Graveyard</h4>
+        <h3 className="proj-group__heading">Product Graveyard</h3>
         <LockedFolder
           label="Product Graveyard"
           hint="Ideas I tried and set aside — kept private, not for public scrutiny."

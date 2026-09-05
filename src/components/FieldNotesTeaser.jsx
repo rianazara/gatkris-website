@@ -16,7 +16,7 @@ export default function FieldNotesTeaser() {
   return (
     <section className="card fn-teaser" id="field-notes-preview">
       <div className="fn-teaser__header">
-        <h3 className="section-label section-label--yellow">Field Notes</h3>
+        <h2 className="section-label section-label--yellow">Field Notes</h2>
         <p className="fn-teaser__intro">
           A notebook of questions, investigations, and evolving product thinking — written like a newsletter, updated as my judgment changes.
         </p>
@@ -27,7 +27,7 @@ export default function FieldNotesTeaser() {
         </div>
         <div className="fn-teaser__body">
           <p className="fn-teaser__eyebrow">Field Note {latest.number}</p>
-          <h4 className="fn-teaser__heading">{latest.title}</h4>
+          <h3 className="fn-teaser__heading">{latest.title}</h3>
           <div className="fn-teaser__meta">
             <span className="fn-teaser__date">{latest.date}</span>
           </div>
