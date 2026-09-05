@@ -72,6 +72,23 @@ main {
   z-index: 1;
   overflow: hidden;
   box-sizing: border-box;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='dark'] .card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.25),
+    0 12px 40px rgba(0, 0, 0, 0.20);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .card {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.25),
+      0 12px 40px rgba(0, 0, 0, 0.20);
+  }
 }
 
 .card + .card::before {
@@ -124,7 +141,7 @@ main {
 @keyframes text-appear {
   from {
     opacity: 0;
-    transform: translateY(3rem);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -135,7 +152,7 @@ main {
 @keyframes image-appear {
   from {
     opacity: 0;
-    transform: translateY(2rem) scale(0.97);
+    transform: translateY(0.75rem) scale(0.995);
   }
   to {
     opacity: 1;
@@ -169,8 +186,8 @@ main {
 .card:not(.hero) .proj-visions,
   .card:not(.hero) .taste__list,   .card:not(.hero) .exploring__tags, .card:not(.hero) .exp__timeline {
     opacity: 0;
-    transform: translateY(3rem);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(1rem);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     animation: none;
   }
   .card:not(.hero) img, .card:not(.hero) video,
@@ -178,8 +195,8 @@ main {
   .card:not(.hero) .snow-demo, .card:not(.hero) .copilot-demo,
   .card:not(.hero) .amz-demo {
     opacity: 0;
-    transform: translateY(2rem) scale(0.97);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(0.75rem) scale(0.995);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     animation: none;
   }
   .reveal--visible p, .reveal--visible h2, .reveal--visible h3,
@@ -3304,7 +3321,8 @@ main {
 .fn-index-title {
   font-family: var(--font-serif);
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 400;
+  letter-spacing: -0.015em;
   color: var(--text);
 }
 .fn-index-sub {
@@ -3484,13 +3502,17 @@ main {
 
 .fn-note-title {
   font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 400;
   color: var(--text);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   margin-bottom: 12px;
+}
+
+@media (max-width: 680px) {
+  .fn-note-title { font-size: 1.75rem; }
 }
 .fn-note-divider {
   display: flex;
