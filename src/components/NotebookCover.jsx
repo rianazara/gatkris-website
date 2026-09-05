@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
 
 /**
- * NotebookCover — the hardcover-opening intro animation used before any
- * long-form writing surface (Field Notes index, Product Thesis, Product Doc).
+ * NotebookCover — faithful port of angelajiang.com's cover-fold animation.
  *
- * The cover rotates open on its spine and slides right (inspired by
- * Angela Jiang's cover-fold pattern), then fades away to reveal the content
- * underneath. Runs once per session for the specified `sessionKey` so a
- * visitor doesn't sit through the animation on every navigation.
+ * Rendered INSIDE .notebook as an absolutely-positioned layer (inset: 0),
+ * so it always occupies exactly the notebook's box — the notebook never
+ * moves or resizes. The cover flips open on its left spine
+ * (rotateY 0 → -180deg), holds flat, slides right 99%, then drops to
+ * z-index -1 so the flipped cover lies under the opened page. It stays
+ * mounted permanently after opening, just like the original.
  *
- * Respects prefers-reduced-motion: skips the animation entirely.
+ * Runs once per session for the given `sessionKey`. Respects
+ * prefers-reduced-motion (renders nothing).
  */
-export default function NotebookCover({ title, subtitle, sessionKey, onDone }) {
-  const [visible, setVisible] = useState(() => {
-    // Skip if user prefers reduced motion
+export default function NotebookCover({ title, subtitle, sessionKey }) {
+  const [visible] = useState(() => {
     if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
       return false
     }
-    // Skip if already shown this session for this cover
     if (sessionKey && typeof sessionStorage !== 'undefined') {
       try { return !sessionStorage.getItem(`notebook-cover:${sessionKey}`) } catch (e) { return true }
     }
@@ -25,38 +25,28 @@ export default function NotebookCover({ title, subtitle, sessionKey, onDone }) {
   })
 
   useEffect(() => {
-    if (!visible) {
-      onDone?.()
-      return
-    }
-    if (sessionKey && typeof sessionStorage !== 'undefined') {
+    if (visible && sessionKey && typeof sessionStorage !== 'undefined') {
       try { sessionStorage.setItem(`notebook-cover:${sessionKey}`, '1') } catch (e) {}
     }
-  }, [visible, sessionKey, onDone])
+  }, [visible, sessionKey])
 
   if (!visible) return null
 
-  const done = (e) => {
-    if (e.animationName === 'fn-overlayFade') {
-      setVisible(false)
-      onDone?.()
-    }
-  }
-
   return (
-    <div className="fn-cover-overlay" aria-hidden="true" onAnimationEnd={done}>
-      <div className="fn-cover-book">
-        <div className="fn-cover-spine" aria-hidden="true" />
-        <div className="fn-cover-face">
-          <svg className="fn-cover-emblem" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-            <path d="m15 5 4 4" />
-          </svg>
-          <div className="fn-cover-title">{title}</div>
-          <div className="fn-cover-rule" />
-          {subtitle && <p className="fn-cover-sub">{subtitle}</p>}
+    <div className="nb-cover nb-cover--open" aria-hidden="true">
+      <div className="nb-cover-flip">
+        <div className="nb-cover-face nb-cover-front">
+          <div className="nb-cover-front__inner">
+            <svg className="nb-cover-emblem" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              <path d="m15 5 4 4" />
+            </svg>
+            <div className="nb-cover-title">{title}</div>
+            <div className="nb-cover-rule" />
+            {subtitle && <p className="nb-cover-sub">{subtitle}</p>}
+          </div>
         </div>
-        <div className="fn-cover-inside" aria-hidden="true" />
+        <div className="nb-cover-face nb-cover-back" />
       </div>
     </div>
   )

@@ -3129,8 +3129,7 @@ main {
   .card { padding: 16px; border-radius: 16px; }
   .hero { padding: 12px 16px 0; border-radius: 16px; }
 
-  .fn-cover-sub { display: none; }
-  .fn-cover-book { min-height: min(320px, 45vh); }
+  .nb-cover-sub { display: none; }
 }
 
 /* ===========================================================================
@@ -3289,9 +3288,11 @@ main {
   animation: fn-fadeIn 0.4s ease;
 }
 
+/* Pure fade — the notebook must stay stationary; the page-turn rotation
+   (nb-page-turn) supplies the motion, matching angelajiang.com. */
 @keyframes fn-fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* The notebook: spine + page + edge lines */
@@ -3839,53 +3840,43 @@ main {
   border-top: 1px solid var(--border);
 }
 
-/* ── Notebook Cover Animation ── */
-.fn-cover-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 16px 16px;
-  background: var(--bg);
-  animation: fn-overlayFade 0.55s ease 2.3s forwards;
+/* ── Notebook Cover Animation ──
+   Faithful port of angelajiang.com's cover-fold. The cover is NOT an
+   overlay: it lives inside .notebook as an absolutely-positioned layer
+   (inset: 0), so it always occupies exactly the notebook's box — the
+   notebook itself never moves or changes frame. The cover flips open on
+   its left spine (rotateY 0 → -180deg), holds flat, slides right 99%,
+   and then drops to z-index -1 so the flipped cover lies under the
+   opened page. It stays in the DOM permanently, just like hers. */
+.nb-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  perspective: 2600px;
   pointer-events: none;
 }
 
-.fn-cover-book {
-  display: flex;
-  max-width: 880px;
-  width: 100%;
-  min-height: min(480px, 55vh);
-  border-radius: 14px;
-  overflow: visible;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
-  animation: fn-coverEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  perspective: 1800px;
+.nb-cover-flip {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  border-radius: 14px var(--radius-card) var(--radius-card) 14px;
+  box-shadow: 0 18px 44px -22px rgba(0,0,0,0.5), 0 3px 12px -6px rgba(0,0,0,0.18);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-.fn-cover-spine {
-  width: 20px;
-  flex-shrink: 0;
-  background: linear-gradient(
-    90deg,
-    #3E2723 0%,
-    #5D4037 15%,
-    #6D4C41 40%,
-    #795548 60%,
-    #5D4037 85%,
-    #4E342E 100%
-  );
-  border-radius: 14px 0 0 14px;
-  z-index: 2;
+.nb-cover-face {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.fn-cover-face {
-  flex: 1;
+/* Front of the cover — leather, with the embossed title */
+.nb-cover-front {
   background: linear-gradient(
     155deg,
     #3E2723 0%,
@@ -3894,64 +3885,84 @@ main {
     #4E342E 75%,
     #3E2723 100%
   );
+}
+
+/* The cover can be as tall as the whole article, but the title must sit
+   in the first viewport the visitor actually sees — so the content block
+   is capped at one viewport height and centers within that. */
+.nb-cover-front__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
   padding: 40px;
-  border-radius: 0 14px 14px 0;
-  transform-origin: left center;
-  backface-visibility: hidden;
-  animation: fn-coverTurn 2s cubic-bezier(0.5, 0.05, 0.45, 0.95) 0.4s forwards;
-  z-index: 1;
+  height: min(calc(100dvh - 140px), 100%);
 }
 
-.fn-cover-inside {
+/* Spine strip painted onto the front face so the cover reads as one slab */
+.nb-cover-front::before {
+  content: '';
   position: absolute;
   top: 0;
-  right: 0;
   bottom: 0;
-  left: 20px;
-  background: var(--surface);
+  left: 0;
+  width: 20px;
+  background: linear-gradient(
+    90deg,
+    #3E2723 0%,
+    #5D4037 25%,
+    #6D4C41 55%,
+    #5D4037 80%,
+    #4E342E 100%
+  );
+  border-radius: 14px 0 0 14px;
+  box-shadow: inset -2px 0 3px rgba(0,0,0,0.3);
+}
+
+/* Back of the cover (the inside) — paper-toned, shows mid-flip and then
+   rests under the opened page */
+.nb-cover-back {
+  transform: rotateY(180deg);
+  background: var(--cover-inside);
   border: 1px solid var(--border);
-  border-left: none;
-  border-radius: 0 14px 14px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  animation: fn-insideReveal 0.5s ease 1.4s forwards;
+  /* Left-edge shading + endpaper texture so the opened cover reads
+     clearly against the page background while it lies flat and slides
+     under the page. */
+  box-shadow: inset -6px 0 14px -8px rgba(0,0,0,0.25);
 }
 
-.fn-cover-inside-text {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text-faint);
-  opacity: 0.5;
+.nb-cover-back::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  right: 16px;
+  width: 0;
+  border-right: 2px dashed rgba(122, 90, 61, 0.35);
 }
 
-.fn-cover-emblem {
+.nb-cover-emblem {
   color: rgba(201, 168, 76, 0.5);
 }
 
-.fn-cover-title {
+.nb-cover-title {
   font-family: var(--font-serif);
   font-size: 2.2rem;
   font-weight: 400;
   color: rgba(245, 240, 232, 0.85);
   letter-spacing: 0.06em;
+  text-align: center;
 }
 
-.fn-cover-rule {
+.nb-cover-rule {
   width: 60px;
   height: 1px;
   background: rgba(201, 168, 76, 0.3);
   margin: 4px 0;
 }
 
-.fn-cover-sub {
+.nb-cover-sub {
   font-family: var(--font-serif);
   font-size: 0.85rem;
   font-style: italic;
@@ -3961,53 +3972,52 @@ main {
   line-height: 1.5;
 }
 
-@keyframes fn-coverEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(24px);
+@media (prefers-reduced-motion: no-preference) {
+  .nb-cover--open .nb-cover-flip {
+    animation: nb-cover-fold 2.5s ease 0.45s forwards;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  /* Once the flip is fully open (1.9s in), drop the whole cover layer
+     behind the page so it lies underneath, exactly like Angela's. */
+  .nb-cover--open {
+    animation: nb-cover-drop 0.01s linear 1.9s forwards;
+  }
+  /* The page itself turns in subtly under the opening cover */
+  .notebook {
+    transform-origin: left center;
+    animation: nb-page-turn 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 }
 
-/* Cover-fold — inspired by Angela Jiang's notebook animation.
-   The cover rotates open on its spine (0 → -180deg over the first 56%),
-   holds flat briefly, then slides right (translateX 0 → 99%) so it lifts
-   off the book like a hardcover being set aside on the desk. */
-@keyframes fn-coverTurn {
+@media (prefers-reduced-motion: reduce) {
+  .nb-cover { display: none; }
+}
+
+@keyframes nb-cover-fold {
   0% {
     transform: translateX(0) rotateY(0deg);
-    box-shadow: 0 0 0 rgba(0,0,0,0);
     animation-timing-function: cubic-bezier(0.5, 0.05, 0.45, 0.95);
-  }
-  40% {
-    box-shadow: -30px 0 40px -10px rgba(0,0,0,0.25);
   }
   56%, 60% {
     transform: translateX(0) rotateY(-180deg);
-    box-shadow: -20px 0 30px -10px rgba(0,0,0,0.2);
     animation-timing-function: cubic-bezier(0.5, 0.08, 0.45, 0.92);
   }
   100% {
     transform: translateX(99%) rotateY(-180deg);
-    box-shadow: 0 0 0 rgba(0,0,0,0);
   }
 }
 
-@keyframes fn-insideReveal {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes nb-cover-drop {
+  100% { z-index: -1; }
 }
 
-@keyframes fn-overlayFade {
+@keyframes nb-page-turn {
   0% {
-    opacity: 1;
+    opacity: 0;
+    transform: perspective(1800px) rotateY(-8deg);
   }
   100% {
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    transform: perspective(1800px) rotateY(0deg);
   }
 }
 
@@ -4022,10 +4032,9 @@ main {
   .fn-entry__title { font-size: 1.05rem; }
   .fn-entry__arrow { display: none; }
   .fn-index-title { font-size: 1.5rem; }
-  .fn-cover-spine { width: 12px; }
-  .fn-cover-title { font-size: 1.6rem; }
-  .fn-cover-overlay { padding: 56px 10px 10px; }
-  .fn-cover-book { min-height: min(380px, 50vh); }
+  .nb-cover-title { font-size: 1.6rem; }
+  .nb-cover-front::before { width: 12px; border-radius: 10px 0 0 10px; }
+  .nb-cover-flip { border-radius: 10px 16px 16px 10px; }
   .fn-back { min-height: 48px; font-size: 14px; }
 }
 
