@@ -373,27 +373,30 @@ a:hover{text-decoration:underline}
   margin-bottom:0;
 }
 
-/* ── Back to home — a subtle nav-out link at the top of the page ── */
+/* ── Back to Products — matches the site's fn-back style ── */
 .back-home {
   display:inline-flex;
   align-items:center;
-  gap:0.4rem;
+  gap:6px;
   font-family:var(--font-ui);
-  font-size:0.8125rem;
+  font-size:13px;
   font-weight:500;
   color:var(--text-2);
-  padding:0.4rem 0 0.4rem 0;
-  margin-bottom:1.75rem;
-  transition:color 0.15s ease, gap 0.15s ease;
+  padding:4px 0;
+  margin-bottom:24px;
+  transition:color 0.15s ease;
 }
 .back-home:hover {
-  color:var(--g-blue);
+  color:var(--accent);
   text-decoration:none;
-  gap:0.55rem;
 }
 .back-home svg {
   width:14px;height:14px;
   color:currentColor;
+  transition:transform 0.15s ease;
+}
+.back-home:hover svg {
+  transform:translateX(-3px);
 }
 
 /* ── Colophon — end-of-article sign-off, replacing the old bio ── */
