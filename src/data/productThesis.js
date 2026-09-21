@@ -1,7 +1,7 @@
 export const productThesis = {
   title: 'Where the Framework Ends',
   subtitle: 'A reflection of my understanding of product management.',
-  date: 'August 2025',
+  date: 'May 2026',
   body: [
     "I stepped into the summer of '25 with a fairly clean model of product management: a customer has a problem, the PM understands it, gathers evidence, develops a hypothesis, evaluates the alternatives, aligns the org, prioritizes, builds.",
 
