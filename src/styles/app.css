@@ -192,7 +192,6 @@ main {
   animation: text-appear linear both;
   animation-timeline: view();
   animation-range: entry 0% entry 40%;
-  will-change: opacity, transform;
 }
 
 .card:not(.hero) img,
@@ -204,7 +203,6 @@ main {
   animation: image-appear linear both;
   animation-timeline: view();
   animation-range: entry 0% entry 50%;
-  will-change: opacity, transform;
 }
 
 @keyframes text-appear {
@@ -3976,13 +3974,15 @@ main {
   .nb-cover--open .nb-cover-flip {
     animation: nb-cover-fold 2.5s ease 0.45s forwards;
   }
-  /* Once the flip is fully open (1.9s in), drop the whole cover layer
-     behind the page so it lies underneath, exactly like Angela's. */
+  /* Drop the cover behind the page BEFORE the slide-right begins (56% of
+     2.5s = 1.4s after the 0.45s delay = 1.85s total). Firing at 1.8s
+     ensures the cover is behind the page for the entire slide phase. */
   .nb-cover--open {
-    animation: nb-cover-drop 0.01s linear 1.9s forwards;
+    animation: nb-cover-drop 0.01s linear 1.8s forwards;
   }
-  /* The page itself turns in subtly under the opening cover */
-  .notebook {
+  /* Page-turn only on notebooks that actually have a cover opening —
+     never on bare notebook pages (individual notes, docs without covers). */
+  .notebook:has(.nb-cover--open) {
     transform-origin: left center;
     animation: nb-page-turn 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
   }
