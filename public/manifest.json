@@ -1,0 +1,15 @@
+{
+  "name": "Gayatri Gopalakrishnan",
+  "short_name": "Gayatri G",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FAF7EF",
+  "theme_color": "#FAF7EF",
+  "icons": [
+    {
+      "src": "/favicon-light.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
