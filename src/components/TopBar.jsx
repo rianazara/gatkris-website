@@ -35,6 +35,7 @@ export default function TopBar({ showFieldNotes }) {
   return (
     <>
       <a className="skip-link" href="#about">Skip to main content</a>
+      <header>
       <nav className={`topbar ${scrolled ? 'topbar--scrolled' : ''}`} aria-label="Main navigation">
         <div className="topbar__links">
           {navLinks.map((link) => (
@@ -67,6 +68,7 @@ export default function TopBar({ showFieldNotes }) {
           </button>
         </div>
       </nav>
+      </header>
       {menuOpen && (
         <div className="topbar__overlay" onClick={() => setMenuOpen(false)}>
           <div className="topbar__mobile-menu" onClick={(e) => e.stopPropagation()}>
